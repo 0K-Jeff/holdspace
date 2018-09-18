@@ -5,12 +5,12 @@
 }
 
 body {
+    background: #e4e4e4;
     margin: 0;
 }
 
 div.menu{
     z-index: 3;
-    margin-top: 1%;
     background: #294766;
     width: 175px;
     height: 100%;
@@ -22,7 +22,8 @@ div.menu div.swarlogo h1 {
     color: #fff4db;
     height: 50px;
     padding: 0;
-    margin: 5%;
+    margin-top: 20px;
+    margin-bottom: 20px;
     width: 175px;
     line-height: 50px;
     text-align: center;
@@ -40,7 +41,11 @@ div.menu ul li {
     padding: 0;
     margin: 10%;
     width: 80%;
+    background-color: #314c68;
     text-align: center;
+    line-height: 38px;
+    box-shadow: 2px 2px rgba(0, 0, 0, 0.2);
+
 }
 
 div.facilityinfo {
@@ -73,9 +78,8 @@ div.facilityinfo p.facilityname {
 
 div.landingpage {
     
-    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('.\assets\republic-services-recycling-center-7-HR.jpg');
     padding: 20px;
-    padding-left: 100px;
+    padding-left: 50px;
     margin-left: 175px;
     margin-right: 20px;
     padding-top: 10%;
@@ -87,9 +91,9 @@ div.landingpage {
 div.landingpage div.actionitem {
     top: 5%;
     display: inline-block;
-    margin: 5%;
+    margin: 50px;
     position: relative;
-    width: 30%;
+    width: 225px;
     height: 250px;
     background: #0c9449;
     padding-left: 2%;
@@ -101,9 +105,20 @@ div.landingpage div.actionitem {
     box-shadow: 8px 8px rgba(0, 0, 0, 0.2);
 }
 
+div.bgimage {
+    z-index: -1;
+    display: inline-block;
+    position: absolute;
+    margin-top: 25px;
+    width: 650px;
+    height: 300px;
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('.\assets\republic-services-recycling-center-7-HR.jpg');
+}
+
 div.landingpage div.actionitem p {
     margin: 0;
-    height:  70%;
+    height:  60%;
+    margin-top: 15%;
 }
 
 div.landingpage div.actionitem h1 {
@@ -114,7 +129,7 @@ div.landingpage div.actionitem h1 {
 div.landingpage div.secondaryitems div {
     margin: 2%;
     display: inline-block;
-    width: 15%;
+    width: 125px;
     height: 100px;
     background: #0c9449;
     padding-left: 2%;
