@@ -1,0 +1,70 @@
+/* actual main page content */
+
+div.landingpage {
+    
+    padding: 20px;
+    padding-left: 50px;
+    margin-left: 175px;
+    margin-right: 20px;
+    padding-top: 100px;
+    width: 90%;
+    height: 100%;
+    position: absolute;
+}
+
+div.landingpage a.actionitem {
+    top: 5%;
+    display: inline-block;
+    margin: 50px;
+    position: relative;
+    width: 225px;
+    height: 250px;
+    background: #0c9449;
+    padding: 16px;
+    color: white;
+    text-align: center;
+    box-shadow: 8px 8px rgba(0, 0, 0, 0.2);
+    text-decoration-line: none;
+}
+
+div.landingpage a.actionitem:hover {
+    background: #0cb859;
+}
+
+div.bgimage {
+    z-index: -1;
+    display: inline-block;
+    position: absolute;
+    margin-top: 25px;
+    width: 650px;
+    height: 300px;
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('..\..\assets\republic-services-recycling-center-7-HR.jpg');
+}
+
+div.landingpage a.actionitem p {
+    margin: 0;
+    height:  60%;
+    margin-top: 30px;
+}
+
+div.landingpage a.actionitem h1 {
+    margin: 0;
+    height: 25%;
+    font-size: 32px;
+}
+
+div.secondaryitems {
+    width: 650px;
+}
+
+div.landingpage div.secondaryitems div {
+    margin: 18px;
+    display: inline-block;
+    width: 125px;
+    height: 100px;
+    background: #0c9449;
+    padding: 16px;
+    color: white;
+    text-align: center;
+    box-shadow: 8px 8px rgba(0, 0, 0, 0.2);
+}

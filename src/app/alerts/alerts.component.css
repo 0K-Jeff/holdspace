@@ -1,0 +1,13 @@
+div.alertbox {
+    position: relative;
+    width: 100%;
+    display: block;
+    height: auto;
+    line-height: 38px;
+    background-color: #ffb171;
+    color: black;
+    z-index: 1;
+    padding-left: 50px;
+    top: 90px;
+    left: 175px;
+}

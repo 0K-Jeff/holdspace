@@ -1,0 +1,46 @@
+<div class="menu">
+  <div class="swarlogo">
+    <h1>SWARWeb</h1>
+  </div>
+  <ul>
+    <li>
+      <div class='hovermenu'>
+        data entry
+        <div class='hiddenhovermenu'>
+          <div class='hiddenhovermenuitem'>
+            entry form
+          </div>
+          <div class='hiddenhovermenuitem'>
+            more data
+          </div>
+          <div class='hiddenhovermenuitem'>
+            interesting links
+          </div>
+        </div>
+      </div>
+    </li>
+    <li (click)='toggleclass()'>
+      facility list
+    </li>
+    <li class="dropdownmenu">
+      fort belvoir
+    </li>
+    <li class="dropdownmenu">
+      Pentagon
+    </li>
+    <li>
+      build forms
+    </li>
+  </ul>
+</div>
+
+<div class="facilityinfo">
+  <app-timer></app-timer>
+  <h1 class="menutext">
+    Current Facility:
+  </h1> 
+  <p class="facilityname">
+    Fort Belvoir
+  </p>
+</div>
+<app-alerts></app-alerts>
