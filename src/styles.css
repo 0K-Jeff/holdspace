@@ -154,7 +154,7 @@ div.alertbox {
 div#timerdisplay {
     position: fixed;
     display: inline-block;
-    width: 375px;
+    width: 400px;
     height: 90px;
     line-height: 90px;
     margin: 0;
@@ -162,7 +162,7 @@ div#timerdisplay {
     font-size: 32px;
     font-weight: bold;
     text-align: center;
-    left: 300px;
+    left: 225px;
     z-index: 6;
 }
 
