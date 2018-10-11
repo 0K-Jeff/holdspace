@@ -6,6 +6,8 @@ import { LandingpageComponent } from './landingpage/landingpage.component';
 import { TimerComponent } from './timer/timer.component';
 import { MenuComponent } from './menu/menu.component';
 import { AlertsComponent } from './alerts/alerts.component';
+import { AppRoutingModule } from './app-routing.module';
+import { AuthcheckComponent } from './authcheck/authcheck.component';
 
 @NgModule({
   declarations: [
@@ -13,10 +15,12 @@ import { AlertsComponent } from './alerts/alerts.component';
     LandingpageComponent,
     TimerComponent,
     MenuComponent,
-    AlertsComponent
+    AlertsComponent,
+    AuthcheckComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
