@@ -8,6 +8,8 @@ import { MenuComponent } from './menu/menu.component';
 import { AlertsComponent } from './alerts/alerts.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthcheckComponent } from './authcheck/authcheck.component';
+import { DisposalTransactionComponent } from './disposal-transaction/disposal-transaction.component';
+import { DisposalListComponent } from './disposal-list/disposal-list.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { AuthcheckComponent } from './authcheck/authcheck.component';
     TimerComponent,
     MenuComponent,
     AlertsComponent,
-    AuthcheckComponent
+    AuthcheckComponent,
+    DisposalTransactionComponent,
+    DisposalListComponent
   ],
   imports: [
     BrowserModule,

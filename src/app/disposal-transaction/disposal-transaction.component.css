@@ -1,0 +1,118 @@
+/* Disposal Transaction Styling */
+
+div.disposalTransactionBox {
+    padding: 20px;
+    padding-left: 50px;
+    margin-left: 175px;
+    margin-right: 20px;
+    padding-top: 100px;
+    width: 90%;
+    height: 100%;
+    position: absolute;
+}
+
+div.miniBox {
+    padding: 10px;
+    width: 700px;
+    height: auto;
+    position: relative;
+    background: #cac3c3;
+    margin: 10px;
+}
+
+select.facilityChoice {
+    width: 200px;
+    height: 50px;
+    margin: 20px;
+    background: #294766;
+    color: white;
+    margin-left: 40px;
+}
+
+select.tenantSelector {
+    width: 200px;
+    height: 50px;
+    margin: 20px;
+    background: #294766;
+    color: white;
+    margin-left: 40px;
+}
+
+option.facilitylistfield:hover {
+    background: #314c68;
+}
+
+fieldset.estimateBox {
+    display: none;
+    position: relative;
+    width: 200px;
+    margin: 20px;
+    height: 80px;
+    line-height: 30px;
+    vertical-align: top;
+    margin-left: 40px;
+}
+
+fieldset.toggle {
+    position: relative;
+    width: 200px;
+    display: inline-block;
+    margin: 20px;
+    height: 80px;
+    line-height: 30px;
+    vertical-align: top;
+    margin-left: 40px;
+}
+
+input[type="date"] {
+    width: 200px;
+    margin: 20px;
+    margin-left: 40px;
+}
+
+input[type="radio"] {
+    margin: 0;
+    position: absolute;
+    right: 10px;
+    height: 30px;
+}
+
+input.transactionValue {
+    display: inline-block;
+    width: 200px;
+}
+
+h1 {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 0;
+    margin-top: 10px;
+    margin-block-end: 0;
+    margin-block-start: 0;
+}
+
+h1.headline {
+    margin: 10px;
+    font-size: 2em;
+    color: #294766;
+    width: 700px;
+    background: #314c6829;
+    padding: 20px;
+}
+
+label.transactionValue {
+    display: inline-block;
+    width: 110px;
+    margin: 10px;
+}
+
+button {
+    background: #0c9449;
+    width: 100px;
+    height: 35px;
+    line-height: 35px;
+    margin: 10px;
+    border: none;
+    box-shadow: 8px 8px rgba(0, 0, 0, 0.2);
+    color: white;
+}

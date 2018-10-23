@@ -1,0 +1,64 @@
+<div class="disposalTransactionBox">
+  <h1 class="headline">Disposal Transaction</h1>
+
+  <div class="miniBox">
+    <input type="date">
+    <select class="facilityChoice" name="facility">
+      <option class="facilitylistfield" value="fortbelvoir">Fort Belvoir</option>
+      <option class="facilitylistfield" value="fortknox">Fort Knox</option>
+    </select>
+    </div>
+    <br>
+  
+    <h1>Transaction Type:</h1><br>
+    <fieldset class="toggle">
+      <label for="ActualWeight">Actual Weight</label>
+      <input id="ActualWeight" type="radio" value="Actual" name="weight/volume" checked><br>
+      <label for="EstimatedWeight">Estimated Weight</label>
+      <input id="EstimatedWeight" type="radio" value="Estimated" name="weight/volume">
+    </fieldset>
+    <fieldset class="toggle">
+      <label for="ActualVolume">Actual Volume</label>
+      <input id="ActualVolume" class="volumeToggle" type="radio" value="Actual" name="weight/volume"><br>
+      <label for="EstimatedVolume">Estimated Volume</label>
+      <input id="EstimatedVolume" class="volumeToggle" type="radio" value="Estimated" name="weight/volume">
+    </fieldset><br>
+  
+    <fieldset class="estimateBox">
+      <input type="text" name="Volume">
+      <select name="conversionItem">
+        <option value="cars">Cars</option>
+        <option value="cans">Cans</option>
+      </select>
+      <input type="text" name="Conversion Rate">
+    </fieldset>
+  
+    <button class="costRevenue chosen">Cost</button>
+    <button class="costRevenue">Revenue</button>
+    <br>
+
+  <div class=miniBox><h1>Transaction Details: </h1>
+    <label for="PoundsDisposed" class="transactionValue">Pounds:</label>
+    <input id="PoundsDisposed" type="text" class="transactionValue" name="pounds">
+    <label for="CostPerPound" class="transactionValue">Cost Per Pound: </label>
+    <input id="CostPerPound" type="text" class="transactionValue" name="costperpound">
+    <br>
+    <label for="TonsDisposed" class="transactionValue">Weight (Tons): </label>
+    <input id="TonsDisposed" type="text" class="transactionValue" name="weight">
+    <label for="CostPerTon" class="transactionValue">Cost Per Ton:</label>
+    <input id="CostPerTon" type="text" class="transactionValue" name="costperton">
+  </div>
+    <br>  
+    <h1>Tenant: </h1>
+    <select class="tenantSelector" name="tenant">
+      <option value="tenant1">Tenant 1</option>
+      <option value="tenant2">Tenant 2</option>
+    </select><br>
+  
+    <label class="transactionValue" for="Invoice">Invoice No: </label>
+    <input id="Invoice" type="text" name="Invoice">
+    <br>
+    <button routerLink='/disposal'>Cancel</button>
+    <button>Save Changes</button>
+
+  </div>

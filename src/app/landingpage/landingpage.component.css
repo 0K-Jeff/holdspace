@@ -31,6 +31,14 @@ div.landingpage a.actionitem:hover {
     background: #0cb859;
 }
 
+div.landingpage a.disabled {
+    background: #aac2b5
+}
+
+div.landingpage a.disabled:hover {
+    background: #aac2b5;
+}
+
 div.bgimage {
     z-index: -1;
     display: inline-block;
