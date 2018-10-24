@@ -115,4 +115,10 @@ button {
     border: none;
     box-shadow: 8px 8px rgba(0, 0, 0, 0.2);
     color: white;
+    margin-bottom: 25px;
+}
+
+button.unchosen {
+    background:  #aac2b5;
+    color: black;
 }
