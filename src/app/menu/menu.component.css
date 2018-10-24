@@ -125,3 +125,11 @@ div.facilityinfo p.facilityname {
     line-height: 90px;
     margin: 0;
 }
+
+i.facilityInfoBoxToggle {
+    position: fixed;
+    display: inline-block;
+    z-index: 10;
+    right: 450px;
+    top: 38px;
+}

@@ -2,7 +2,9 @@
   <h1 class="headline">Disposal Transaction</h1>
 
   <div class="miniBox">
-    <input type="date">
+      <input class='datePicker' [matDatepicker]="myDatepicker">
+      <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
+      <mat-datepicker #myDatepicker></mat-datepicker>
     <select class="facilityChoice" name="facility">
       <option class="facilitylistfield" value="fortbelvoir">Fort Belvoir</option>
       <option class="facilitylistfield" value="fortknox">Fort Knox</option>
@@ -12,16 +14,12 @@
   
     <h1>Transaction Type:</h1><br>
     <fieldset class="toggle">
-      <label for="ActualWeight">Actual Weight</label>
-      <input id="ActualWeight" type="radio" value="Actual" name="weight/volume" checked><br>
-      <label for="EstimatedWeight">Estimated Weight</label>
-      <input id="EstimatedWeight" type="radio" value="Estimated" name="weight/volume">
+      <mat-radio-button name="weight/volume" value="actualweight">Actual Weight</mat-radio-button>
+      <mat-radio-button name="weight/volume" value="estimatedweight">Estimated Weight</mat-radio-button>
     </fieldset>
     <fieldset class="toggle">
-      <label for="ActualVolume">Actual Volume</label>
-      <input id="ActualVolume" class="volumeToggle" type="radio" value="Actual" name="weight/volume"><br>
-      <label for="EstimatedVolume">Estimated Volume</label>
-      <input id="EstimatedVolume" class="volumeToggle" type="radio" value="Estimated" name="weight/volume">
+      <mat-radio-button name="weight/volume" value="actualvolume">Actual Volume</mat-radio-button>
+      <mat-radio-button name="weight/volume" value="estimatedweight">Estimated Volume</mat-radio-button>
     </fieldset><br>
   
     <fieldset class="estimateBox">
@@ -35,6 +33,7 @@
   
     <button class="costRevenue chosen">Cost</button>
     <button class="costRevenue unchosen">Revenue</button>
+    <i aria-label="Help Button for Cost/Revenue" class="formTooltip fas fa-question-circle fa-2x"></i>
     <br>
 
   <div class=miniBox><h1>Transaction Details: </h1>
@@ -62,3 +61,4 @@
     <button>Save Changes</button>
 
   </div>
+  

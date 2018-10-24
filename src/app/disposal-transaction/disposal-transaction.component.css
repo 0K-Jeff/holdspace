@@ -64,22 +64,10 @@ fieldset.toggle {
     margin-left: 40px;
 }
 
-input[type="date"] {
-    width: 200px;
-    margin: 20px;
-    margin-left: 40px;
-}
-
-input[type="radio"] {
-    margin: 0;
-    position: absolute;
-    right: 10px;
-    height: 30px;
-}
-
 input.transactionValue {
     display: inline-block;
-    width: 200px;
+    width: 175px;
+    text-align: right;
 }
 
 h1 {
@@ -104,6 +92,7 @@ label.transactionValue {
     display: inline-block;
     width: 110px;
     margin: 10px;
+    text-align: right;
 }
 
 button {
@@ -118,7 +107,37 @@ button {
     margin-bottom: 25px;
 }
 
+button:hover {
+    background: #0cb859;
+}
+
 button.unchosen {
     background:  #aac2b5;
     color: black;
+}
+
+/* fontawesome ui alterations */
+
+i.formTooltip {
+    display: inline-block;
+    color: #294766;
+    margin-left: 15px;
+    margin-top: 12px;
+    vertical-align: top;
+}
+
+i.formTooltip:hover {
+    color: #5e7c9b;
+}
+
+/* Material UI alterations */
+
+input.datePicker {
+    width: 200px;
+    margin: 20px;
+    margin-left: 40px;
+}
+
+mat-datepicker-toggle {
+    margin-right: 20px;
 }

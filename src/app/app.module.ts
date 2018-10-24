@@ -1,4 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialCompModule } from './material-comp/material-comp.module';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
@@ -24,7 +26,9 @@ import { DisposalListComponent } from './disposal-list/disposal-list.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MaterialCompModule
   ],
   providers: [],
   bootstrap: [AppComponent]
