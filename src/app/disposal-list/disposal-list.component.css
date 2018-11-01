@@ -9,32 +9,98 @@ div.disposalTransactionListBox {
     position: absolute;
 }
 
-div.miniBox {
-    padding: 10px;
-    width: 700px;
-    height: auto;
-    position: relative;
-    background: #cac3c3;
-    margin: 10px;
-}
-
-input.transactionName {
-    display: inline-block;
-    width: 200px;
-}
-
-button {
+button.newTransaction {
     background: #0c9449;
-    width: 75px;
-    height: 35px;
-    line-height: 35px;
     margin: 10px;
     border: none;
+    width: 175px;
+    height: 40px;
+    line-height: 40px;
+    margin-left: 50px;
     box-shadow: 8px 8px rgba(0, 0, 0, 0.2);
     color: white;
 }
 
-button.newTransaction {
-    width: 175px;
+button.newTransaction:hover {
+    background: #0cb859;
+}
+
+/* Table styles */
+div.tablePanel {
+    margin: 25px;
     margin-left: 50px;
+    width: 700px;
+}
+
+table {
+    margin-bottom: 0px;
+    width: 700px;
+}
+
+tr.mat-header-row th.mat-header-cell {
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+    border-style: solid;
+    border-width: 1px .5px 2px .5px;
+    border-color: #9c9a9a;
+    background: #ebeaea
+}
+
+.mat-sort-header-container {
+    width: 100%;
+    justify-content: center;
+}
+
+td {
+    text-align: center;
+    border-style: solid;
+    border-width: 0px .5px 1px .5px;
+    border-color: #cac3c3;
+}
+
+mat-paginator {
+    width: 700px;
+    border-style: solid;
+    border-width: .5px .5px 1px .5px;
+    border-color: #cac3c3;
+}
+
+th.iconHeader {
+    padding: 0 !important;
+}
+
+td.iconCell {
+    width: 200px;
+    padding-left: 0px !important;
+}
+
+button.iconButton {
+    background: none;
+    border: none;
+    color: #294766;
+    width: 40px;
+    height: 20px;
+    cursor: pointer;
+    padding: 0;
+}
+
+button.approveData {
+    color: #0c9449;
+}
+
+button.rejectData {
+    color: #c93407;
+}
+
+button.iconButton:hover {
+    color: #5e7c9b
+}
+
+button.approveData:hover {
+    color: #0cb859;
+}
+
+button.rejectData:hover {
+    color: #f7440e;
 }

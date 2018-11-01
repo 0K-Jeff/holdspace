@@ -1,17 +1,40 @@
 <div class="disposalTransactionListBox">
-  <div class='miniBox'>
-    <ul>
-      <li class="disposalListItem">
-        Example item
-        <button>Edit</button>
-        <button>Delete</button>
-      </li>
-      <li class="disposalListItem">
-        Example item
-        <button>Edit</button>
-        <button>Delete</button>
-      </li>
-    </ul>
-  </div>
+
+<div class="mat-elevation-z8 tablePanel" >
+  <table mat-table [dataSource]="dataSource" matSort>
+
+    <ng-container matColumnDef="actions">
+      <th class="iconHeader" mat-header-cell *matHeaderCellDef> Actions: </th>
+      <td class="iconCell" mat-cell *matCellDef="let transaction">
+        <button class='iconButton approveData' mat-button><i class="fas fa-clipboard-check fa-lg"></i></button>
+        <button class='iconButton rejectData' mat-button><i class="fas fa-file-download fa-lg"></i></button>
+        <button class='iconButton' mat-button><i class="fas fa-edit fa-lg"></i></button>
+        <button class='iconButton' mat-button><i class="fas fa-trash-alt fa-lg"></i></button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+      <td mat-cell *matCellDef="let transaction"> {{transaction.date}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="facility">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Facility </th>
+      <td mat-cell *matCellDef="let transaction"> {{transaction.facility}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="state">
+      <th class="iconHeader" mat-header-cell *matHeaderCellDef mat-sort-header> State </th>
+      <td mat-cell *matCellDef="let transaction"> {{transaction.state}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef='displayedColumns'></tr>
+    <tr mat-row *matRowDef='let row; columns: displayedColumns'></tr>
+
+  </table>
+  
+  <mat-paginator [pageSizeOptions]="[5, 10]" showFirstLastButtons></mat-paginator>  
+</div>
+
   <button class='newTransaction' routerLink='/disposal/transaction'>New Transaction</button>
 </div>

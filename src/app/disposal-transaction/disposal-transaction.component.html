@@ -2,6 +2,7 @@
   <h1 class="headline">Disposal Transaction</h1>
 
   <div class="miniBox">
+      <h1>Enter your Transaction Date: </h1><br>
       <input class='datePicker' [matDatepicker]="myDatepicker">
       <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
       <mat-datepicker #myDatepicker></mat-datepicker>
@@ -12,24 +13,12 @@
     </div>
     <br>
   
-    <h1>Transaction Type:</h1><br>
+    <h1>Transaction Type:</h1>
     <fieldset class="toggle">
       <mat-radio-button name="weight/volume" value="actualweight">Actual Weight</mat-radio-button>
       <mat-radio-button name="weight/volume" value="estimatedweight">Estimated Weight</mat-radio-button>
     </fieldset>
-    <fieldset class="toggle">
-      <mat-radio-button name="weight/volume" value="actualvolume">Actual Volume</mat-radio-button>
-      <mat-radio-button name="weight/volume" value="estimatedweight">Estimated Volume</mat-radio-button>
-    </fieldset><br>
-  
-    <fieldset class="estimateBox">
-      <input type="text" name="Volume">
-      <select name="conversionItem">
-        <option value="cars">Cars</option>
-        <option value="cans">Cans</option>
-      </select>
-      <input type="text" name="Conversion Rate">
-    </fieldset>
+    <br>
   
     <button class="costRevenue chosen">Cost</button>
     <button class="costRevenue unchosen">Revenue</button>
@@ -47,12 +36,8 @@
     <label for="CostPerTon" class="transactionValue">Cost Per Ton:</label>
     <input id="CostPerTon" type="text" class="transactionValue" name="costperton">
   </div>
-    <br>  
-    <h1>Tenant: </h1>
-    <select class="tenantSelector" name="tenant">
-      <option value="tenant1">Tenant 1</option>
-      <option value="tenant2">Tenant 2</option>
-    </select><br>
+  
+  <br>  
   
     <label class="transactionValue" for="Invoice">Invoice No: </label>
     <input id="Invoice" type="text" name="Invoice">
