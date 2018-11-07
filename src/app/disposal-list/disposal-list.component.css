@@ -29,12 +29,12 @@ button.newTransaction:hover {
 div.tablePanel {
     margin: 25px;
     margin-left: 50px;
-    width: 700px;
+    width: 900px;
 }
 
 table {
     margin-bottom: 0px;
-    width: 700px;
+    width: 900px;
 }
 
 tr.mat-header-row th.mat-header-cell {
@@ -60,7 +60,7 @@ td {
 }
 
 mat-paginator {
-    width: 700px;
+    width: 900px;
     border-style: solid;
     border-width: .5px .5px 1px .5px;
     border-color: #cac3c3;
