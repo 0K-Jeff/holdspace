@@ -47,17 +47,6 @@ export class DisposalListComponent implements OnInit {
 
   constructor() {
 
-    // function disposalListArrayGenerator(translatedServerPacket: Object) {
-    //   const currentListPacket[];
-    //   for (let x = 0; x < translatedServerPacket.serverPacket.length(); x++) {
-    //     const transactionItem = {date: '', facility: '', state: ''};
-    //     currentListPacket.push(transactionItem);
-    //   }
-    //   return currentListPacket;
-    // }
-
-    // currentListPacket = disposalListArrayGenerator(dataTransactionPacket);
-
   }
 
   ngOnInit() {
