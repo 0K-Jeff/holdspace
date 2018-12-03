@@ -20,6 +20,7 @@ const dataTransactionPacket = '{ "serverPacket" : [' +
 '{"dateString" : "2015-03-15" , "facility" : "Trashbegone landfill and disposal" , "facilityType" : "D" , "totalCost" : "300.57"} ]}';
 
 const dataBundle = JSON.parse(dataTransactionPacket);
+console.log(dataBundle);
 
 // tslint:disable-next-line:prefer-const
 let TRANSACTION_DATA: DisposalTransactionListItem[] = [];

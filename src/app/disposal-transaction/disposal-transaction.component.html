@@ -1,15 +1,13 @@
 <div class="disposalTransactionBox">
-  <h1 class="headline">Disposal Transaction</h1>
+  <h1 class="headline">Disposal Transaction<i aria-label="Help Button for Disposal Transactions" class="formTooltip fas fa-question-circle" style="margin: 0px 0px 0px 20px"></i></h1>
 
   <div class="miniBox">
       <h1>Enter your Transaction Date: </h1><br>
       <input class='datePicker' [matDatepicker]="myDatepicker">
       <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
       <mat-datepicker #myDatepicker></mat-datepicker>
-    <select class="facilityChoice" name="facility">
-      <option class="facilitylistfield" value="fortbelvoir">Fort Belvoir</option>
-      <option class="facilitylistfield" value="fortknox">Fort Knox</option>
-    </select>
+    <label for="transactionFacility" class="transactionValue">Facility: </label> 
+    <input id="transactionFacility" class="transactionValue" type="text">
     </div>
     <br>
   
@@ -22,7 +20,6 @@
   
     <button class="costRevenue chosen">Cost</button>
     <button class="costRevenue unchosen">Revenue</button>
-    <i aria-label="Help Button for Cost/Revenue" class="formTooltip fas fa-question-circle fa-2x"></i>
     <br>
 
   <div class=miniBox><h1>Transaction Details: </h1>

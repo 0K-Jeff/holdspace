@@ -23,7 +23,7 @@ div.miniBox {
 select.facilityChoice {
     width: 200px;
     height: 50px;
-    margin: 20px;
+    margin: 0px 20px 20px 20px;
     background: #294766;
     color: white;
     margin-left: 40px;
@@ -134,8 +134,7 @@ i.formTooltip:hover {
 
 input.datePicker {
     width: 200px;
-    margin: 20px;
-    margin-left: 40px;
+    margin: 0px 20px 20px 40px;
 }
 
 mat-datepicker-toggle {
