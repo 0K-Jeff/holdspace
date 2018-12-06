@@ -1,46 +1,52 @@
-<div class="disposalTransactionBox">
-  <h1 class="headline">Disposal Transaction<i aria-label="Help Button for Disposal Transactions" class="formTooltip fas fa-question-circle" style="margin: 0px 0px 0px 20px"></i></h1>
+<form [formGroup]="form">
+  <div class="disposalTransactionBox">
+    <h1 class="headline">Disposal Transaction<i aria-label="Help Button for Disposal Transactions" class="formTooltip fas fa-question-circle" style="margin: 0px 0px 0px 20px"></i></h1>
 
-  <div class="miniBox">
-      <h1>Enter your Transaction Date: </h1><br>
-      <input class='datePicker' [matDatepicker]="myDatepicker">
-      <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
-      <mat-datepicker #myDatepicker></mat-datepicker>
-    <label for="transactionFacility" class="transactionValue">Facility: </label> 
-    <input id="transactionFacility" class="transactionValue" type="text">
+    <div class="miniBox">
+        <h1>Enter your Transaction Date: </h1><br>
+        <input class='datePicker' [matDatepicker]="myDatepicker" formControlName="actionDate">
+        <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
+        <mat-datepicker #myDatepicker></mat-datepicker>
+      <label for="transactionFacility" class="transactionValue">Facility: </label> 
+      <input id="transactionFacility" class="transactionValue" type="text" formControlName="facilityType">
+      </div>
+      <br>
+    
+      <h1>Transaction Type:</h1>
+      <fieldset class="toggle">
+        <mat-radio-button name="weight/volume" value="actualweight">Actual Weight</mat-radio-button>
+        <mat-radio-button name="weight/volume" value="estimatedweight">Estimated Weight</mat-radio-button>
+      </fieldset>
+      <br>
+    
+      <button class="costRevenue chosen">Cost</button>
+      <button class="costRevenue unchosen">Revenue</button>
+      <br>
+
+    <div class=miniBox><h1>Transaction Details: </h1>
+      <label for="PoundsDisposed" class="transactionValue">Pounds:</label>
+      <input id="PoundsDisposed" type="text" class="transactionValue" name="pounds">
+      <label for="CostPerPound" class="transactionValue">Cost Per Pound: </label>
+      <input id="CostPerPound" type="text" class="transactionValue" name="costperpound">
+      <br>
+      <label for="TonsDisposed" class="transactionValue">Weight (Tons): </label>
+      <input id="TonsDisposed" type="text" class="transactionValue" name="weight">
+      <label for="CostPerTon" class="transactionValue">Cost Per Ton:</label>
+      <input id="CostPerTon" type="text" class="transactionValue" name="costperton">
+      <br>
+      <label for="finalCost" class="transactionValue finalCost">Final Cost: </label>
+      <input id="finalCost" type="text" class="transactionValue finalCost" name="finalcost" formControlName="finalCost">
+
     </div>
-    <br>
-  
-    <h1>Transaction Type:</h1>
-    <fieldset class="toggle">
-      <mat-radio-button name="weight/volume" value="actualweight">Actual Weight</mat-radio-button>
-      <mat-radio-button name="weight/volume" value="estimatedweight">Estimated Weight</mat-radio-button>
-    </fieldset>
-    <br>
-  
-    <button class="costRevenue chosen">Cost</button>
-    <button class="costRevenue unchosen">Revenue</button>
-    <br>
-
-  <div class=miniBox><h1>Transaction Details: </h1>
-    <label for="PoundsDisposed" class="transactionValue">Pounds:</label>
-    <input id="PoundsDisposed" type="text" class="transactionValue" name="pounds">
-    <label for="CostPerPound" class="transactionValue">Cost Per Pound: </label>
-    <input id="CostPerPound" type="text" class="transactionValue" name="costperpound">
-    <br>
-    <label for="TonsDisposed" class="transactionValue">Weight (Tons): </label>
-    <input id="TonsDisposed" type="text" class="transactionValue" name="weight">
-    <label for="CostPerTon" class="transactionValue">Cost Per Ton:</label>
-    <input id="CostPerTon" type="text" class="transactionValue" name="costperton">
-  </div>
-  
-  <br>  
-  
-    <label class="transactionValue" for="Invoice">Invoice No: </label>
-    <input id="Invoice" type="text" name="Invoice">
-    <br>
-    <button routerLink='/disposal'>Cancel</button>
-    <button>Save Changes</button>
+    
+    <br>  
+    
+      <label class="transactionValue" for="Invoice">Invoice No: </label>
+      <input id="Invoice" type="text" name="Invoice">
+      <br>
+      <button (click)='this.ClearChosenTransaction()' routerLink='/disposal'>Cancel</button>
+      <button>Save Changes</button>
 
   </div>
+</form>
   

@@ -140,3 +140,7 @@ input.datePicker {
 mat-datepicker-toggle {
     margin-right: 20px;
 }
+
+.finalCost {
+    font-weight: bold;
+}

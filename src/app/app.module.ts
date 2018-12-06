@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialCompModule } from './material-comp/material-comp.module';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { LandingpageComponent } from './landingpage/landingpage.component';
@@ -28,7 +29,8 @@ import { DisposalListComponent } from './disposal-list/disposal-list.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialCompModule
+    MaterialCompModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
