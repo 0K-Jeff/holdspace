@@ -3,21 +3,7 @@ import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
 import { DisposalTransactionService, DisposalTransactionListItem } from '../disposal-transaction.service';
 
 
-const TRANSACTION_DATA: DisposalTransactionListItem[] = [];
-
-// Dummy data - TODO replace with fetch methods using REST API
-
-const dataTransactionPacket = '{ "serverPacket" : [' +
-'{"dateString" : "2016-10-26" , "facility" : "Trashbegone landfill and disposal" , "facilityType" : "D" , "totalCost" : "50.07"},' +
-'{"dateString" : "2016-10-25" , "facility" : "Camp Swampy incinerator" , "facilityType" : "W" , "totalCost" : "40.07"},' +
-'{"dateString" : "2017-07-05" , "facility" : "Camp Swampy incinerator" , "facilityType" : "W" , "totalCost" : "230.07"},' +
-'{"dateString" : "2018-01-15" , "facility" : "Camp Swampy incinerator" , "facilityType" : "W" , "totalCost" : "1111.07"},' +
-'{"dateString" : "2018-05-23" , "facility" : "Trashbegone landfill and disposal" , "facilityType" : "D" , "totalCost" : "40.47"},' +
-'{"dateString" : "2015-04-25" , "facility" : "Camp Swampy incinerator" , "facilityType" : "W" , "totalCost" : "423.07"},' +
-'{"dateString" : "2015-03-15" , "facility" : "Trashbegone landfill and disposal" , "facilityType" : "D" , "totalCost" : "300.57"} ]}';
-
-const dataBundle = JSON.parse(dataTransactionPacket);
-console.log(dataBundle);
+let TRANSACTION_DATA: DisposalTransactionListItem[] = [];
 
 @Component({
   selector: 'app-disposal-list',
@@ -28,7 +14,7 @@ console.log(dataBundle);
 
 export class DisposalListComponent implements OnInit {
   displayedColumns: string[] = ['actions', 'date', 'facility', 'facilityType', 'totalCost'];
-  dataSource = new MatTableDataSource<DisposalTransactionListItem>(TRANSACTION_DATA);
+  dataSource;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -38,8 +24,13 @@ export class DisposalListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    // Clear Table of Data to Refresh
+    TRANSACTION_DATA = [];
+
+    const dataTransactionPacket = sessionStorage.mockData;
+    // translate mock data into JSON TODOREPLACE
+    const dataBundle = JSON.parse(dataTransactionPacket);
+    console.log(dataBundle);
 
     for (let iterated = 0; iterated < dataBundle.serverPacket.length; iterated++) {
       const arraySlot = {date: new Date(dataBundle.serverPacket[iterated].dateString), facility: dataBundle.serverPacket[iterated].facility,
@@ -47,6 +38,10 @@ export class DisposalListComponent implements OnInit {
 
       TRANSACTION_DATA.push(arraySlot);
     }
+    this.dataSource = new MatTableDataSource<DisposalTransactionListItem>(TRANSACTION_DATA);
+
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
 
   }
 
