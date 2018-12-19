@@ -9,7 +9,7 @@
         <button class='iconButton approveData' mat-button><i class="fas fa-clipboard-check fa-lg"></i></button>
         <button class='iconButton rejectData' mat-button><i class="fas fa-file-download fa-lg"></i></button>
         <button class='iconButton' (click)='this.SetChosenTransaction(transaction)' routerLink='/disposal/transaction' mat-button><i class="fas fa-edit fa-lg"></i></button>
-        <button class='iconButton' mat-button><i class="fas fa-trash-alt fa-lg"></i></button>
+        <button class='iconButton' (click)='this.DeleteTransaction(transaction.transactionId)' mat-button><i class="fas fa-trash-alt fa-lg"></i></button>
       </td>
     </ng-container>
 
