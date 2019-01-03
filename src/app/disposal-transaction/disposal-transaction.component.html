@@ -4,12 +4,16 @@
 
     <div class="miniBox">
         <h1>Enter your Transaction Date: </h1><br>
-        <input class='datePicker' [matDatepicker]="myDatepicker" formControlName="actionDate">
+        <input class='datePicker' autocomplete="off" [matDatepicker]="myDatepicker" formControlName="actionDate">
         <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
         <mat-datepicker #myDatepicker></mat-datepicker>
+
       <label for="transactionFacility" class="transactionValue">Facility: </label> 
-      <input id="transactionFacility" class="transactionValue" type="text" formControlName="facilityType">
+      <mat-form-field>
+        <input matInput placeholder="Facility Type" autocomplete="off" id="transactionFacility" class="transactionValue" type="text" formControlName="facilityType">
+      </mat-form-field>
       </div>
+      
       <br>
     
       <h1>Transaction Type:</h1>
@@ -17,25 +21,41 @@
         <mat-radio-button name="weight/volume" value="actualweight">Actual Weight</mat-radio-button>
         <mat-radio-button name="weight/volume" value="estimatedweight">Estimated Weight</mat-radio-button>
       </fieldset>
+
       <br>
-    
+
       <button class="costRevenue chosen">Cost</button>
       <button class="costRevenue unchosen">Revenue</button>
+
       <br>
 
     <div class=miniBox><h1>Transaction Details: </h1>
       <label for="PoundsDisposed" class="transactionValue">Pounds:</label>
-      <input id="PoundsDisposed" type="text" class="transactionValue" name="pounds">
+      <mat-form-field>
+        <input matInput placeholder="Pounds" autocomplete="off" id="PoundsDisposed" type="text" class="transactionValue" name="pounds">
+      </mat-form-field>
       <label for="CostPerPound" class="transactionValue">Cost Per Pound: </label>
-      <input id="CostPerPound" type="text" class="transactionValue" name="costperpound">
+      <mat-form-field>
+        <input matInput placeholder="Cost Per Pound" autocomplete="off" id="CostPerPound" type="text" class="transactionValue" name="costperpound">
+      </mat-form-field>
+
       <br>
+
       <label for="TonsDisposed" class="transactionValue">Weight (Tons): </label>
-      <input id="TonsDisposed" type="text" class="transactionValue" name="weight">
+      <mat-form-field>
+        <input matInput placeholder="Weight" autocomplete="off" id="TonsDisposed" type="text" class="transactionValue" name="weight">
+      </mat-form-field>
       <label for="CostPerTon" class="transactionValue">Cost Per Ton:</label>
-      <input id="CostPerTon" type="text" class="transactionValue" name="costperton">
+      <mat-form-field>
+        <input matInput placeholder="Cost Per Ton" autocomplete="off" id="CostPerTon" type="text" class="transactionValue" name="costperton">
+      </mat-form-field>
+
       <br>
+
       <label for="finalCost" class="transactionValue finalCost">Final Cost: </label>
-      <input id="finalCost" type="text" class="transactionValue finalCost" name="finalcost" formControlName="finalCost">
+      <mat-form-field>
+        <input matInput placeholder="Final Cost" autocomplete="off" id="finalCost" type="text" class="transactionValue finalCost" name="finalcost" formControlName="finalCost">
+      </mat-form-field>
 
     </div>
     
@@ -43,7 +63,9 @@
     
       <label class="transactionValue" for="Invoice">Invoice No: </label>
       <input id="Invoice" type="text" name="Invoice">
+
       <br>
+
       <button (click)='this.ClearChosenTransaction()' routerLink='/disposal'>Cancel</button>
       <button>Save Changes</button>
 

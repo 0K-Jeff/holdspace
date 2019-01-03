@@ -28,7 +28,7 @@ export class DisposalTransactionService {
    SaveTransactionEdit(transactionRef, formData) {
     let arrayStore = sessionStorage.mockData;
     const arrayJSON = JSON.parse(arrayStore);
-    // TODO update and complete edit Transaction - utilize some form of merge value and write back to JSON - 
+    // TODO update and complete edit Transaction - utilize some form of merge value and write back to JSON -
     arrayStore = JSON.stringify(arrayJSON);
     sessionStorage.mockData = arrayStore;
    }
@@ -37,7 +37,7 @@ export class DisposalTransactionService {
     let arrayStore = sessionStorage.mockData;
     const arrayJSON = JSON.parse(arrayStore);
     for (let iterated = 0; iterated < arrayJSON.serverPacket.length; iterated++) {
-      // find and remove transaction by transactionId
+      // find and remove transaction by transactionId - TODO replace with appropriate call and move this action to server
       if ( arrayJSON.serverPacket[iterated].transactionId === transactionRef) {
         arrayJSON.serverPacket.splice(iterated, 1);
       }

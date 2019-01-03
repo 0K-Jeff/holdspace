@@ -22,7 +22,8 @@ export class DisposalTransactionComponent implements OnInit {
     this.form = this.formBuilder.group({
       actionDate: [],
       facilityType: [''],
-      finalCost: ['']
+      finalCost: [''],
+      weight: ['']
     });
 
     const currentTransactionData: any = this.disposalTransactionService.FetchChosenTransaction();

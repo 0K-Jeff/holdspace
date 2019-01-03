@@ -7,6 +7,10 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+
 
 @NgModule({
   imports: [
@@ -17,7 +21,10 @@ import { MatStepperModule } from '@angular/material/stepper';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    MatStepperModule
+    MatStepperModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonToggleModule
   ],
   exports: [
     MatDatepickerModule,
@@ -26,7 +33,10 @@ import { MatStepperModule } from '@angular/material/stepper';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    MatStepperModule
+    MatStepperModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonToggleModule
   ],
   declarations: []
 })

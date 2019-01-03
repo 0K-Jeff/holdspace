@@ -27,7 +27,7 @@ export class DisposalListComponent implements OnInit {
     TRANSACTION_DATA = [];
 
     const dataTransactionPacket = sessionStorage.mockData;
-    // translate mock data into JSON TODO REPLACE
+    // translate mock data into JSON TODO REPLACE with translating server data
     const dataBundle = JSON.parse(dataTransactionPacket);
     console.log(dataBundle);
 
