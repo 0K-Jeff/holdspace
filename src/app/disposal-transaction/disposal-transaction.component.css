@@ -42,17 +42,6 @@ option.facilitylistfield:hover {
     background: #314c68;
 }
 
-fieldset.estimateBox {
-    display: none;
-    position: relative;
-    width: 200px;
-    margin: 20px;
-    height: 80px;
-    line-height: 30px;
-    vertical-align: top;
-    margin-left: 40px;
-}
-
 fieldset.toggle {
     position: relative;
     width: 200px;
@@ -61,7 +50,7 @@ fieldset.toggle {
     height: 80px;
     line-height: 30px;
     vertical-align: top;
-    margin-left: 40px;
+    margin-left: 10px;
 }
 
 input.transactionValue {
@@ -99,7 +88,6 @@ label.transactionValue {
 
 button {
     background: #0c9449;
-    width: 100px;
     height: 35px;
     line-height: 35px;
     margin: 10px;
@@ -141,6 +129,23 @@ input.datePicker {
 
 mat-datepicker-toggle {
     margin-right: 20px;
+}
+
+mat-button-toggle.mat-button-toggle {
+    color: #141618;
+    margin: 2px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #aac2b5;
+}
+
+mat-button-toggle.mat-button-toggle-checked {
+    background: #0cb859;
+    color: white;
+}
+
+.mat-button-toggle-group {
+    margin: 10px;
 }
 
 .finalCost {

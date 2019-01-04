@@ -10,6 +10,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     MatStepperModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatButtonModule
   ],
   exports: [
     MatDatepickerModule,
@@ -36,7 +38,8 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     MatStepperModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatButtonModule
   ],
   declarations: []
 })

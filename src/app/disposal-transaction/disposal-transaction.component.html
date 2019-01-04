@@ -24,8 +24,10 @@
 
       <br>
 
-      <button class="costRevenue chosen">Cost</button>
-      <button class="costRevenue unchosen">Revenue</button>
+      <mat-button-toggle-group name="costRevenue" aria-label="Cost or Revenue Toggle">
+        <mat-button-toggle value="cost">Cost</mat-button-toggle>
+        <mat-button-toggle value="revenue">Revenue</mat-button-toggle>
+      </mat-button-toggle-group>
 
       <br>
 
@@ -43,7 +45,7 @@
 
       <label for="TonsDisposed" class="transactionValue">Weight (Tons): </label>
       <mat-form-field>
-        <input matInput placeholder="Weight" autocomplete="off" id="TonsDisposed" type="text" class="transactionValue" name="weight">
+        <input matInput placeholder="Weight (Tons)" autocomplete="off" id="TonsDisposed" type="text" class="transactionValue" name="weight">
       </mat-form-field>
       <label for="CostPerTon" class="transactionValue">Cost Per Ton:</label>
       <mat-form-field>
@@ -66,8 +68,8 @@
 
       <br>
 
-      <button (click)='this.ClearChosenTransaction()' routerLink='/disposal'>Cancel</button>
-      <button>Save Changes</button>
+      <button mat-raised-button (click)='this.ClearChosenTransaction()' routerLink='/disposal'>Cancel</button>
+      <button mat-raised-button>Save Changes</button>
 
   </div>
 </form>
