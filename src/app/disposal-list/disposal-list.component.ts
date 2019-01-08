@@ -12,6 +12,7 @@ let TRANSACTION_DATA: DisposalTransactionListItem[] = [];
 })
 
 export class DisposalListComponent implements OnInit {
+  // TODO update with correct display values
   displayedColumns: string[] = ['actions', 'date', 'facility', 'facilityType', 'totalCost'];
   dataSource;
 
@@ -36,7 +37,8 @@ export class DisposalListComponent implements OnInit {
       const arraySlot = {transactionId: dataBundle.serverPacket[iterated].transactionId, date: new Date(dataBundle.serverPacket[iterated].dateString),
       isActualWeight: dataBundle.serverPacket[iterated].isActualWeight, facility: dataBundle.serverPacket[iterated].facility,
       facilityType: dataBundle.serverPacket[iterated].facilityType, totalCost: dataBundle.serverPacket[iterated].totalCost,
-      isCost: dataBundle.serverPacket[iterated].isCost, weight: dataBundle.serverPacket[iterated].weight, isTons: dataBundle.serverPacket[iterated].isTons};
+      isRevenue: dataBundle.serverPacket[iterated].isRevenue, weight: dataBundle.serverPacket[iterated].weight,
+      isTons: dataBundle.serverPacket[iterated].isTons, costByWeight: dataBundle.serverPacket[iterated].costByWeight};
 
       // pushes data into the table after creating array item
       TRANSACTION_DATA.push(arraySlot);

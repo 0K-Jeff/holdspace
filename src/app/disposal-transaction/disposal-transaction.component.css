@@ -42,17 +42,6 @@ option.facilitylistfield:hover {
     background: #314c68;
 }
 
-fieldset.toggle {
-    position: relative;
-    width: 200px;
-    display: inline-block;
-    margin: 20px;
-    height: 80px;
-    line-height: 30px;
-    vertical-align: top;
-    margin-left: 10px;
-}
-
 input.transactionValue {
     display: inline-block;
     width: 175px;
@@ -121,6 +110,19 @@ i.formTooltip:hover {
 }
 
 /* Material UI alterations */
+
+mat-radio-group.toggle {
+    border: 0.5px solid rgb(145, 145, 145);
+    position: relative;
+    padding: 10px;
+    width: 200px;
+    display: inline-block;
+    margin: 20px;
+    height: 85px;
+    line-height: 30px;
+    vertical-align: top;
+    margin-left: 10px;
+}
 
 input.datePicker {
     width: 200px;

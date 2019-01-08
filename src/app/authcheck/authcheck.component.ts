@@ -22,7 +22,7 @@ export class AuthcheckComponent implements OnInit {
     } else {
       sessionStorage.mockData = '{ "serverPacket" : [' +
     // tslint:disable-next-line:max-line-length
-    '{"transactionId" : "2016-10-26JKOLODNER" , "dateString" : "2016-10-26" , "isActualWeight" : "true" , "isCost" : "true" , "weight" : "21" , "isTons" : "true" , "facility" : "Trashbegone landfill and disposal" , "facilityType" : "D" , "totalCost" : "50.07"} ]}';
+    '{"transactionId" : "2016-10-26JKOLODNER" , "dateString" : "2016-10-26" , "isActualWeight" : "actual" , "isRevenue" : "cost" , "isTons" : "tons" , "weight" : "21" , "costByWeight" : "4" , "facility" : "Trashbegone landfill and disposal" , "facilityType" : "D" , "totalCost" : "84.00"} ]}';
     }
   }
 

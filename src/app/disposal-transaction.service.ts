@@ -48,13 +48,15 @@ export class DisposalTransactionService {
 
 }
 
+// TODO implement additional marker for disposal vs recycling
 export interface DisposalTransactionListItem {
   transactionId: string;
   date: Date;
-  isActualWeight: boolean;
-  isCost: boolean;
+  isActualWeight: string;
+  isRevenue: string;
+  isTons: string;
   weight: number;
-  isTons: boolean;
+  costByWeight: number;
   facility: string;
   facilityType: string;
   totalCost: number;

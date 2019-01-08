@@ -1,4 +1,4 @@
-<form [formGroup]="form">
+<form [formGroup]="form" (ngSubmit)="SaveSubmit()">
   <div class="disposalTransactionBox">
     <h1 class="headline">Disposal Transaction<i aria-label="Help Button for Disposal Transactions" class="formTooltip fas fa-question-circle" style="margin: 0px 0px 0px 20px"></i></h1>
 
@@ -17,39 +17,33 @@
       <br>
     
       <h1>Transaction Type:</h1>
-      <fieldset class="toggle">
-        <mat-radio-button name="weight/volume" value="actualweight">Actual Weight</mat-radio-button>
-        <mat-radio-button name="weight/volume" value="estimatedweight">Estimated Weight</mat-radio-button>
-      </fieldset>
+      <mat-radio-group class="toggle" formControlName="transactionType">
+        <mat-radio-button value="actual">Actual Weight</mat-radio-button>
+        <mat-radio-button value="estimated">Estimated Weight</mat-radio-button>
+      </mat-radio-group>
 
       <br>
 
-      <mat-button-toggle-group name="costRevenue" aria-label="Cost or Revenue Toggle">
+      <mat-button-toggle-group name="costOrRevenue" aria-label="Cost or Revenue Toggle" formControlName="costOrRevenue">
         <mat-button-toggle value="cost">Cost</mat-button-toggle>
         <mat-button-toggle value="revenue">Revenue</mat-button-toggle>
+      </mat-button-toggle-group>
+
+      <mat-button-toggle-group name="poundsOrTons" aria-label="Pounds or Tons Toggle" formControlName="poundsOrTons">
+        <mat-button-toggle value="pounds">Pounds</mat-button-toggle>
+        <mat-button-toggle value="tons">Tons</mat-button-toggle>
       </mat-button-toggle-group>
 
       <br>
 
     <div class=miniBox><h1>Transaction Details: </h1>
-      <label for="PoundsDisposed" class="transactionValue">Pounds:</label>
+      <label for="WeightDisposed" class="transactionValue">Weight:</label>
       <mat-form-field>
-        <input matInput placeholder="Pounds" autocomplete="off" id="PoundsDisposed" type="text" class="transactionValue" name="pounds">
+        <input matInput placeholder="Weight" autocomplete="off" id="WeightDisposed" type="text" class="transactionValue" name="weight" formControlName="weight">
       </mat-form-field>
-      <label for="CostPerPound" class="transactionValue">Cost Per Pound: </label>
+      <label for="CostPerUnit" class="transactionValue">Cost Per Unit: </label>
       <mat-form-field>
-        <input matInput placeholder="Cost Per Pound" autocomplete="off" id="CostPerPound" type="text" class="transactionValue" name="costperpound">
-      </mat-form-field>
-
-      <br>
-
-      <label for="TonsDisposed" class="transactionValue">Weight (Tons): </label>
-      <mat-form-field>
-        <input matInput placeholder="Weight (Tons)" autocomplete="off" id="TonsDisposed" type="text" class="transactionValue" name="weight">
-      </mat-form-field>
-      <label for="CostPerTon" class="transactionValue">Cost Per Ton:</label>
-      <mat-form-field>
-        <input matInput placeholder="Cost Per Ton" autocomplete="off" id="CostPerTon" type="text" class="transactionValue" name="costperton">
+        <input matInput placeholder="Cost Per Unit" autocomplete="off" id="CostPerUnit" type="text" class="transactionValue" name="costperunit" formControlName="costByWeight">
       </mat-form-field>
 
       <br>
@@ -61,15 +55,15 @@
 
     </div>
     
-    <br>  
+      <!-- <br>  
     
       <label class="transactionValue" for="Invoice">Invoice No: </label>
-      <input id="Invoice" type="text" name="Invoice">
+      <input id="Invoice" type="text" name="Invoice"> -->
 
       <br>
 
       <button mat-raised-button (click)='this.ClearChosenTransaction()' routerLink='/disposal'>Cancel</button>
-      <button mat-raised-button>Save Changes</button>
+      <button mat-raised-button type="submit" [disabled]="!form.valid">Save Changes</button>
 
   </div>
 </form>
