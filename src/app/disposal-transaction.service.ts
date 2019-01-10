@@ -25,14 +25,6 @@ export class DisposalTransactionService {
       this.chosenTransaction = undefined;
    }
 
-   SaveTransactionEdit(transactionRef, formData) {
-    let arrayStore = sessionStorage.mockData;
-    const arrayJSON = JSON.parse(arrayStore);
-    // TODO update and complete edit Transaction - utilize some form of merge value and write back to JSON -
-    arrayStore = JSON.stringify(arrayJSON);
-    sessionStorage.mockData = arrayStore;
-   }
-
    DeleteTransaction(transactionRef) {
     let arrayStore = sessionStorage.mockData;
     const arrayJSON = JSON.parse(arrayStore);
@@ -56,7 +48,7 @@ export interface DisposalTransactionListItem {
   isRevenue: string;
   isTons: string;
   weight: number;
-  costByWeight: number;
+  unitCost: number;
   facility: string;
   facilityType: string;
   totalCost: number;

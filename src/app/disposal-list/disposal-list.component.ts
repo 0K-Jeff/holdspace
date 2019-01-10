@@ -13,7 +13,7 @@ let TRANSACTION_DATA: DisposalTransactionListItem[] = [];
 
 export class DisposalListComponent implements OnInit {
   // TODO update with correct display values
-  displayedColumns: string[] = ['actions', 'date', 'facility', 'facilityType', 'totalCost'];
+  displayedColumns: string[] = ['actions', 'date', 'facility', 'facilityType', 'weight', 'unitCost', 'totalCost'];
   dataSource;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -34,11 +34,11 @@ export class DisposalListComponent implements OnInit {
 
     for (let iterated = 0; iterated < dataBundle.serverPacket.length; iterated++) {
       // iterates through list items and translates data into the table view
-      const arraySlot = {transactionId: dataBundle.serverPacket[iterated].transactionId, date: new Date(dataBundle.serverPacket[iterated].dateString),
+      const arraySlot = {transactionId: dataBundle.serverPacket[iterated].transactionId, date: new Date(dataBundle.serverPacket[iterated].date),
       isActualWeight: dataBundle.serverPacket[iterated].isActualWeight, facility: dataBundle.serverPacket[iterated].facility,
       facilityType: dataBundle.serverPacket[iterated].facilityType, totalCost: dataBundle.serverPacket[iterated].totalCost,
       isRevenue: dataBundle.serverPacket[iterated].isRevenue, weight: dataBundle.serverPacket[iterated].weight,
-      isTons: dataBundle.serverPacket[iterated].isTons, costByWeight: dataBundle.serverPacket[iterated].costByWeight};
+      isTons: dataBundle.serverPacket[iterated].isTons, unitCost: dataBundle.serverPacket[iterated].unitCost};
 
       // pushes data into the table after creating array item
       TRANSACTION_DATA.push(arraySlot);

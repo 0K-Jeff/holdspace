@@ -10,7 +10,7 @@
 
       <label for="transactionFacility" class="transactionValue">Facility: </label> 
       <mat-form-field>
-        <input matInput placeholder="Facility Type" autocomplete="off" id="transactionFacility" class="transactionValue" type="text" formControlName="facilityType">
+        <input matInput placeholder="Facility Type" autocomplete="off" id="transactionFacility" class="transactionValue" type="text" formControlName="facility">
       </mat-form-field>
       </div>
       
@@ -44,14 +44,14 @@
       <label for="CostPerUnit" class="transactionValue">Cost Per Unit: </label>
       <mat-form-field>
         <input matInput placeholder="Cost Per Unit" autocomplete="off" id="CostPerUnit" type="text" class="transactionValue" name="costperunit" formControlName="costByWeight">
-      </mat-form-field>
+      </mat-form-field>$
 
       <br>
 
       <label for="finalCost" class="transactionValue finalCost">Final Cost: </label>
       <mat-form-field>
-        <input matInput placeholder="Final Cost" autocomplete="off" id="finalCost" type="text" class="transactionValue finalCost" name="finalcost" formControlName="finalCost">
-      </mat-form-field>
+        <input matInput readonly=true placeholder="Final Cost" autocomplete="off" id="finalCost" type="text" class="transactionValue finalCost" name="finalcost" formControlName="finalCost">
+      </mat-form-field>$
 
     </div>
     
