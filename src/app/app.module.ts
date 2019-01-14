@@ -13,6 +13,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AuthcheckComponent } from './authcheck/authcheck.component';
 import { DisposalTransactionComponent } from './disposal-transaction/disposal-transaction.component';
 import { DisposalListComponent } from './disposal-list/disposal-list.component';
+import { UserTableComponent } from './user-table/user-table.component';
+import { UserAdminComponent } from './user-admin/user-admin.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { DisposalListComponent } from './disposal-list/disposal-list.component';
     AlertsComponent,
     AuthcheckComponent,
     DisposalTransactionComponent,
-    DisposalListComponent
+    DisposalListComponent,
+    UserTableComponent,
+    UserAdminComponent
   ],
   imports: [
     BrowserModule,
