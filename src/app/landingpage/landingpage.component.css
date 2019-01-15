@@ -25,6 +25,7 @@ div.landingpage a.actionitem {
     text-align: center;
     box-shadow: 8px 8px rgba(0, 0, 0, 0.2);
     text-decoration-line: none;
+    vertical-align: top;
 }
 
 div.landingpage a.actionitem:hover {
@@ -34,6 +35,11 @@ div.landingpage a.actionitem:hover {
 div.landingpage a.disabled {
     background: #aac2b5
 }
+
+div.landingpage div.buttonBox {
+    background: #cac3c3;
+}
+
 
 div.landingpage a.disabled:hover {
     background: #aac2b5;
@@ -75,4 +81,9 @@ div.landingpage div.secondaryitems div {
     color: white;
     text-align: center;
     box-shadow: 8px 8px rgba(0, 0, 0, 0.2);
+}
+
+div.landingpage div.secondaryitems div.disabled {
+    background: #aac2b5;
+    vertical-align: top;
 }
