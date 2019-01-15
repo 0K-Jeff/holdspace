@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: 'home', component: LandingpageComponent},
   { path: 'auth', component: AuthcheckComponent},
   { path: 'disposal', component: DisposalListComponent},
-  { path: 'disposal/transaction', component: DisposalTransactionComponent}
+  { path: 'disposal/transaction', component: DisposalTransactionComponent},
 ];
 
 @NgModule({

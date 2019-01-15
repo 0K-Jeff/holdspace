@@ -153,3 +153,7 @@ mat-button-toggle.mat-button-toggle-checked {
 .finalCost {
     font-weight: 600;
 }
+
+.facilitySelect {
+    width: 220px;
+}

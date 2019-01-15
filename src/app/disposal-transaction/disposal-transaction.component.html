@@ -10,7 +10,11 @@
 
       <label for="transactionFacility" class="transactionValue">Facility: </label> 
       <mat-form-field>
-        <input matInput placeholder="Facility Type" autocomplete="off" id="transactionFacility" class="transactionValue" type="text" formControlName="facility">
+        <mat-select class="facilitySelect" placeholder="Disposal Facility" aria-placeholder="Disposal Facility List" formControlName="facility">
+          <mat-option *ngFor="let facilityName of dummyFacility" [value]="facilityName">
+            {{facilityName}}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
       </div>
       
@@ -30,8 +34,8 @@
       </mat-button-toggle-group>
 
       <mat-button-toggle-group name="poundsOrTons" aria-label="Pounds or Tons Toggle" formControlName="poundsOrTons">
-        <mat-button-toggle value="pounds">Pounds</mat-button-toggle>
         <mat-button-toggle value="tons">Tons</mat-button-toggle>
+        <mat-button-toggle value="pounds">Pounds</mat-button-toggle>
       </mat-button-toggle-group>
 
       <br>

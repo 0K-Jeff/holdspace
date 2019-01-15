@@ -105,7 +105,7 @@ div.facilityinfo {
 
 div.facilityinfo h1.menutext {
     line-height: 90px;
-    width: 240px;
+    width: 270px;
     position: fixed;
     right: 185px;
     display: inline-block;
@@ -130,6 +130,6 @@ i.facilityInfoBoxToggle {
     position: fixed;
     display: inline-block;
     z-index: 10;
-    right: 450px;
+    right: 75px;
     top: 38px;
 }

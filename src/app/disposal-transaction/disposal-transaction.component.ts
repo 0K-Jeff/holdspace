@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
 import { DisposalTransactionService, DisposalTransactionListItem } from '../disposal-transaction.service';
-import { and } from '@angular/router/src/utils/collection';
+import { Router } from '@angular/router';
 
 // create variables to store data if needed for editing transactions
 let tDate: Date;
@@ -21,13 +21,18 @@ let editMode = false;
 
 export class DisposalTransactionComponent implements OnInit {
   form: FormGroup;
+  // TODO delete this with proper call for appropriate Facility List
+  dummyFacility = ['Camp Swampy Incinerator', 'Camp Swampy Landfill'];
 
-  constructor(private disposalTransactionService: DisposalTransactionService, private formBuilder: FormBuilder) { }
+  // enable singleton services and other controllers
+  constructor(private disposalTransactionService: DisposalTransactionService,
+              private formBuilder: FormBuilder,
+              private router: Router) { }
 
   ngOnInit() {
     // create the initial bindings to form values
     this.form = this.formBuilder.group({
-      actionDate: [],
+      actionDate: [''],
       facility: [''],
       weight: [''],
       transactionType: [''],
@@ -68,6 +73,8 @@ export class DisposalTransactionComponent implements OnInit {
     }
   }
 
+
+  // Submit button Method
   SaveSubmit() {
     console.log(this.form.value);
 
@@ -77,6 +84,15 @@ export class DisposalTransactionComponent implements OnInit {
       // TODO replace with live API instead
       let currentStore = sessionStorage.mockData;
       const currentStoreObject = JSON.parse(currentStore);
+
+      // translate fake data into facility TODO Replace
+      let submitFacilityTypeValue = '';
+      if (this.form.value.facility === 'Camp Swampy Incinerator') {
+        submitFacilityTypeValue = 'I';
+      } else if (this.form.value.facility === 'Camp Swampy Landfill') {
+        submitFacilityTypeValue = 'D';
+      }
+
       const formObject: DisposalTransactionListItem = {
         transactionId: currentTransactionData.transactionId,
         date: this.form.value.actionDate,
@@ -86,7 +102,7 @@ export class DisposalTransactionComponent implements OnInit {
         weight: this.form.value.weight,
         unitCost: this.form.value.costByWeight,
         facility: this.form.value.facility,
-        facilityType: currentTransactionData.facilityType,
+        facilityType: submitFacilityTypeValue,
         totalCost: this.form.value.finalCost
       };
       console.log(formObject);
@@ -112,6 +128,13 @@ export class DisposalTransactionComponent implements OnInit {
       // grab current mock data TODO REPLACE WITH API
       let currentStore = sessionStorage.mockData;
       const currentStoreObject = JSON.parse(currentStore);
+      // translate fake data into facility TODO Replace
+      let submitFacilityTypeValue = '';
+      if (this.form.value.facility === 'Camp Swampy Incinerator') {
+        submitFacilityTypeValue = 'I';
+      } else if (this.form.value.facility === 'Camp Swampy Landfill') {
+        submitFacilityTypeValue = 'D';
+      }
 
       // store data for mapping into a new JSON
       const formObject: DisposalTransactionListItem = {
@@ -124,7 +147,7 @@ export class DisposalTransactionComponent implements OnInit {
         weight: this.form.value.weight,
         unitCost: this.form.value.costByWeight,
         facility: this.form.value.facility,
-        facilityType: 'D',
+        facilityType: submitFacilityTypeValue,
         totalCost: this.form.value.finalCost
       };
 
@@ -132,7 +155,11 @@ export class DisposalTransactionComponent implements OnInit {
       currentStore = JSON.stringify(currentStoreObject);
       sessionStorage.mockData = currentStore;
     }
+
+    this.router.navigateByUrl('/disposal');
   }
+
+  // clear transaction service to avoid side effects
 
   ClearChosenTransaction() {
     this.disposalTransactionService.ClearChosenTransaction();
