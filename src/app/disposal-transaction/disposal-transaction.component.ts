@@ -34,7 +34,7 @@ export class DisposalTransactionComponent implements OnInit {
     this.form = this.formBuilder.group({
       actionDate: [''],
       facility: [''],
-      weight: ['0'],
+      weight: [''],
       transactionType: [''],
       costOrRevenue: [''],
       poundsOrTons: [''],
