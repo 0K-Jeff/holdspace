@@ -32,13 +32,13 @@ export class DisposalTransactionComponent implements OnInit {
   ngOnInit() {
     // create the initial bindings to form values
     this.form = this.formBuilder.group({
-      actionDate: [''],
-      facility: [''],
-      weight: [''],
-      transactionType: [''],
-      costOrRevenue: [''],
-      poundsOrTons: [''],
-      costByWeight: [''],
+      actionDate: ['', Validators.required],
+      facility: ['', Validators.required],
+      weight: ['', Validators.required],
+      transactionType: ['', Validators.required],
+      costOrRevenue: ['', Validators.required],
+      poundsOrTons: ['', Validators.required],
+      costByWeight: ['', Validators.required],
       finalCost: ({ value: '0.00', readOnly: true })
     });
     // subscribe finalCost to other values to calculate reactively
