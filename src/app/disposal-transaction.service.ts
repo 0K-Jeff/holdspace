@@ -40,7 +40,7 @@ export class DisposalTransactionService {
 
 }
 
-// TODO implement additional marker for disposal vs recycling
+// implements and exports disposal tranasaction interface
 export interface DisposalTransactionListItem {
   transactionId: string;
   date: Date;

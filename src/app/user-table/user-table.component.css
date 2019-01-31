@@ -1,0 +1,106 @@
+div.userListBox {
+    padding: 20px;
+    padding-left: 50px;
+    margin-left: 175px;
+    margin-right: 20px;
+    padding-top: 100px;
+    width: 90%;
+    height: 100%;
+    position: absolute;
+}
+
+button.newUser {
+    background: #0c9449;
+    margin: 10px;
+    border: none;
+    width: 150px;
+    height: 40px;
+    line-height: 40px;
+    margin-left: 50px;
+    box-shadow: 8px 8px rgba(0, 0, 0, 0.2);
+    color: white;
+}
+
+button.newUser:hover {
+    background: #0cb859;
+}
+
+/* Table styles */
+div.tablePanel {
+    margin: 25px;
+    margin-left: 50px;
+    width: 900px;
+}
+
+table {
+    margin-bottom: 0px;
+    width: 900px;
+}
+
+tr.mat-header-row th.mat-header-cell {
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+    border-style: solid;
+    border-width: 1px .5px 2px .5px;
+    border-color: #9c9a9a;
+    background: #ebeaea
+}
+
+.mat-sort-header-container {
+    width: 100%;
+    justify-content: center;
+}
+
+td {
+    text-align: center;
+    border-style: solid;
+    border-width: 0px .5px 1px .5px;
+    border-color: #cac3c3;
+}
+
+mat-paginator {
+    width: 900px;
+    border-style: solid;
+    border-width: .5px .5px 1px .5px;
+    border-color: #cac3c3;
+}
+
+th.iconHeader {
+    padding: 0 !important;
+}
+
+td.iconCell {
+    width: 100px;
+    padding-left: 0px !important;
+}
+
+button.iconButton {
+    background: none;
+    border: none;
+    color: #294766;
+    width: 40px;
+    height: 20px;
+    cursor: pointer;
+    padding: 0;
+}
+
+button.approveData {
+    color: #0c9449;
+}
+
+button.rejectData {
+    color: #c93407;
+}
+
+button.iconButton:hover {
+    color: #5e7c9b
+}
+
+button.editUser:hover {
+    color: #0cb859;
+}
+
+button.deactivateUser:hover {
+    color: #f7440e;
+}

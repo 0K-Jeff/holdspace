@@ -159,6 +159,11 @@ export class DisposalTransactionComponent implements OnInit {
     this.router.navigateByUrl('/disposal');
   }
 
+  tonsReset() {
+    this.form.controls.weight.patchValue('');
+    this.form.controls.unitCost.patchValue('');
+  }
+
   // clear transaction service to avoid side effects
 
   ClearChosenTransaction() {
