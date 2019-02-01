@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthcheckComponent } from './authcheck/authcheck.component';
 import { LandingpageComponent } from './landingpage/landingpage.component';
-import { DisposalTransactionComponent } from './disposal-transaction/disposal-transaction.component';
-import { DisposalListComponent } from './disposal-list/disposal-list.component';
-import { UserTableComponent } from './user-table/user-table.component';
-import { UserAdminComponent } from './user-admin/user-admin.component';
+import { DisposalTransactionComponent } from './dataentry-components/disposal-transaction/disposal-transaction.component';
+import { DisposalListComponent } from './dataentry-components/disposal-list/disposal-list.component';
+import { UserTableComponent } from './dataentry-components/user-table/user-table.component';
+import { UserAdminComponent } from './dataentry-components/user-admin/user-admin.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/auth', pathMatch: 'full'},

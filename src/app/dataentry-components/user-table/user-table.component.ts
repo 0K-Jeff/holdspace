@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
-import { UserAdminService, UserListItem } from '../user-admin.service';
+import { UserAdminService, UserListItem } from '../../user-admin.service';
 import { Router } from '@angular/router';
 
 let USER_DATA: UserListItem[] = [];

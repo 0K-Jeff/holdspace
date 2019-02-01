@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
-import { DisposalTransactionService, DisposalTransactionListItem } from '../disposal-transaction.service';
+import { DisposalTransactionService, DisposalTransactionListItem } from '../../disposal-transaction.service';
 import { Router } from '@angular/router';
 
 // create variables to store data if needed for editing transactions

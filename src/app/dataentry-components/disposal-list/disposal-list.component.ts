@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
-import { DisposalTransactionService, DisposalTransactionListItem } from '../disposal-transaction.service';
+import { DisposalTransactionService, DisposalTransactionListItem } from '../../disposal-transaction.service';
 import { Router } from '@angular/router';
 
 let TRANSACTION_DATA: DisposalTransactionListItem[] = [];

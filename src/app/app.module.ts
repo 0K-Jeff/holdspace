@@ -11,10 +11,12 @@ import { MenuComponent } from './menu/menu.component';
 import { AlertsComponent } from './alerts/alerts.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthcheckComponent } from './authcheck/authcheck.component';
-import { DisposalTransactionComponent } from './disposal-transaction/disposal-transaction.component';
-import { DisposalListComponent } from './disposal-list/disposal-list.component';
-import { UserTableComponent } from './user-table/user-table.component';
-import { UserAdminComponent } from './user-admin/user-admin.component';
+import { DisposalTransactionComponent } from './dataentry-components/disposal-transaction/disposal-transaction.component';
+import { DisposalListComponent } from './dataentry-components/disposal-list/disposal-list.component';
+import { UserTableComponent } from './dataentry-components/user-table/user-table.component';
+import { UserAdminComponent } from './dataentry-components/user-admin/user-admin.component';
+import { RecycleListComponent } from './dataentry-components/recycle-list/recycle-list.component';
+import { RecycleTransactionComponent } from './dataentry-components/recycle-transaction/recycle-transaction.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { UserAdminComponent } from './user-admin/user-admin.component';
     DisposalTransactionComponent,
     DisposalListComponent,
     UserTableComponent,
-    UserAdminComponent
+    UserAdminComponent,
+    RecycleListComponent,
+    RecycleTransactionComponent
   ],
   imports: [
     BrowserModule,
