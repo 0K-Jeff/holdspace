@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { UserAdminService, UserListItem } from '../../user-admin.service';
+import { UserAdminService, UserListItem } from '../../dataentry-services/user-admin.service';
 import { Router } from '@angular/router';
 
 // create variables to store data if necessary for editing users
