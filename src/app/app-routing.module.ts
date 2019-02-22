@@ -6,6 +6,8 @@ import { DisposalTransactionComponent } from './dataentry-components/disposal-tr
 import { DisposalListComponent } from './dataentry-components/disposal-list/disposal-list.component';
 import { UserTableComponent } from './dataentry-components/user-table/user-table.component';
 import { UserAdminComponent } from './dataentry-components/user-admin/user-admin.component';
+import { RecycleListComponent } from './dataentry-components/recycle-list/recycle-list.component';
+import { RecycleTransactionComponent } from './dataentry-components/recycle-transaction/recycle-transaction.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/auth', pathMatch: 'full'},
@@ -14,7 +16,9 @@ const routes: Routes = [
   { path: 'disposal', component: DisposalListComponent},
   { path: 'disposal/transaction', component: DisposalTransactionComponent},
   { path: 'useradmin', component: UserTableComponent},
-  { path: 'useradmin/user', component: UserAdminComponent}
+  { path: 'useradmin/user', component: UserAdminComponent},
+  { path: 'recycling', component: RecycleListComponent},
+  { path: 'recycling/transaction', component: RecycleTransactionComponent}
 ];
 
 @NgModule({

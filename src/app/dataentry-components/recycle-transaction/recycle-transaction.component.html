@@ -1,3 +1,83 @@
-<p>
-  recycle-transaction works!
-</p>
+<form [formGroup]="form" (ngSubmit)="SaveSubmit()">
+    <div class="recyclingTransactionBox">
+      <h1 class="headline">Recycling Transaction<i aria-label="Help Button for Recycling Transactions" class="formTooltip fas fa-question-circle" style="margin: 0px 0px 0px 20px"></i></h1>
+  
+      <div class="miniBox">
+          <h1>Enter your Transaction Date: </h1><br>
+          <input class='datePicker' autocomplete="off" [matDatepicker]="myDatepicker" formControlName="actionDate">
+          <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
+          <mat-datepicker #myDatepicker></mat-datepicker>
+  
+        <label for="transactionFacility" class="transactionValue">Facility: </label> 
+        <mat-form-field>
+          <mat-select class="facilitySelect" placeholder="Disposal Facility" aria-placeholder="Recycling Facility List" formControlName="facility">
+            <mat-option *ngFor="let facilityName of dummyFacility" [value]="facilityName">
+              {{facilityName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        </div>
+        
+      <div class="miniBox2">
+        <h1>Transaction Type:</h1>
+  
+        <div class='miniBox' style="width: auto;">
+          <label for="transactionMaterial" class="transactionValue" style="width: auto;">Recycling Material: </label> 
+          <mat-form-field>
+            <mat-select class="recyclingSelect" placeholder="Recycled Material" aria-placeholder="Recycling Material List" formControlName="recyclingType">
+              <mat-option *ngFor="let facilityName of dummyFacility" [value]="facilityName">
+                {{facilityName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <br>
+          <label for="TransactionTags" class="transactionValue" style="width: auto;">Additional Comments: </label> 
+          <mat-form-field>
+            <input matInput placeholder="Comments" autocomplete="off" id="TransactionTags" type='text' class="transactionValue" name='comments' formControlName="comments">
+          </mat-form-field>
+        </div>
+        <br>
+  
+        <mat-button-toggle-group name="costOrRevenue" aria-label="Cost or Revenue Toggle" formControlName="costOrRevenue">
+          <mat-button-toggle value="cost">Cost</mat-button-toggle>
+          <mat-button-toggle value="revenue">Revenue</mat-button-toggle>
+        </mat-button-toggle-group>
+  
+        <mat-button-toggle-group name="poundsOrTons" aria-label="Pounds or Tons Toggle" formControlName="poundsOrTons">
+          <mat-button-toggle value="tons" (change)="this.tonsReset()">Tons</mat-button-toggle>
+          <mat-button-toggle value="pounds" (change)="this.tonsReset()">Pounds</mat-button-toggle>
+        </mat-button-toggle-group>
+
+        <mat-button-toggle-group class="toggle" aria-label="Actual or Estimated Weight Toggle" formControlName="transactionType">
+          <mat-button-toggle value="actual">Actual Weight</mat-button-toggle>
+          <mat-button-toggle value="estimated">Est. Weight</mat-button-toggle>
+        </mat-button-toggle-group>
+      </div>
+  
+      <div class=miniBox><h1>Transaction Details: </h1>
+        <label for="WeightDisposed" class="transactionValue">Weight:</label>
+        <mat-form-field>
+          <input matInput placeholder="Weight" autocomplete="off" id="WeightDisposed" type="number" class="transactionValue" name="weight" formControlName="weight">
+        </mat-form-field>
+        <label for="CostPerUnit" class="transactionValue">Cost Per Unit: </label>
+        <mat-form-field>
+          <input matInput placeholder="Cost Per Unit" autocomplete="off" id="CostPerUnit" type="number" class="transactionValue" name="costperunit" formControlName="costByWeight">
+        </mat-form-field>$
+  
+        <br>
+  
+        <label for="finalCost" class="transactionValue finalCost">Final Cost: </label>
+        <mat-form-field>
+          <input matInput readonly=true placeholder="Final Cost" autocomplete="off" id="finalCost" type="text" class="transactionValue finalCost" name="finalcost" formControlName="finalCost">
+        </mat-form-field>$
+  
+      </div>
+      
+        <br>
+  
+        <button mat-raised-button (click)='this.ClearChosenTransaction()' routerLink='/recycling'>Cancel</button>
+        <button mat-raised-button type="submit" [disabled]="!form.valid">Save Changes</button>
+  
+    </div>
+  </form>
+    

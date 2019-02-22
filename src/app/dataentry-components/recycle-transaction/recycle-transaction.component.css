@@ -1,0 +1,187 @@
+/* Recycle Transaction Styling */
+
+div.recyclingTransactionBox {
+    padding: 20px;
+    padding-left: 50px;
+    margin-left: 175px;
+    margin-right: 20px;
+    padding-top: 100px;
+    width: 90%;
+    height: 100%;
+    position: absolute;
+}
+
+div.miniBox {
+    border-radius: 10px;
+    padding: 10px;
+    width: 700px;
+    height: auto;
+    position: relative;
+    background: #cac3c3;
+    margin: 10px;
+}
+
+div.miniBox2 {
+    border-radius: 10px;
+    padding: 10px;
+    width: 700px;
+    height: auto;
+    position: relative;
+    background: #d6d3d3;
+    margin: 10px;
+}
+
+select.facilityChoice {
+    width: 200px;
+    height: 50px;
+    margin: 0px 20px 20px 20px;
+    background: #294766;
+    color: white;
+    margin-left: 40px;
+}
+
+select.tenantSelector {
+    width: 200px;
+    height: 50px;
+    margin: 20px;
+    background: #294766;
+    color: white;
+    margin-left: 40px;
+}
+
+option.facilitylistfield:hover {
+    background: #314c68;
+}
+
+input.transactionValue {
+    display: inline-block;
+    width: 175px;
+    text-align: right;
+}
+
+h1 {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 0;
+    margin-top: 10px;
+    margin-block-end: 0;
+    margin-block-start: 0;
+    padding-left: 10px;
+}
+
+h1.headline {
+    border-radius: 10px;
+    margin: 10px;
+    font-size: 2em;
+    color: #294766;
+    width: 700px;
+    background: #314c6829;
+    padding: 20px;
+}
+
+label.transactionValue {
+    font-weight: bold;
+    display: inline-block;
+    width: 110px;
+    margin: 10px;
+    text-align: right;
+}
+
+button {
+    background: #0c9449;
+    height: 35px;
+    line-height: 35px;
+    margin: 10px;
+    border: none;
+    box-shadow: 8px 8px rgba(0, 0, 0, 0.2);
+    color: white;
+    margin-bottom: 25px;
+}
+
+button:hover {
+    background: #0cb859;
+}
+
+button.unchosen {
+    background:  #aac2b5;
+    color: black;
+}
+
+/* fontawesome ui alterations */
+
+i.formTooltip {
+    display: inline-block;
+    color: #294766;
+    margin-left: 15px;
+    margin-top: 12px;
+    vertical-align: top;
+}
+
+i.formTooltip:hover {
+    color: #5e7c9b;
+}
+
+/* Material UI alterations */
+
+mat-radio-group.toggle {
+    border: 0.5px solid rgb(145, 145, 145);
+    position: relative;
+    padding: 10px;
+    width: 200px;
+    display: inline-block;
+    margin: 20px;
+    height: 85px;
+    line-height: 30px;
+    vertical-align: top;
+    margin-left: 10px;
+}
+
+input.datePicker {
+    width: 200px;
+    margin: 0px 20px 20px 40px;
+}
+
+mat-datepicker-toggle {
+    margin-right: 20px;
+}
+
+mat-button-toggle.mat-button-toggle {
+    color: #141618;
+    margin: 2px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #aac2b5;
+}
+
+mat-button-toggle.mat-button-toggle-checked {
+    background: #0cb859;
+    color: white;
+}
+
+.mat-button-toggle-group {
+    margin: 10px;
+}
+
+.finalCost {
+    font-weight: 600;
+}
+
+.facilitySelect {
+    width: 220px;
+}
+
+.recyclingSelect {
+    width: 220px;
+}
+
+/* browser overrides */
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}

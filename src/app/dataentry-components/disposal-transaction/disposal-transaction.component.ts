@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 // create variables to store data if needed for editing transactions
 let tDate: Date;
 let tFacility: string;
-let tTransactionType: string;
+let tIsActualWeight: string;
 let tIsTons: string;
 let tIsRevenue: string;
 let tWeight: number;
@@ -60,12 +60,12 @@ export class DisposalTransactionComponent implements OnInit {
       editMode = true;
       tDate = currentTransactionData.date;
       tFacility = currentTransactionData.facility;
-      tTransactionType = currentTransactionData.isActualWeight;
+      tIsActualWeight = currentTransactionData.isActualWeight;
       tIsRevenue = currentTransactionData.isRevenue;
       tIsTons = currentTransactionData.isTons;
       tWeight = currentTransactionData.weight;
       tCostByWeight = currentTransactionData.unitCost;
-      this.form.patchValue({actionDate: tDate, facility: tFacility, transactionType: tTransactionType, costOrRevenue: tIsRevenue,
+      this.form.patchValue({actionDate: tDate, facility: tFacility, transactionType: tIsActualWeight, costOrRevenue: tIsRevenue,
       poundsOrTons: tIsTons, weight: tWeight, costByWeight: tCostByWeight});
     } else {
       // If there isn't an active transaction, ensure component is aware that it is a new transaction

@@ -12,6 +12,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
+import { MatMenuModule, MatMenu } from '@angular/material/menu';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatInputModule,
     MatButtonToggleModule,
     MatButtonModule,
-    MatSelectModule
+    MatSelectModule,
+    MatMenuModule
   ],
   exports: [
     MatDatepickerModule,
@@ -42,7 +44,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatInputModule,
     MatButtonToggleModule,
     MatButtonModule,
-    MatSelectModule
+    MatSelectModule,
+    MatMenuModule
   ],
   declarations: []
 })
