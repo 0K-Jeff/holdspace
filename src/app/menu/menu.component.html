@@ -1,13 +1,11 @@
 <div class="menu">
-  <button mat-button [matMenuTriggerFor]="enterData">Enter Data</button>
-  <mat-menu #enterData="matMenu">
-    <button mat-menu-item>Disposal</button>
-    <button mat-menu-item>Recycling</button> 
-  </mat-menu>
+  <div class="swarlogo">
+    <h1 routerLink='/home'>SWARWeb</h1>
+  </div>
 </div>
 
 <div class="facilityinfo">
-  <!-- <app-timer></app-timer> -->
+  <app-timer></app-timer>
  <i class="facilityInfoBoxToggle fas fa-building fa-lg"></i>
 </div>
-<!-- <app-alerts></app-alerts> -->
+<app-alerts></app-alerts> 
