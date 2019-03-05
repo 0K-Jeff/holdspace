@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
 import { UserAdminService, UserListItem } from '../../dataentry-services/user-admin.service';
+import { JSONClientService } from '../../json-client.service';
 import { Router } from '@angular/router';
+import { JsonpCallbackContext } from '@angular/common/http/src/jsonp';
 
 let USER_DATA: UserListItem[] = [];
 
@@ -21,6 +23,7 @@ export class UserTableComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private userAdminService: UserAdminService,
+              private jsonClientService: JSONClientService,
               private router: Router) { }
 
   ngOnInit() {
@@ -33,7 +36,21 @@ export class UserTableComponent implements OnInit {
   }
 
   tableRenderPacket() {
-    return undefined;
+    // Clear Table for re-render
+    USER_DATA = [];
+    // Import and translate user list for display in the table
+    const JSONpacket = JSON.parse(this.jsonClientService.getUserInfoTable());
+
+    for (let iter = 0; iter < JSONpacket.length; iter++) {
+      // iterate through each entry to create user sub-array
+      const arrayUser = {firstName: JSONpacket[iter].firstName, lastName: JSONpacket[iter].lastName,
+       phone: JSONpacket[iter].phone, email: JSONpacket[iter].eMail, ID: JSONpacket[iter].id,
+       installation: JSONpacket[iter].orgId};
+
+       // push into table after creating array item
+       USER_DATA.push(arrayUser);
+    }
+    return USER_DATA;
   }
 
   SetChosenUser(userData) {

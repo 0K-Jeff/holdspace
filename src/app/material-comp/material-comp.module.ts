@@ -13,6 +13,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatMenuModule, MatMenu } from '@angular/material/menu';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { MatMenuModule, MatMenu } from '@angular/material/menu';
     MatButtonToggleModule,
     MatButtonModule,
     MatSelectModule,
-    MatMenuModule
+    MatMenuModule,
+    MatCheckboxModule
   ],
   exports: [
     MatDatepickerModule,
@@ -45,7 +47,8 @@ import { MatMenuModule, MatMenu } from '@angular/material/menu';
     MatButtonToggleModule,
     MatButtonModule,
     MatSelectModule,
-    MatMenuModule
+    MatMenuModule,
+    MatCheckboxModule
   ],
   declarations: []
 })

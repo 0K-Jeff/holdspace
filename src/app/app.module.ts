@@ -3,7 +3,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialCompModule } from './material-comp/material-comp.module';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-
 import { AppComponent } from './app.component';
 import { LandingpageComponent } from './landingpage/landingpage.component';
 import { TimerComponent } from './timer/timer.component';
@@ -17,6 +16,7 @@ import { UserTableComponent } from './dataentry-components/user-table/user-table
 import { UserAdminComponent } from './dataentry-components/user-admin/user-admin.component';
 import { RecycleListComponent } from './dataentry-components/recycle-list/recycle-list.component';
 import { RecycleTransactionComponent } from './dataentry-components/recycle-transaction/recycle-transaction.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -38,7 +38,8 @@ import { RecycleTransactionComponent } from './dataentry-components/recycle-tran
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialCompModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

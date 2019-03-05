@@ -112,7 +112,15 @@ i.formTooltip:hover {
 
 .rolesList {
     margin-left: 20px;
-    width: 225px;
+    width: 210px;
+}
+
+#rolesList {
+    margin-left: 0;
+}
+
+.roleCheckbox {
+    margin-left: 20px;
 }
 
 mat-form-field.userRoleData {

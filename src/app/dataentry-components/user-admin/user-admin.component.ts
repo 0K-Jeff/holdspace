@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { UserAdminService, UserListItem } from '../../dataentry-services/user-admin.service';
 import { Router } from '@angular/router';
+import { MAT_CHECKBOX_CLICK_ACTION } from '@angular/material';
 
 // create variables to store data if necessary for editing users
 let uFirstName: string;
@@ -9,12 +10,15 @@ let uLastName: string;
 let uID: string;
 let uEmail: string;
 let uPhone: string;
-let uInstallation: string;
+let uInstallation: string[];
 let uRoles: string[];
 let editMode = false;
 
 @Component({
   selector: 'app-user-admin',
+  providers: [
+    {provide: MAT_CHECKBOX_CLICK_ACTION, useValue: 'noop'}
+  ],
   templateUrl: './user-admin.component.html',
   styleUrls: ['./user-admin.component.css']
 })
@@ -36,8 +40,11 @@ export class UserAdminComponent implements OnInit {
       userID: ['', Validators.required],
       email: ['', Validators.required],
       phone: ['', Validators.required],
-      installation: ['', Validators.required],
-      roles: [this.userRoles, Validators.required]
+      installation: [this.userRoles, Validators.required],
+      roles: [this.userRoles, Validators.required],
+      checkRead: [false],
+      checkWrite: [false],
+      checkSubmit: [false]
     });
     // grab edit mode target if relevant
     const currentUserData: any = this.userAdminService.FetchChosenUser();
@@ -50,7 +57,7 @@ export class UserAdminComponent implements OnInit {
       uID = currentUserData.userID;
       uEmail = currentUserData.email;
       uPhone = currentUserData.phone;
-      uInstallation = currentUserData.installation;
+      uInstallation = this.userRoles; // TODO replace this
       uRoles = this.userRoles; // TODO replace with correct fetch logic
       this.form.patchValue({firstName: uFirstName, lastName: uLastName, userID: uID,
         email: uEmail, phone: uPhone, installation: uInstallation, roles: uRoles});
