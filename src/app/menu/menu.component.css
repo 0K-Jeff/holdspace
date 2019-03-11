@@ -2,7 +2,7 @@ div.menu{
     z-index: 3;
     background: #294766;
     width: 175px;
-    height: 100%;
+    height: auto;
     position: fixed;
 }
 

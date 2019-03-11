@@ -32,8 +32,8 @@ export class UserAdminService {
 export interface UserListItem {
   firstName: string;
   lastName: string;
-  ID: string;
+  ID: number;
   phone: string;
   email: string;
-  installation: string;
+  installation: number;
 }

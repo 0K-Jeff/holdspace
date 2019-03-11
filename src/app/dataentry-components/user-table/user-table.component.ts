@@ -3,7 +3,6 @@ import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
 import { UserAdminService, UserListItem } from '../../dataentry-services/user-admin.service';
 import { JSONClientService } from '../../json-client.service';
 import { Router } from '@angular/router';
-import { JsonpCallbackContext } from '@angular/common/http/src/jsonp';
 
 let USER_DATA: UserListItem[] = [];
 
@@ -16,7 +15,7 @@ let USER_DATA: UserListItem[] = [];
 
 export class UserTableComponent implements OnInit {
   // establish displayed columns
-  displayedColumns: string[] = ['name', 'id', 'phone', 'email', 'installation'];
+  displayedColumns: string[] = ['actions', 'name', 'ID', 'phone', 'email', 'installation'];
   dataSource;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -39,8 +38,8 @@ export class UserTableComponent implements OnInit {
     // Clear Table for re-render
     USER_DATA = [];
     // Import and translate user list for display in the table
-    const JSONpacket = JSON.parse(this.jsonClientService.getUserInfoTable());
-
+    const JSONpacket = this.jsonClientService.getUserInfoTable();
+    console.log(JSONpacket);
     for (let iter = 0; iter < JSONpacket.length; iter++) {
       // iterate through each entry to create user sub-array
       const arrayUser = {firstName: JSONpacket[iter].firstName, lastName: JSONpacket[iter].lastName,
