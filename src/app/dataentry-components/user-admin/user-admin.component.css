@@ -14,7 +14,7 @@ div.userInfoBox {
 div.miniBox {
     border-radius: 10px;
     padding: 10px;
-    width: 700px;
+    width: 900px;
     height: auto;
     position: relative;
     background: #cac3c3;
@@ -24,7 +24,7 @@ div.miniBox {
 div.miniBox2 {
     border-radius: 10px;
     padding: 10px;
-    width: 700px;
+    width: 900px;
     height: auto;
     position: relative;
     background: #d6d3d3;
@@ -35,9 +35,13 @@ option.facilitylistfield:hover {
     background: #314c68;
 }
 
+mat-form-field.userData {
+    width: 250px;
+}
+
 input.userData {
     display: inline-block;
-    width: 175px;
+    width: 300px;
 }
 
 h1 {
@@ -55,7 +59,7 @@ h1.headline {
     margin: 10px;
     font-size: 2em;
     color: #294766;
-    width: 700px;
+    width: 900px;
     background: #314c6829;
     padding: 20px;
 }
@@ -68,13 +72,12 @@ label.userData {
     text-align: right;
 }
 
-button {
+button.choiceActions {
     background: #0c9449;
     height: 35px;
     line-height: 35px;
     margin: 10px;
     border: none;
-    box-shadow: 8px 8px rgba(0, 0, 0, 0.2);
     color: white;
     margin-bottom: 25px;
 }
@@ -104,15 +107,14 @@ i.formTooltip:hover {
 
 /* Material UI alterations */
 
-.alignRight {
-    margin-top: 15px;
-    right: 5%;
+.rightSide {
     position: absolute;
+    left: 850px;
 }
 
 .rolesList {
     margin-left: 20px;
-    width: 210px;
+    width: 250px;
 }
 
 #rolesList {
@@ -130,6 +132,61 @@ mat-form-field.userRoleData {
     border-radius: 10px;
     padding: 10px;
     display: inline-block;
+}
+
+table {
+    margin-left: 50px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 800px;
+}
+
+td {
+    text-align: center;
+    border-style: solid;
+    border-width: 0px .5px 1px .5px;
+    border-color: #cac3c3;
+}
+
+div.tablePanel {
+    margin: 0px;
+}
+
+button.iconButton {
+    background: none;
+    border: none;
+    color: #294766;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 17px;
+}
+
+button.editRole {
+    color: #0c9449;
+}
+
+button.editRole:hover {
+    color: #0cb859;
+}
+
+button.deleteRole {
+    color: #c93407;
+}
+
+button.deleteRole:hover {
+    color: #f7440e;
+}
+
+tr.mat-header-row th.mat-header-cell {
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+    border-style: solid;
+    border-width: 1px .5px 2px .5px;
+    border-color: #9c9a9a;
+    background: #ebeaea
 }
 
 /* browser overrides */

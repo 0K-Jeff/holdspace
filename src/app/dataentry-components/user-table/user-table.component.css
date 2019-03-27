@@ -29,12 +29,12 @@ button.newUser:hover {
 div.tablePanel {
     margin: 25px;
     margin-left: 50px;
-    width: 900px;
+    width: 1000px;
 }
 
 table {
     margin-bottom: 0px;
-    width: 900px;
+    width: 1000px;
 }
 
 tr.mat-header-row th.mat-header-cell {
@@ -52,6 +52,13 @@ tr.mat-header-row th.mat-header-cell {
     justify-content: center;
 }
 
+div.searchBox {
+    position: absolute;
+    display: inline-block;
+    width: 300px; 
+    left: 798px;
+}
+
 td {
     text-align: center;
     border-style: solid;
@@ -60,7 +67,7 @@ td {
 }
 
 mat-paginator {
-    width: 900px;
+    width: 1000px;
     border-style: solid;
     border-width: .5px .5px 1px .5px;
     border-color: #cac3c3;
@@ -85,22 +92,22 @@ button.iconButton {
     padding: 0;
 }
 
-button.approveData {
+button.editUser {
     color: #0c9449;
-}
-
-button.rejectData {
-    color: #c93407;
-}
-
-button.iconButton:hover {
-    color: #5e7c9b
 }
 
 button.editUser:hover {
     color: #0cb859;
 }
 
+button.deactivateUser {
+    color: #cfcbca;
+}
+
+/* button.deactivateUser {
+    color: #c93407; TODO - Enable
+}
+
 button.deactivateUser:hover {
     color: #f7440e;
-}
+} */

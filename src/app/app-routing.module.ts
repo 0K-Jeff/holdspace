@@ -10,7 +10,7 @@ import { RecycleListComponent } from './dataentry-components/recycle-list/recycl
 import { RecycleTransactionComponent } from './dataentry-components/recycle-transaction/recycle-transaction.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/auth', pathMatch: 'full'},
+  { path: '', redirectTo: '/useradmin', pathMatch: 'full'},
   { path: 'home', component: LandingpageComponent},
   { path: 'auth', component: AuthcheckComponent},
   { path: 'disposal', component: DisposalListComponent},

@@ -21,11 +21,6 @@ export class UserAdminService {
     this.chosenUser = undefined;
   }
 
-  DisableUser(userId) {
-    // TODO replace with appropriate API call
-    return userId;
-  }
-
 }
 
 // implement and export user detail interface
@@ -35,5 +30,6 @@ export interface UserListItem {
   ID: number;
   phone: string;
   email: string;
-  installation: number;
+  installationName: number;
+  userName: string;
 }

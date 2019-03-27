@@ -15,7 +15,7 @@ let USER_DATA: UserListItem[] = [];
 
 export class UserTableComponent implements OnInit {
   // establish displayed columns
-  displayedColumns: string[] = ['actions', 'name', 'ID', 'phone', 'email', 'installation'];
+  displayedColumns: string[] = ['actions', 'lastName', 'ID', 'phone', 'email', 'installation'];
   dataSource;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -38,13 +38,14 @@ export class UserTableComponent implements OnInit {
     // Clear Table for re-render
     USER_DATA = [];
     // Import and translate user list for display in the table
-    const JSONpacket = this.jsonClientService.getUserInfoTable();
+    const JSONpacket = JSON.parse(this.jsonClientService.getUserInfoTable());
     console.log(JSONpacket);
     for (let iter = 0; iter < JSONpacket.length; iter++) {
       // iterate through each entry to create user sub-array
       const arrayUser = {firstName: JSONpacket[iter].firstName, lastName: JSONpacket[iter].lastName,
-       phone: JSONpacket[iter].phone, email: JSONpacket[iter].eMail, ID: JSONpacket[iter].id,
-       installation: JSONpacket[iter].orgId};
+       phone: JSONpacket[iter].phone, email: JSONpacket[iter].email, ID: JSONpacket[iter].id,
+       installationID: JSONpacket[iter].orgId, installationName: JSONpacket[iter].orgName,
+       userName: JSONpacket[iter].userName};
 
        // push into table after creating array item
        USER_DATA.push(arrayUser);
@@ -53,7 +54,7 @@ export class UserTableComponent implements OnInit {
   }
 
   SetChosenUser(userData) {
-    return undefined;
+    return this.userAdminService.SetChosenUser(userData);
   }
 
   DisableUser(userID) {

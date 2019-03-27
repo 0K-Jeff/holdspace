@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 // Enumerate target URLS for making REST calls
-const userInfoTableURL = 'http://localhost:3000/api/users/';
+const userInfoTableURL = 'http://localhost:3000/api/';
 
 
 @Injectable({
@@ -10,28 +10,30 @@ const userInfoTableURL = 'http://localhost:3000/api/users/';
 })
 export class JSONClientService {
 
-  constructor(private http: HttpClient) { }
+  constructor() { }
 
   getUserInfoTable() {
 
-    // TODO revisit this if necessary and enable observable behavior.
-    // const serverJSON = this.http.get(userInfoTableURL);
-    // console.log(serverJSON);
-    // const serverString = JSON.stringify(serverJSON);
-    // console.log(serverString);
     const httpClient = new XMLHttpRequest();
-    httpClient.open('GET', userInfoTableURL);
-    httpClient.setRequestHeader('AKOID' , 'jeffrey.a.kolodner');
+    httpClient.open('GET', userInfoTableURL + 'users/', false);
     httpClient.send();
-    httpClient.onreadystatechange = (e) => {
-      console.log(httpClient.responseText);
-    };
 
     return httpClient.responseText;
   }
 
   getUserInfo(userID) {
-    return this.http.get(userInfoTableURL + userID);
+    let itemValue;
+    const httpClient = new XMLHttpRequest();
+    httpClient.open('GET', userInfoTableURL + 'userroles/' + userID, false);
+    httpClient.onreadystatechange = function() {
+      if (this.status === 404) {
+        itemValue = '[{"userRoleCode": "N/A", "canWriteCode": "N/A", "canSubmitCode": "N/A"}]';
+      } else if (this.status === 200) {
+        itemValue = httpClient.responseText;
+      }
+    };
+    httpClient.send();
+    return itemValue;
   }
 
 }
