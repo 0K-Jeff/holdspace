@@ -31,6 +31,18 @@ div.miniBox2 {
     margin: 10px;
 }
 
+div.roleInputBox {
+    margin-left: 50px;
+    height: 55px;
+}
+
+input.roleInput {
+    padding: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 165px;
+}
+
 option.facilitylistfield:hover {
     background: #314c68;
 }
@@ -109,7 +121,7 @@ i.formTooltip:hover {
 
 .rightSide {
     position: absolute;
-    left: 850px;
+    left: 750px;
 }
 
 .rolesList {
@@ -179,6 +191,11 @@ button.deleteRole:hover {
     color: #f7440e;
 }
 
+button.doubleCheck {
+    background: #f5598382;
+    border-radius: 25%;
+}
+
 tr.mat-header-row th.mat-header-cell {
     text-align: center;
     font-weight: bold;
@@ -187,6 +204,10 @@ tr.mat-header-row th.mat-header-cell {
     border-width: 1px .5px 2px .5px;
     border-color: #9c9a9a;
     background: #ebeaea
+}
+
+.invisify {
+    display: none;
 }
 
 /* browser overrides */
@@ -200,3 +221,4 @@ input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
+

@@ -1,4 +1,4 @@
-<form [formGroup]="form" (ngSubmit)="SaveSubmit()">
+<form [formGroup]="form">
   <div class="userInfoBox">
     <h1 class="headline">User Info<i aria-label="Help Button for User Information Management" class="formTooltip fas fa-question-circle" style="margin: 0px 0px 0px 20px"></i></h1>
 
@@ -42,7 +42,7 @@
 
     <br>
 
-    <div class="miniBox2">
+    <div class="miniBox2 roleBoxes">
       <div class="tablePanel" >
         <table mat-table [dataSource]="roleDataSource">
           <ng-container matColumnDef="role">
@@ -68,9 +68,9 @@
 
           <ng-container matColumnDef="actions">
             <th class="iconHeader" mat-header-cell *matHeaderCellDef> Actions: </th>
-            <td class="iconCell" mat-cell *matCellDef="let user">
-              <button class='iconButton editRole' ><i class="fas fa-edit fa-lg"></i></button>
-              <button class='iconButton deleteRole' ><i class="fas fa-trash-alt fa-lg"></i></button>
+            <td class="iconCell" mat-cell *matCellDef="let role">
+              <!-- <button class='iconButton editRole' (click)='this.editRole(role)' ><i class="fas fa-edit fa-lg"></i></button> -->
+              <button class='iconButton deleteRole' (click)='this.deleteRole(role)' ><i class="fas fa-trash-alt fa-lg"></i></button>
             </td>
           </ng-container>
           <tr mat-header-row *matHeaderRowDef='displayedColumns'></tr>
@@ -78,14 +78,19 @@
 
         </table>
       </div>
-
-
     </div>
+    <div class="miniBox roleBoxes">
+        <div class=roleInputBox>
+          <input class="roleInput" type="text" id="roleField" value="I">
+          <input class="roleInput" type="text" id="writeField" value="Y">
+          <input class="roleInput" type="text" id="submitField" value="Y">
+          <button class="choiceActions rightSide" mat-raised-button (click)='this.addRole()'> Add Role </button> 
+        </div>
+      </div>
     <br>
 
       <button class="choiceActions" mat-raised-button (click)='this.ClearChosenUser()' routerLink='/useradmin'>Cancel</button>
-      <button class="choiceActions" mat-raised-button type="submit" [disabled]="!form.valid">Save</button>
-      <button class="choiceActions rightSide" mat-raised-button > Add Role </button> 
+      <button class="choiceActions" mat-raised-button (click)='this.SaveSubmit()' type="submit" [disabled]="!form.valid">Save</button>
 
   </div>
 </form>

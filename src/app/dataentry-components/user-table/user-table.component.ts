@@ -45,7 +45,8 @@ export class UserTableComponent implements OnInit {
       const arrayUser = {firstName: JSONpacket[iter].firstName, lastName: JSONpacket[iter].lastName,
        phone: JSONpacket[iter].phone, email: JSONpacket[iter].email, ID: JSONpacket[iter].id,
        installationID: JSONpacket[iter].orgId, installationName: JSONpacket[iter].orgName,
-       userName: JSONpacket[iter].userName};
+       isDbaCode: JSONpacket[iter].isDbaCode, userName: JSONpacket[iter].userName, deactivatedDate:
+       JSONpacket[iter].deactivatedDate};
 
        // push into table after creating array item
        USER_DATA.push(arrayUser);
@@ -57,8 +58,19 @@ export class UserTableComponent implements OnInit {
     return this.userAdminService.SetChosenUser(userData);
   }
 
-  DisableUser(userID) {
-    return undefined;
+  DisableUser(user) {
+    // toggle the delete icon to ensure user wants to de-activate a user
+    const targetedElement = document.getElementById('disableUsr' + user.ID);
+    if (targetedElement.classList.contains('doubleCheck') === true) {
+      this.jsonClientService.deactivateUser(user.ID);
+
+      // render table again with changes
+      this.dataSource = new MatTableDataSource<UserListItem>(this.tableRenderPacket());
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    } else {
+      targetedElement.classList.toggle('doubleCheck');
+    }
   }
 
 }

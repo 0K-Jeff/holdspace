@@ -100,14 +100,19 @@ button.editUser:hover {
     color: #0cb859;
 }
 
-button.deactivateUser {
-    color: #cfcbca;
-}
-
 /* button.deactivateUser {
-    color: #c93407; TODO - Enable
+    color: #cfcbca;
+} */
+
+button.deactivateUser {
+    color: #c93407;
 }
 
 button.deactivateUser:hover {
     color: #f7440e;
-} */
+}
+
+button.doubleCheck {
+    background: #f5598382;
+    border-radius: 25%;
+}

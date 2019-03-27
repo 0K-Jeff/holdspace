@@ -67,9 +67,11 @@ export class UserAdminComponent implements OnInit {
     } else {
       // If there isn't an active user, ensure component is set to create new
       editMode = false;
-      // clear and replace role data
-      ROLE_DATA = [{role: 'N/A', write: 'N/A', submit: 'N/A'}];
-      this.roleDataSource = ROLE_DATA;
+      // hide role blocks for new user
+      const roleblox = document.getElementsByClassName('roleBoxes');
+      for (let i = 0; i < roleblox.length; i++) {
+        roleblox[i].classList.toggle('invisify');
+      }
     }
   }
 
@@ -90,15 +92,99 @@ export class UserAdminComponent implements OnInit {
   SaveSubmit() {
 
     if (editMode === true) {
-      return undefined;
+      const currentUserData: any = this.userAdminService.FetchChosenUser();
+      // translate into JSON and then stringify
+      const updatePackage = {
+        id: currentUserData.ID,
+        userName: this.form.value.userID,
+        middleInitial: null,
+        firstName: this.form.value.firstName,
+        lastName: this.form.value.lastName,
+        email: this.form.value.email,
+        phone: this.form.value.phone,
+        isDbaCode: currentUserData.isDbaCode,
+        orgId: this.form.value.installation,
+        orgName: null,
+        deactivatedDate: currentUserData.deactivatedDate
+      };
+      // Send PUT request and clear user data service
+      this.jsonClientService.updateUser(JSON.stringify(updatePackage), currentUserData.ID);
+      this.ClearChosenUser();
     } else {
-      return undefined;
+      // translate into JSON and stringify
+      const updatePackage = {
+        userName: this.form.value.userID,
+        middleInitial: null,
+        firstName: this.form.value.firstName,
+        lastName: this.form.value.lastName,
+        email: this.form.value.email,
+        phone: this.form.value.phone,
+        isDbaCode: 'N',
+        orgId: this.form.value.installation,
+        orgName: null,
+        deactivatedDate: null
+      };
+      // send POST request and clear user data service
+      console.log(JSON.stringify(updatePackage));
+      this.jsonClientService.createUser(JSON.stringify(updatePackage));
+      this.ClearChosenUser();
     }
+    this.router.navigateByUrl('/useradmin');
   }
+
+
 
   // clear chosen user data to avoid side effects
   ClearChosenUser() {
     this.userAdminService.ClearChosenUser();
   }
 
+  // add role
+
+  addRole() {
+    const currentUserData: any = this.userAdminService.FetchChosenUser();
+    const userInfo = {
+      userID: currentUserData.ID,
+      orgId: currentUserData.installationID,
+      userRoleCode: (<HTMLInputElement>document.getElementById('roleField')).value,
+      canWriteCode: (<HTMLInputElement>document.getElementById('writeField')).value,
+      canSubmitCode: (<HTMLInputElement>document.getElementById('submitField')).value
+    };
+    console.log(JSON.stringify(userInfo));
+    this.jsonClientService.updateRole(JSON.stringify(userInfo));
+    // refresh Table after changes
+    this.roleDataSource = new MatTableDataSource(this.getRolePacket(currentUserData.ID));
+  }
+
+  // update role TODO see if necessary
+
+  // editRole(roleData) {
+  //   const currentUserData: any = this.userAdminService.FetchChosenUser();
+  //   const userInfo = {
+  //     userID: currentUserData.ID,
+  //     orgId: currentUserData.installationID,
+  //     userRoleCode: roleData.role,
+  //     canWriteCode: roleData.write,
+  //     canSubmitCode: roleData.submit
+  //   };
+  //   console.log(JSON.stringify(userInfo));
+  //   // this.jsonClientService.updateRole(JSON.stringify(userInfo));
+  //   // refresh Table after changes
+  //   this.roleDataSource = new MatTableDataSource(this.getRolePacket(currentUserData.ID));
+  // }
+
+  // delete role
+
+  deleteRole(roleData) {
+    const currentUserData: any = this.userAdminService.FetchChosenUser();
+    const deleteInfo = {
+      userID: currentUserData.ID,
+      orgId: currentUserData.installationID,
+      userRoleCode: roleData.role
+    };
+    console.log(JSON.stringify(deleteInfo));
+    this.jsonClientService.deleteRole(JSON.stringify(deleteInfo));
+    // refresh table once deleted old role
+    this.roleDataSource = new MatTableDataSource(this.getRolePacket(currentUserData.ID));
+  }
 }
