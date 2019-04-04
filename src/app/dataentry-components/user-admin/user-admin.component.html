@@ -14,9 +14,7 @@
       <mat-form-field class="userData">
         <input matInput placeholder="Last Name" autocomplete="off" id="LastName" type="text" class="userData" formControlName="lastName">
       </mat-form-field>
-    </div>
 
-    <div class="miniBox2">
       <label for="Email" class="userData">Email:</label>
       <mat-form-field class="userData">
         <input matInput placeholder="Email" autocomplete="off" id="Email" type="text" class="userData" formControlName="email">
@@ -28,23 +26,36 @@
       </mat-form-field>
     </div>
       
-    <div class="miniBox">
+    <div class="miniBox2">
       <label for="LoginID" class="userData">Login ID:</label>
       <mat-form-field class="userData">
-        <input matInput placeholder="Login ID" autocomplete="off" id="LoginID" type="text" class="userData" formControlName="userID">
+        <input matInput placeholder="Login ID" autocomplete="off" id="LoginID" type="text" class="userData" formControlName="AKOID">
       </mat-form-field>
 
       <label for="Installation" class="userData">Installation:</label>
       <mat-form-field class="userData">
         <input matInput placeholder="Installation Number" autocomplete="off" id="Installation" type="text" class="userData" formControlName="installation">
       </mat-form-field>
+
+      <label for="DeactivatedDate" class="userData">Deactivated:</label>
+      <input class='datePicker' autocomplete="off" [matDatepicker]="myDatepicker" formControlName="deactivatedDate">
+      <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
+      <mat-datepicker #myDatepicker></mat-datepicker>
+
     </div>
 
     <br>
 
-    <div class="miniBox2 roleBoxes">
+    <div class="miniBox roleBoxes">
       <div class="tablePanel" >
         <table mat-table [dataSource]="roleDataSource">
+          <ng-container matColumnDef="orgId">
+            <th mat-header-cell *matHeaderCellDef> OrgId </th>
+            <td mat-cell *matCellDef="let role"> 
+              {{role.orgId}}
+            </td>
+          </ng-container>    
+
           <ng-container matColumnDef="role">
             <th mat-header-cell *matHeaderCellDef> Role </th>
             <td mat-cell *matCellDef="let role"> 
@@ -79,8 +90,9 @@
         </table>
       </div>
     </div>
-    <div class="miniBox roleBoxes">
+    <div class="miniBox2 roleBoxes">
         <div class=roleInputBox>
+          <input class="roleInput" type="text" id="orgIdField" value="1">
           <input class="roleInput" type="text" id="roleField" value="I">
           <input class="roleInput" type="text" id="writeField" value="Y">
           <input class="roleInput" type="text" id="submitField" value="Y">

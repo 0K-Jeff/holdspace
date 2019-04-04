@@ -15,7 +15,7 @@ let USER_DATA: UserListItem[] = [];
 
 export class UserTableComponent implements OnInit {
   // establish displayed columns
-  displayedColumns: string[] = ['actions', 'lastName', 'ID', 'phone', 'email', 'installation'];
+  displayedColumns: string[] = ['actions', 'lastName', 'ID', 'phone', 'email', 'installation', 'deactivatedDate'];
   dataSource;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -41,12 +41,17 @@ export class UserTableComponent implements OnInit {
     const JSONpacket = JSON.parse(this.jsonClientService.getUserInfoTable());
     console.log(JSONpacket);
     for (let iter = 0; iter < JSONpacket.length; iter++) {
+      // translate deactivatedDate into short string for readability
+      let DD = null;
+      if (JSONpacket[iter].deactivatedDate) {
+        DD = new Date(JSONpacket[iter].deactivatedDate);
+        DD = DD.toLocaleDateString();
+      }
       // iterate through each entry to create user sub-array
       const arrayUser = {firstName: JSONpacket[iter].firstName, lastName: JSONpacket[iter].lastName,
        phone: JSONpacket[iter].phone, email: JSONpacket[iter].email, ID: JSONpacket[iter].id,
        installationID: JSONpacket[iter].orgId, installationName: JSONpacket[iter].orgName,
-       isDbaCode: JSONpacket[iter].isDbaCode, userName: JSONpacket[iter].userName, deactivatedDate:
-       JSONpacket[iter].deactivatedDate};
+       isDbaCode: JSONpacket[iter].isDbaCode, userName: JSONpacket[iter].userName, deactivatedDate: DD};
 
        // push into table after creating array item
        USER_DATA.push(arrayUser);

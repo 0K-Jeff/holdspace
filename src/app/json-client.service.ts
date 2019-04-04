@@ -3,8 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { UserAdminComponent } from './dataentry-components/user-admin/user-admin.component';
 
 // Enumerate target URLS for making REST calls
-const rootURL = 'http://localhost:3000/api/';
-
+const rootURL = 'http://localhost:3000/api/'; // Node.js Service
+// const rootURL = 'http://localhost:8181/swar/rest/';  // Tomcat
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +29,7 @@ export class JSONClientService {
     httpClient.open('GET', rootURL + 'userroles/' + userID, false);
     httpClient.onreadystatechange = function() {
       if (this.status === 404) {
-        itemValue = '[{"userRoleCode": "N/A", "canWriteCode": "N/A", "canSubmitCode": "N/A"}]';
+       itemValue = '[{"userId":7473,"orgId": "N/A","orgName":"ARMY","userRoleCode": "N/A", "canWriteCode": "N/A", "canSubmitCode": "N/A"}]';
       } else if (this.status === 200) {
         itemValue = httpClient.responseText;
       }
@@ -43,12 +43,14 @@ export class JSONClientService {
   createUser(infostring) {
     const httpClient = new XMLHttpRequest();
     httpClient.open('POST', rootURL + 'users/', false);
+    httpClient.setRequestHeader('content-type', 'application/json');
     httpClient.send(infostring);
   }
 
   updateRole(infoString) {
     const httpClient = new XMLHttpRequest();
     httpClient.open('POST', rootURL + 'userroles/', false);
+    httpClient.setRequestHeader('content-type', 'application/json');
     httpClient.send(infoString);
   }
 
@@ -57,6 +59,7 @@ export class JSONClientService {
   updateUser(infostring, userID) {
     const httpClient = new XMLHttpRequest();
     httpClient.open('PUT', rootURL + 'users/' + userID, false);
+    httpClient.setRequestHeader('content-type', 'application/json');
     httpClient.send(infostring);
   }
 
@@ -65,12 +68,14 @@ export class JSONClientService {
   deactivateUser(userID) {
     const httpClient = new XMLHttpRequest();
     httpClient.open('DELETE', rootURL + 'users/' + userID, false);
+    httpClient.setRequestHeader('content-type', 'application/json');
     httpClient.send();
   }
 
   deleteRole(infoString) {
     const httpClient = new XMLHttpRequest();
     httpClient.open('DELETE', rootURL + 'userroles/', false);
+    httpClient.setRequestHeader('content-type', 'application/json');
     httpClient.send(infoString);
   }
 

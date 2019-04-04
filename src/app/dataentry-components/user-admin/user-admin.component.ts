@@ -15,6 +15,7 @@ let uID: string;
 let uEmail: string;
 let uPhone: string;
 let uInstallation: string[];
+let uDeactivatedDate: Date;
 let editMode = false;
 
 @Component({
@@ -27,7 +28,8 @@ let editMode = false;
 })
 
 export class UserAdminComponent implements OnInit {
-  displayedColumns: string[] = ['role', 'write', 'submit', 'actions'];
+  // enumerate columns for role table
+  displayedColumns: string[] = ['orgId', 'role', 'write', 'submit', 'actions'];
   roleDataSource;
   form: FormGroup;
 
@@ -41,10 +43,11 @@ export class UserAdminComponent implements OnInit {
     this.form = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      userID: ['', Validators.required],
+      AKOID: ['', Validators.required],
       email: ['', Validators.required],
       phone: ['', Validators.required],
-      installation: ['', Validators.required]
+      installation: ['', Validators.required],
+      deactivatedDate: ['']
     });
     // grab edit mode target if relevant
     const currentUserData: any = this.userAdminService.FetchChosenUser();
@@ -59,8 +62,14 @@ export class UserAdminComponent implements OnInit {
       uEmail = currentUserData.email;
       uPhone = currentUserData.phone;
       uInstallation = currentUserData.installationID;
-      this.form.patchValue({firstName: uFirstName, lastName: uLastName, userID: uID,
-      email: uEmail, phone: uPhone, installation: uInstallation});
+      // ensure no 'default date'
+      if (currentUserData.deactivatedDate != null) {
+        uDeactivatedDate = new Date(currentUserData.deactivatedDate);
+      } else {
+        uDeactivatedDate = null;
+      }
+      this.form.patchValue({firstName: uFirstName, lastName: uLastName, AKOID: uID,
+      email: uEmail, phone: uPhone, installation: uInstallation, deactivatedDate: uDeactivatedDate});
 
       // perform additional call for user's role list
       this.roleDataSource = new MatTableDataSource(this.getRolePacket(currentUserData.ID));
@@ -81,7 +90,8 @@ export class UserAdminComponent implements OnInit {
     // import and translate the data
     const dataPacket = JSON.parse(this.jsonClientService.getUserInfo(idValue));
     for (let iter = 0; iter < dataPacket.length; iter++) {
-      const roleData = {role: dataPacket[iter].userRoleCode, write: dataPacket[iter].canWriteCode, submit: dataPacket[iter].canSubmitCode};
+      const roleData = {orgId: dataPacket[iter].orgId, role: dataPacket[iter].userRoleCode,
+        write: dataPacket[iter].canWriteCode, submit: dataPacket[iter].canSubmitCode};
       ROLE_DATA.push(roleData);
     }
     console.log(ROLE_DATA);
@@ -96,7 +106,7 @@ export class UserAdminComponent implements OnInit {
       // translate into JSON and then stringify
       const updatePackage = {
         id: currentUserData.ID,
-        userName: this.form.value.userID,
+        userName: this.form.value.AKOID,
         middleInitial: null,
         firstName: this.form.value.firstName,
         lastName: this.form.value.lastName,
@@ -105,15 +115,15 @@ export class UserAdminComponent implements OnInit {
         isDbaCode: currentUserData.isDbaCode,
         orgId: this.form.value.installation,
         orgName: null,
-        deactivatedDate: currentUserData.deactivatedDate
+        deactivatedDate: this.form.value.deactivatedDate
       };
       // Send PUT request and clear user data service
-      this.jsonClientService.updateUser(JSON.stringify(updatePackage), currentUserData.ID);
+      this.jsonClientService.updateUser(updatePackage, currentUserData.ID);
       this.ClearChosenUser();
     } else {
       // translate into JSON and stringify
       const updatePackage = {
-        userName: this.form.value.userID,
+        userName: this.form.value.AKOID,
         middleInitial: null,
         firstName: this.form.value.firstName,
         lastName: this.form.value.lastName,
@@ -122,11 +132,11 @@ export class UserAdminComponent implements OnInit {
         isDbaCode: 'N',
         orgId: this.form.value.installation,
         orgName: null,
-        deactivatedDate: null
+        deactivatedDate: this.form.value.deactivatedDate
       };
       // send POST request and clear user data service
-      console.log(JSON.stringify(updatePackage));
-      this.jsonClientService.createUser(JSON.stringify(updatePackage));
+      console.log(updatePackage);
+      this.jsonClientService.createUser(updatePackage);
       this.ClearChosenUser();
     }
     this.router.navigateByUrl('/useradmin');
@@ -144,8 +154,8 @@ export class UserAdminComponent implements OnInit {
   addRole() {
     const currentUserData: any = this.userAdminService.FetchChosenUser();
     const userInfo = {
-      userID: currentUserData.ID,
-      orgId: currentUserData.installationID,
+      AKOID: currentUserData.ID,
+      orgId: (<HTMLInputElement>document.getElementById('orgIdField')).value,
       userRoleCode: (<HTMLInputElement>document.getElementById('roleField')).value,
       canWriteCode: (<HTMLInputElement>document.getElementById('writeField')).value,
       canSubmitCode: (<HTMLInputElement>document.getElementById('submitField')).value
@@ -161,7 +171,7 @@ export class UserAdminComponent implements OnInit {
   // editRole(roleData) {
   //   const currentUserData: any = this.userAdminService.FetchChosenUser();
   //   const userInfo = {
-  //     userID: currentUserData.ID,
+  //     AKOID: currentUserData.ID,
   //     orgId: currentUserData.installationID,
   //     userRoleCode: roleData.role,
   //     canWriteCode: roleData.write,
@@ -178,8 +188,8 @@ export class UserAdminComponent implements OnInit {
   deleteRole(roleData) {
     const currentUserData: any = this.userAdminService.FetchChosenUser();
     const deleteInfo = {
-      userID: currentUserData.ID,
-      orgId: currentUserData.installationID,
+      AKOID: currentUserData.ID,
+      orgId: roleData.orgId,
       userRoleCode: roleData.role
     };
     console.log(JSON.stringify(deleteInfo));
