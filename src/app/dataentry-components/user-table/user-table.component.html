@@ -53,7 +53,7 @@
     <button class='newUser' routerLink='/useradmin/user' mat-raised-button>New User</button>
     <div class="searchBox"><label for="SearchBox" class="searchLabel">Search: </label>
       <mat-form-field>
-        <input matInput disabled autocomplete="off" placeholder="Disabled" id="SearchBox" type="text" class="searchBox">
+        <input matInput autocomplete="off" id="SearchBox" type="text" class="searchBox" (keyup)="doFilter($event.target.value)" Placeholder="Filter">
       </mat-form-field>
     </div>
   </div>
