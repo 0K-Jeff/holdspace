@@ -83,7 +83,7 @@ th.iconHeader {
 }
 
 td.iconCell {
-    width: 100px;
+    width: 150px;
     padding-left: 0px !important;
 }
 
@@ -116,6 +116,15 @@ button.deactivateUser {
 button.deactivateUser:hover {
     color: #f7440e;
 }
+
+button.activateUser {
+    color: #3d67f0;
+}
+
+button.activateUser:hover {
+    color: #6488fd;
+}
+
 
 button.doubleCheck {
     background: #f5598382;

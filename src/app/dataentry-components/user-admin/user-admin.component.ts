@@ -16,13 +16,11 @@ let uEmail: string;
 let uPhone: string;
 let uInstallation: string[];
 let uDeactivatedDate: Date;
+let uIsDBACode: boolean;
 let editMode = false;
 
 @Component({
   selector: 'app-user-admin',
-  providers: [
-    {provide: MAT_CHECKBOX_CLICK_ACTION, useValue: 'noop'}
-  ],
   templateUrl: './user-admin.component.html',
   styleUrls: ['./user-admin.component.css']
 })
@@ -47,6 +45,7 @@ export class UserAdminComponent implements OnInit {
       email: ['', Validators.required],
       phone: ['', Validators.required],
       installation: ['', Validators.required],
+      isDBACode: [false],
       deactivatedDate: ['']
     });
     // grab edit mode target if relevant
@@ -62,6 +61,10 @@ export class UserAdminComponent implements OnInit {
       uEmail = currentUserData.email;
       uPhone = currentUserData.phone;
       uInstallation = currentUserData.installationID;
+      uIsDBACode = (function(inputvalue = currentUserData.isDbaCode) {if (inputvalue === 'Y') {
+          return true; } else {
+          return false; }
+        }());
       // ensure no 'default date'
       if (currentUserData.deactivatedDate != null) {
         uDeactivatedDate = new Date(currentUserData.deactivatedDate);
@@ -69,7 +72,7 @@ export class UserAdminComponent implements OnInit {
         uDeactivatedDate = null;
       }
       this.form.patchValue({firstName: uFirstName, lastName: uLastName, AKOID: uID,
-      email: uEmail, phone: uPhone, installation: uInstallation, deactivatedDate: uDeactivatedDate});
+      email: uEmail, phone: uPhone, installation: uInstallation, deactivatedDate: uDeactivatedDate, isDBACode: uIsDBACode});
 
       // perform additional call for user's role list
       this.roleDataSource = new MatTableDataSource(this.getRolePacket(currentUserData.ID));

@@ -65,7 +65,7 @@ export class UserTableComponent implements OnInit {
 
   DisableUser(user) {
     // toggle the delete icon to ensure user wants to de-activate a user
-    const targetedElement = document.getElementById('disableUsr' + user.ID);
+    const targetedElement = document.getElementById('disableUser' + user.ID);
     if (targetedElement.classList.contains('doubleCheck') === true) {
       this.jsonClientService.deactivateUser(user.ID);
 
@@ -77,5 +77,24 @@ export class UserTableComponent implements OnInit {
       targetedElement.classList.toggle('doubleCheck');
     }
   }
+  EnableUser(user) {
+    // toggle the Activate icon to ensure user wants to re-activate a user
+    const targetedElement = document.getElementById('enableUser' + user.ID);
+    if (targetedElement.classList.contains('doubleCheck') === true) {
+      this.jsonClientService.activateUser(user.ID);
+
+      // render table again with changes
+      this.dataSource = new MatTableDataSource<UserListItem>(this.tableRenderPacket());
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    } else {
+      targetedElement.classList.toggle('doubleCheck');
+    }
+  }
+
+  public doFilter = (value: string) => {
+    this.dataSource.filter = value.trim().toLowerCase();
+  }
+
 
 }

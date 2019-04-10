@@ -54,14 +54,20 @@ export class JSONClientService {
     httpClient.send(infoString);
   }
 
-  // PUT requests
-
   updateUser(infostring, userID) {
     const httpClient = new XMLHttpRequest();
-    httpClient.open('PUT', rootURL + 'users/' + userID, false);
+    httpClient.open('POST', rootURL + 'users/' + userID, false);
     httpClient.setRequestHeader('content-type', 'application/json');
     httpClient.send(infostring);
   }
+
+  activateUser(userID) {
+    const httpClient = new XMLHttpRequest();
+    httpClient.open('GET', rootURL + 'users/activate/' + userID, false);
+    httpClient.setRequestHeader('Content-Type', 'application/json');
+    httpClient.send();
+  }
+
 
   // DELETE requests
 
