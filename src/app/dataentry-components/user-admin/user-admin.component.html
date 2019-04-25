@@ -38,11 +38,9 @@
       </mat-form-field>
 
       <label for="DeactivatedDate" class="userData">Deactivated:</label>
-      <input class='datePicker' autocomplete="off" [matDatepicker]="myDatepicker" formControlName="deactivatedDate">
-      <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
-      <mat-datepicker #myDatepicker></mat-datepicker>
+      <input class='datePicker' readonly="true" autocomplete="off" [matDatepicker]="myDatepicker" formControlName="deactivatedDate">
 
-      <mat-checkbox id="isDBACode" formControlName="isDBACode"> IsDBA Code: </mat-checkbox> 
+      <mat-checkbox class="dbaBox" id="isDBACode" formControlName="isDBACode"> IsDBA Code: </mat-checkbox> 
 
     </div>
 

@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { JsonClientService } from './json-client.service';
+import { RESTClient } from './json-client.service';
 
-describe('JsonClientService', () => {
+describe('RESTClient', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: JsonClientService = TestBed.get(JsonClientService);
+    const service: RESTClient = TestBed.get(RESTClient);
     expect(service).toBeTruthy();
   });
 });

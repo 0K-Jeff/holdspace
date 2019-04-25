@@ -1,10 +1,9 @@
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { UserAdminService, UserListItem } from '../../dataentry-services/user-admin.service';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UserAdminService } from '../../dataentry-services/user-admin.service';
 import { Router } from '@angular/router';
-import { JSONClientService } from '../../json-client.service';
-import { MAT_CHECKBOX_CLICK_ACTION } from '@angular/material';
-import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
+import { RESTClient } from '../../json-client.service';
+import { MatTableDataSource } from '@angular/material';
 
 
 // create variables to store data if necessary for editing users
@@ -34,10 +33,14 @@ export class UserAdminComponent implements OnInit {
   // enable singleton services and other controllers
   constructor(private userAdminService: UserAdminService,
               private formBuilder: FormBuilder,
-              private jsonClientService: JSONClientService,
-              private router: Router) { }
+              private restClient: RESTClient,
+              private router: Router,
+              ) { }
 
   ngOnInit() {
+    // bind passed methods
+    this.renderRoleTable = this.renderRoleTable.bind(this);
+    // build form
     this.form = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -66,7 +69,7 @@ export class UserAdminComponent implements OnInit {
           return false; }
         }());
       // ensure no 'default date'
-      if (currentUserData.deactivatedDate != null) {
+      if (currentUserData.deactivatedDate !== null) {
         uDeactivatedDate = new Date(currentUserData.deactivatedDate);
       } else {
         uDeactivatedDate = null;
@@ -75,7 +78,7 @@ export class UserAdminComponent implements OnInit {
       email: uEmail, phone: uPhone, installation: uInstallation, deactivatedDate: uDeactivatedDate, isDBACode: uIsDBACode});
 
       // perform additional call for user's role list
-      this.roleDataSource = new MatTableDataSource(this.getRolePacket(currentUserData.ID));
+      this.restClient.getUserRole(currentUserData.ID, this.renderRoleTable);
     } else {
       // If there isn't an active user, ensure component is set to create new
       editMode = false;
@@ -87,18 +90,19 @@ export class UserAdminComponent implements OnInit {
     }
   }
 
-  getRolePacket(idValue) {
-    // clear table to re-render
+  // render method for role table
+  renderRoleTable(dataPacket) {
+    // clear table for render
     ROLE_DATA = [];
-    // import and translate the data
-    const dataPacket = JSON.parse(this.jsonClientService.getUserInfo(idValue));
+    // iterate through roles
     for (let iter = 0; iter < dataPacket.length; iter++) {
       const roleData = {orgId: dataPacket[iter].orgId, role: dataPacket[iter].userRoleCode,
         write: dataPacket[iter].canWriteCode, submit: dataPacket[iter].canSubmitCode};
       ROLE_DATA.push(roleData);
     }
     console.log(ROLE_DATA);
-    return ROLE_DATA;
+    // render
+    this.roleDataSource = new MatTableDataSource(ROLE_DATA);
   }
 
   // Submit Button method
@@ -115,13 +119,13 @@ export class UserAdminComponent implements OnInit {
         lastName: this.form.value.lastName,
         email: this.form.value.email,
         phone: this.form.value.phone,
-        isDbaCode: currentUserData.isDbaCode,
+        isDbaCode: this.form.value.isDBACode,
         orgId: this.form.value.installation,
         orgName: null,
         deactivatedDate: this.form.value.deactivatedDate
       };
       // Send PUT request and clear user data service
-      this.jsonClientService.updateUser(updatePackage, currentUserData.ID);
+      this.restClient.updateUser(updatePackage);
       this.ClearChosenUser();
     } else {
       // translate into JSON and stringify
@@ -132,20 +136,18 @@ export class UserAdminComponent implements OnInit {
         lastName: this.form.value.lastName,
         email: this.form.value.email,
         phone: this.form.value.phone,
-        isDbaCode: 'N',
+        isDbaCode: this.form.value.isDBACode,
         orgId: this.form.value.installation,
         orgName: null,
         deactivatedDate: this.form.value.deactivatedDate
       };
       // send POST request and clear user data service
       console.log(updatePackage);
-      this.jsonClientService.createUser(updatePackage);
+      this.restClient.createUser(updatePackage);
       this.ClearChosenUser();
     }
     this.router.navigateByUrl('/useradmin');
   }
-
-
 
   // clear chosen user data to avoid side effects
   ClearChosenUser() {
@@ -163,28 +165,9 @@ export class UserAdminComponent implements OnInit {
       canWriteCode: (<HTMLInputElement>document.getElementById('writeField')).value,
       canSubmitCode: (<HTMLInputElement>document.getElementById('submitField')).value
     };
-    console.log(JSON.stringify(userInfo));
-    this.jsonClientService.updateRole(JSON.stringify(userInfo));
-    // refresh Table after changes
-    this.roleDataSource = new MatTableDataSource(this.getRolePacket(currentUserData.ID));
+    console.log(userInfo);
+    this.restClient.updateRole(userInfo, this.renderRoleTable);
   }
-
-  // update role TODO see if necessary
-
-  // editRole(roleData) {
-  //   const currentUserData: any = this.userAdminService.FetchChosenUser();
-  //   const userInfo = {
-  //     AKOID: currentUserData.ID,
-  //     orgId: currentUserData.installationID,
-  //     userRoleCode: roleData.role,
-  //     canWriteCode: roleData.write,
-  //     canSubmitCode: roleData.submit
-  //   };
-  //   console.log(JSON.stringify(userInfo));
-  //   // this.jsonClientService.updateRole(JSON.stringify(userInfo));
-  //   // refresh Table after changes
-  //   this.roleDataSource = new MatTableDataSource(this.getRolePacket(currentUserData.ID));
-  // }
 
   // delete role
 
@@ -195,9 +178,7 @@ export class UserAdminComponent implements OnInit {
       orgId: roleData.orgId,
       userRoleCode: roleData.role
     };
-    console.log(JSON.stringify(deleteInfo));
-    this.jsonClientService.deleteRole(JSON.stringify(deleteInfo));
-    // refresh table once deleted old role
-    this.roleDataSource = new MatTableDataSource(this.getRolePacket(currentUserData.ID));
+    console.log(deleteInfo);
+    this.restClient.deleteRole(deleteInfo, this.renderRoleTable);
   }
 }

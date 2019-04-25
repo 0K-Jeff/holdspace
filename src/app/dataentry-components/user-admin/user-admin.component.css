@@ -133,8 +133,9 @@ i.formTooltip:hover {
     margin-left: 0;
 }
 
-.roleCheckbox {
-    margin-left: 20px;
+.dbaBox {
+    margin: 20px;
+    margin-left: 50px;
 }
 
 mat-form-field.userRoleData {
