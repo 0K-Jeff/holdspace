@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 
 // Enumerate target URLS for making REST calls
 
-// const http://localhost:8181/swar/rest // spring service
-// const http://localhost:8181/swar_test/rest; // Spring test server
-const rootURL = 'http://localhost:3000/api/'; // Node.js Service
-// const rootURL = 'http://localhost:8181/swar/rest/';  // Tomcat
+// const rootURL = 'http://localhost:8181/swar/rest' // spring service
+const rootURL = 'http://localhost:8181/swar_test/rest/'; // Spring test server
+// const rootURL = 'https://swar.aspex.com/swar_test/' // For builds that we deploy
+// const rootURL = 'http://localhost:3000/api/'; // Node.js Service
 
 @Injectable({
   providedIn: 'root'

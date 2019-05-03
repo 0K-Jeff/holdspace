@@ -159,7 +159,7 @@ export class UserAdminComponent implements OnInit {
   addRole() {
     const currentUserData: any = this.userAdminService.FetchChosenUser();
     const userInfo = {
-      AKOID: currentUserData.ID,
+      userId: currentUserData.ID,
       orgId: (<HTMLInputElement>document.getElementById('orgIdField')).value,
       userRoleCode: (<HTMLInputElement>document.getElementById('roleField')).value,
       canWriteCode: (<HTMLInputElement>document.getElementById('writeField')).value,
@@ -174,7 +174,7 @@ export class UserAdminComponent implements OnInit {
   deleteRole(roleData) {
     const currentUserData: any = this.userAdminService.FetchChosenUser();
     const deleteInfo = {
-      AKOID: currentUserData.ID,
+      userId: currentUserData.ID,
       orgId: roleData.orgId,
       userRoleCode: roleData.role
     };
