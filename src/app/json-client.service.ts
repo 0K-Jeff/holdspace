@@ -19,7 +19,7 @@ const rootURL = 'http://localhost:8181/swar_test/rest/'; // Spring test server
         // insert loading spinner TODO
       } else {
         if (this.status === 404) {
-          tableValues = '[{"firstName":"Error","lastName":"Error","ID":"404","userName":"Error"}]';
+          tableValues = JSON.parse('[{"firstName":"Error","lastName":"Error","ID":"404","userName":"Error"}]');
           return tableValues;
         } else if (this.status === 200) {
           tableValues = httpClient.responseText;
@@ -136,12 +136,12 @@ export class RESTClient {
       } else {
         if (this.status === 404) {
           tableValues = getUserTableLocal();
-          console.log(JSON.parse(tableValues));
-          renderFunction(JSON.parse(tableValues));
+          console.log(tableValues);
+          renderFunction(tableValues);
         } else if (this.status === 200) {
           tableValues = getUserTableLocal();
-          console.log(JSON.parse(tableValues));
-          renderFunction(JSON.parse(tableValues));
+          console.log(tableValues);
+          renderFunction(tableValues);
         }
       }
     };
