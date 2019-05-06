@@ -2,10 +2,33 @@ import { Injectable } from '@angular/core';
 
 // Enumerate target URLS for making REST calls
 
-// const rootURL = 'http://localhost:8181/swar/rest' // spring service
+// const rootURL = 'http://localhost:8181/swar/rest/' // spring service
 const rootURL = 'http://localhost:8181/swar_test/rest/'; // Spring test server
-// const rootURL = 'https://swar.aspex.com/swar_test/' // For builds that we deploy
 // const rootURL = 'http://localhost:3000/api/'; // Node.js Service
+// const rootURL = 'http://localhost:8181/swar/rest/';  // Tomcat
+
+  // for internal use - render method
+  const getUserTableLocal = function() {
+    // return user info to populate user list
+    let tableValues;
+    const httpClient = new XMLHttpRequest();
+    httpClient.open('GET', rootURL + 'users/', true);
+    httpClient.setRequestHeader('content-type', 'application/json');
+    httpClient.onreadystatechange = function() {
+      if (this.readyState !== 4) {
+        // insert loading spinner TODO
+      } else {
+        if (this.status === 404) {
+          tableValues = '[{"firstName":"Error","lastName":"Error","ID":"404","userName":"Error"}]';
+          return tableValues;
+        } else if (this.status === 200) {
+          tableValues = httpClient.responseText;
+          return tableValues;
+        }
+      }
+    };
+    httpClient.send();
+  };
 
 @Injectable({
   providedIn: 'root'
@@ -103,25 +126,26 @@ export class RESTClient {
 
   activateUser(userID, renderFunction: Function) {
     let tableValues;
-    const httpClient = new XMLHttpRequest();
-    httpClient.open('GET', rootURL + 'users/activate/' + userID, true);
-    httpClient.setRequestHeader('Content-Type', 'application/json');
-    httpClient.onreadystatechange = function() {
+
+    const httpClientBravo = new XMLHttpRequest();
+    httpClientBravo.open('GET', rootURL + 'users/activate/' + userID, true);
+    httpClientBravo.setRequestHeader('Content-Type', 'application/json');
+    httpClientBravo.onreadystatechange = function() {
       if (this.readyState !== 4) {
         // insert loading spinner TODO
       } else {
         if (this.status === 404) {
-          tableValues = '[{"firstName":"Error","lastName":"Error","ID":"404","userName":"Error"}]';
+          tableValues = getUserTableLocal();
           console.log(JSON.parse(tableValues));
           renderFunction(JSON.parse(tableValues));
         } else if (this.status === 200) {
-          tableValues = httpClient.responseText;
+          tableValues = getUserTableLocal();
           console.log(JSON.parse(tableValues));
           renderFunction(JSON.parse(tableValues));
         }
       }
     };
-    httpClient.send();
+    httpClientBravo.send();
   }
 
 
