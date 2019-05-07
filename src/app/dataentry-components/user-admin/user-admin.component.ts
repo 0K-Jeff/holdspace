@@ -100,7 +100,6 @@ export class UserAdminComponent implements OnInit {
         write: dataPacket[iter].canWriteCode, submit: dataPacket[iter].canSubmitCode};
       ROLE_DATA.push(roleData);
     }
-    console.log(ROLE_DATA);
     // render
     this.roleDataSource = new MatTableDataSource(ROLE_DATA);
   }
@@ -110,7 +109,13 @@ export class UserAdminComponent implements OnInit {
 
     if (editMode === true) {
       const currentUserData: any = this.userAdminService.FetchChosenUser();
-      // translate into JSON and then stringify
+      // translate into JSON
+      let dbaValue;
+      if (this.form.value.isDbaCode === true) {
+        dbaValue = 'Y';
+      } else {
+        dbaValue = 'N';
+      }
       const updatePackage = {
         id: currentUserData.ID,
         userName: this.form.value.AKOID,
@@ -119,24 +124,31 @@ export class UserAdminComponent implements OnInit {
         lastName: this.form.value.lastName,
         email: this.form.value.email,
         phone: this.form.value.phone,
-        isDbaCode: this.form.value.isDBACode,
+        isDbaCode: dbaValue,
         orgId: this.form.value.installation,
         orgName: null,
         deactivatedDate: this.form.value.deactivatedDate
       };
       // Send PUT request and clear user data service
+      console.log(updatePackage);
       this.restClient.updateUser(updatePackage);
       this.ClearChosenUser();
     } else {
-      // translate into JSON and stringify
+      // translate into JSON
+      let dbaValue;
+      if (this.form.value.isDbaCode === true) {
+        dbaValue = 'Y';
+      } else {
+        dbaValue = 'N';
+      }
       const updatePackage = {
         userName: this.form.value.AKOID,
-        middleInitial: null,
+        middleInitial: '',
         firstName: this.form.value.firstName,
         lastName: this.form.value.lastName,
         email: this.form.value.email,
         phone: this.form.value.phone,
-        isDbaCode: this.form.value.isDBACode,
+        isDbaCode: dbaValue,
         orgId: this.form.value.installation,
         orgName: null,
         deactivatedDate: this.form.value.deactivatedDate

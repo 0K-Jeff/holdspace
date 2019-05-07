@@ -12,7 +12,7 @@ const rootURL = 'http://localhost:8181/swar_test/rest/'; // Spring test server
     // return user info to populate user list
     let tableValues;
     const httpClient = new XMLHttpRequest();
-    httpClient.open('GET', rootURL + 'users/', false);
+    httpClient.open('GET', rootURL + 'users/', true);
     httpClient.setRequestHeader('content-type', 'application/json');
     httpClient.onreadystatechange = function() {
       if (this.readyState !== 4) {
@@ -75,7 +75,7 @@ export class RESTClient {
         // insert loading spinner TODO
       } else {
         if (this.status === 404) {
-          itemValue = JSON.parse('[{"userId":7473,"orgId": "N/A","orgName":"ARMY","userRoleCode": "N/A", "canWriteCode": "N/A", "canSubmitCode": "N/A"}]');
+          itemValue = JSON.parse('[{"id":7473,"orgId": "N/A","orgName":"ARMY","userRoleCode": "N/A", "canWriteCode": "N/A", "canSubmitCode": "N/A"}]');
           renderFunction(itemValue);
         } else if (this.status === 200) {
           itemValue = httpClient.responseText;
@@ -93,6 +93,7 @@ export class RESTClient {
     const httpClient = new XMLHttpRequest();
     httpClient.open('POST', rootURL + 'users/', false);
     httpClient.setRequestHeader('content-type', 'application/json');
+    console.log(httpClient);
     httpClient.send(infostring);
   }
 
@@ -106,7 +107,7 @@ export class RESTClient {
         // insert loading spinner TODO
       } else {
         if (this.status === 404) {
-          itemValue = JSON.parse('[{"userId":7473,"orgId": "N/A","orgName":"ARMY","userRoleCode": "N/A", "canWriteCode": "N/A", "canSubmitCode": "N/A"}]');
+          itemValue = JSON.parse('[{"id":7473,"orgId": "N/A","orgName":"ARMY","userRoleCode": "N/A", "canWriteCode": "N/A", "canSubmitCode": "N/A"}]');
           console.log(itemValue);
           renderFunction(itemValue);
         } else if (this.status === 200) {
@@ -129,7 +130,7 @@ export class RESTClient {
   activateUser(userID, renderFunction: Function) {
     const httpClient = new XMLHttpRequest();
     httpClient.open('GET', rootURL + 'users/activate/' + userID, true);
-    httpClient.setRequestHeader('Content-Type', 'application/json');
+    httpClient.setRequestHeader('content-type', 'application/json');
     httpClient.onreadystatechange = function() {
       if (this.readyState !== 4) {
         // insert loading spinner TODO
@@ -167,7 +168,7 @@ export class RESTClient {
         // insert loading spinner TODO
       } else {
         if (this.status === 404) {
-          itemValue = JSON.parse('[{"userId":7473,"orgId": "N/A","orgName":"ARMY","userRoleCode": "N/A", "canWriteCode": "N/A", "canSubmitCode": "N/A"}]');
+          itemValue = JSON.parse('[{"id":7473,"orgId": "N/A","orgName":"ARMY","userRoleCode": "N/A", "canWriteCode": "N/A", "canSubmitCode": "N/A"}]');
           console.log(itemValue);
           renderFunction(itemValue);
         } else if (this.status === 200) {
