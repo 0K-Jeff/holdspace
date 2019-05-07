@@ -8,22 +8,24 @@ const rootURL = 'http://localhost:8181/swar_test/rest/'; // Spring test server
 // const rootURL = 'http://localhost:8181/swar/rest/';  // Tomcat
 
   // for internal use - render method
-  const getUserTableLocal = function() {
+  const getUserTableLocal = function(renderFunction: Function) {
     // return user info to populate user list
     let tableValues;
     const httpClient = new XMLHttpRequest();
-    httpClient.open('GET', rootURL + 'users/', true);
+    httpClient.open('GET', rootURL + 'users/', false);
     httpClient.setRequestHeader('content-type', 'application/json');
     httpClient.onreadystatechange = function() {
       if (this.readyState !== 4) {
         // insert loading spinner TODO
       } else {
         if (this.status === 404) {
-          tableValues = JSON.parse('[{"firstName":"Error","lastName":"Error","ID":"404","userName":"Error"}]');
-          return tableValues;
+          tableValues = '[{"firstName":"Error","lastName":"Error","ID":"404","userName":"Error"}]';
+          console.log(JSON.parse(tableValues));
+          renderFunction(JSON.parse(tableValues));
         } else if (this.status === 200) {
           tableValues = httpClient.responseText;
-          return tableValues;
+          console.log(JSON.parse(tableValues));
+          renderFunction(JSON.parse(tableValues));
         }
       }
     };
@@ -125,34 +127,23 @@ export class RESTClient {
   }
 
   activateUser(userID, renderFunction: Function) {
-    let tableValues;
-
-    const httpClientBravo = new XMLHttpRequest();
-    httpClientBravo.open('GET', rootURL + 'users/activate/' + userID, true);
-    httpClientBravo.setRequestHeader('Content-Type', 'application/json');
-    httpClientBravo.onreadystatechange = function() {
+    const httpClient = new XMLHttpRequest();
+    httpClient.open('GET', rootURL + 'users/activate/' + userID, true);
+    httpClient.setRequestHeader('Content-Type', 'application/json');
+    httpClient.onreadystatechange = function() {
       if (this.readyState !== 4) {
         // insert loading spinner TODO
       } else {
-        if (this.status === 404) {
-          tableValues = getUserTableLocal();
-          console.log(tableValues);
-          renderFunction(tableValues);
-        } else if (this.status === 200) {
-          tableValues = getUserTableLocal();
-          console.log(tableValues);
-          renderFunction(tableValues);
-        }
+        getUserTableLocal(renderFunction);
       }
     };
-    httpClientBravo.send();
+    httpClient.send();
   }
 
 
   // DELETE requests
 
   deactivateUser(userID, renderFunction: Function) {
-    let tableValues;
     const httpClient = new XMLHttpRequest();
     httpClient.open('DELETE', rootURL + 'users/' + userID, true);
     httpClient.setRequestHeader('content-type', 'application/json');
@@ -160,15 +151,7 @@ export class RESTClient {
       if (this.readyState !== 4) {
         // insert loading spinner TODO
       } else {
-        if (this.status === 404) {
-          tableValues = '[{"firstName":"Error","lastName":"Error","ID":"404","userName":"Error"}]';
-          console.log(JSON.parse(tableValues));
-          renderFunction(JSON.parse(tableValues));
-        } else if (this.status === 200) {
-          tableValues = httpClient.responseText;
-          console.log(JSON.parse(tableValues));
-          renderFunction(JSON.parse(tableValues));
-        }
+        getUserTableLocal(renderFunction);
       }
     };
     httpClient.send();
