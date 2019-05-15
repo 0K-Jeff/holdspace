@@ -39,6 +39,8 @@ export class RESTClient {
 
   constructor() { }
 
+  // USER MANAGEMENT METHODS BLOCK //
+
   // GET requests
   getUserInfoTable(renderFunction: Function) {
     // return user info to populate user list
@@ -117,7 +119,7 @@ export class RESTClient {
         }
       }
     };
-    httpClient.send(infoString);
+    httpClient.send(JSON.stringify(infoString));
   }
 
   updateUser(infostring) {
@@ -178,7 +180,54 @@ export class RESTClient {
         }
       }
     };
-    httpClient.send(infoString);
+    httpClient.send(JSON.stringify(infoString));
   }
+
+  // USER MANAGEMENT METHODS END //
+
+  // DISPOSAL TRANSACTION METHODS //
+
+  // Fetch disposal transaction list based on instId and datacall
+  getDisposalTransactionList(instId, dcId, renderFunction) {
+    // populate the disposal transaction list
+    let itemValue;
+    const httpClient = new XMLHttpRequest();
+    httpClient.open('GET', rootURL + 'disposal/getAllDisposalByDcIdAndInstId?instId=' + instId + '&dcId=' + dcId, true);
+    httpClient.setRequestHeader('content-type', 'application/json');
+    console.log(httpClient);
+    httpClient.onreadystatechange = function() {
+      if (this.readyState !== 4) {
+        // console.log(this.readyState);
+      } else {
+        if (this.status === 404) {
+          console.log('404 error, get DTlist');
+        } else if (this.status === 200) {
+          itemValue = httpClient.responseText;
+          renderFunction(itemValue);
+        }
+      }
+    };
+    httpClient.send();
+  }
+
+  createDisposalTransaction() {
+    return;
+  }
+
+  editDisposalTransaction() {
+    return;
+  }
+
+  deleteDisposalTransaction() {
+    return;
+  }
+
+
+
+  // DISPOSAL TRANSACTION METHODS END //
+
+  // RECYCLING TRANSACTION METHODS //
+
+  // RECYCLING TRANSACTION METHODS END //
 
 }

@@ -32,14 +32,10 @@
         <mat-button-toggle value="revenue">Revenue</mat-button-toggle>
       </mat-button-toggle-group>
 
-      <mat-button-toggle-group name="poundsOrTons" aria-label="Pounds or Tons Toggle" formControlName="poundsOrTons">
-        <mat-button-toggle value="tons" (change)="this.tonsReset()">Tons</mat-button-toggle>
-        <mat-button-toggle value="pounds" (change)="this.tonsReset()">Pounds</mat-button-toggle>
-      </mat-button-toggle-group>
     </div>
 
     <div class=miniBox><h1>Transaction Details: </h1>
-      <label for="WeightDisposed" class="transactionValue">Weight:</label>
+      <label for="WeightDisposed" class="transactionValue">Weight (Tons):</label>
       <mat-form-field>
         <input matInput placeholder="Weight" autocomplete="off" id="WeightDisposed" type="number" class="transactionValue" name="weight" formControlName="weight">
       </mat-form-field>

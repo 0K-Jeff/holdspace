@@ -9,8 +9,7 @@ let USER_DATA: UserListItem[] = [];
 @Component({
   selector: 'app-user-table',
   templateUrl: './user-table.component.html',
-  styleUrls: ['./user-table.component.css'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./user-table.component.css']
 })
 
 export class UserTableComponent implements OnInit {

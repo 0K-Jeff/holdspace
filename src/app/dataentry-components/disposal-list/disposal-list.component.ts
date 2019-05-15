@@ -1,15 +1,13 @@
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
-import { DisposalTransactionService, DisposalTransactionListItem } from '../../dataentry-services/disposal-transaction.service';
+import { DisposalTransactionService, DisposalTransactionListItem, BackEndDataPattern } from '../../dataentry-services/disposal-transaction.service';
 import { Router } from '@angular/router';
-
-let TRANSACTION_DATA: DisposalTransactionListItem[] = [];
+import { RESTClient } from 'src/app/json-client.service';
 
 @Component({
   selector: 'app-disposal-list',
   templateUrl: './disposal-list.component.html',
-  styleUrls: ['./disposal-list.component.css'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./disposal-list.component.css']
 })
 
 export class DisposalListComponent implements OnInit {
@@ -21,43 +19,23 @@ export class DisposalListComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private disposalTransactionService: DisposalTransactionService,
+              private restClient: RESTClient,
               private router: Router) { }
 
   ngOnInit() {
-
-    this.dataSource = new MatTableDataSource<DisposalTransactionListItem>(this.tableRenderPacket());
-
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    this.tableRenderPacket = this.tableRenderPacket.bind(this);
+    this.restClient.getDisposalTransactionList(115, 105, this.tableRenderPacket);
 
   }
 
-  tableRenderPacket() {
-    // Clear Table of Data to Refresh
-    TRANSACTION_DATA = [];
-
-    const dataTransactionPacket = sessionStorage.mockData;
+  tableRenderPacket(dataTransactionPacket) {
     // translate mock data into JSON TODO REPLACE with translating server data
     const dataBundle = JSON.parse(dataTransactionPacket);
     console.log(dataBundle);
-
-    for (let iterated = 0; iterated < dataBundle.serverPacket.length; iterated++) {
-      // generate tons from pounds weight value
-      let currentWeightValue = dataBundle.serverPacket[iterated].weight;
-      if (dataBundle.serverPacket[iterated].isTons === 'pounds') {
-        currentWeightValue = currentWeightValue * 0.0005;
-      }
-      // iterates through list items and translates data into the table view
-      const arraySlot = {transactionId: dataBundle.serverPacket[iterated].transactionId, date: new Date(dataBundle.serverPacket[iterated].date),
-      isActualWeight: dataBundle.serverPacket[iterated].isActualWeight, facility: dataBundle.serverPacket[iterated].facility,
-      facilityType: dataBundle.serverPacket[iterated].facilityType, totalCost: dataBundle.serverPacket[iterated].totalCost,
-      isRevenue: dataBundle.serverPacket[iterated].isRevenue, weight: currentWeightValue,
-      isTons: dataBundle.serverPacket[iterated].isTons, unitCost: dataBundle.serverPacket[iterated].unitCost};
-
-      // pushes data into the table after creating array item
-      TRANSACTION_DATA.push(arraySlot);
-     }
-     return TRANSACTION_DATA;
+    // render complete table
+     this.dataSource = new MatTableDataSource(dataBundle);
+     this.dataSource.paginator = this.paginator;
+     this.dataSource.sort = this.sort;
   }
 
   SetChosenTransaction(dataBundle): void {
@@ -69,12 +47,7 @@ export class DisposalListComponent implements OnInit {
   }
 
   DeleteTransaction(eventTarget): void {
-    this.disposalTransactionService.DeleteTransaction(eventTarget);
-
-    this.dataSource = new MatTableDataSource<DisposalTransactionListItem>(this.tableRenderPacket());
-
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    // TODOURGENT replace
   }
 
 }

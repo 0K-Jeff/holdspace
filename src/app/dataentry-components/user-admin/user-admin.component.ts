@@ -131,7 +131,7 @@ export class UserAdminComponent implements OnInit {
       };
       // Send PUT request and clear user data service
       console.log(updatePackage);
-      this.restClient.updateUser(updatePackage);
+      this.restClient.updateUser(JSON.stringify(updatePackage));
       this.ClearChosenUser();
     } else {
       // translate into JSON
@@ -155,7 +155,7 @@ export class UserAdminComponent implements OnInit {
       };
       // send POST request and clear user data service
       console.log(updatePackage);
-      this.restClient.createUser(updatePackage);
+      this.restClient.createUser(JSON.stringify(updatePackage));
       this.ClearChosenUser();
     }
     this.router.navigateByUrl('/useradmin');

@@ -19,6 +19,25 @@ div.menu div.swarlogo h1 {
     z-index: 5;
 }
 
+.menuItem {
+    position: absolute;
+    display: inline-block;
+    left: 625px;
+    z-index: 20;
+    margin: 10px;
+    background: #1f2c3b;
+    padding: 10px;
+    font-weight: 300;
+    font-size: 18px;
+    margin-top: 25px
+}
+.two {
+    left: 721px;
+}
+.three {
+    left: 825px;
+}
+
 div.menu ul {
     padding: 5px;
 }

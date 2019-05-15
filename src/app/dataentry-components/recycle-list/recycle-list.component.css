@@ -1,7 +1,6 @@
 div.recycleTransactionListBox {
     padding: 20px;
     padding-left: 50px;
-    margin-left: 175px;
     margin-right: 20px;
     padding-top: 100px;
     width: 90%;
@@ -13,7 +12,7 @@ button.newTransaction {
     background: #0c9449;
     margin: 10px;
     border: none;
-    width: 175px;
+    width: 150px;
     height: 40px;
     line-height: 40px;
     margin-left: 50px;
@@ -29,12 +28,12 @@ button.newTransaction:hover {
 div.tablePanel {
     margin: 25px;
     margin-left: 50px;
-    width: 900px;
+    width: 1100px;
 }
 
 table {
     margin-bottom: 0px;
-    width: 900px;
+    width: 1100px;
 }
 
 tr.mat-header-row th.mat-header-cell {
@@ -44,7 +43,13 @@ tr.mat-header-row th.mat-header-cell {
     border-style: solid;
     border-width: 1px .5px 2px .5px;
     border-color: #9c9a9a;
-    background: #ebeaea
+    background: #ebeaea;
+    min-width: 65px;
+}
+
+th.mat-header-cell:last-of-type {
+    padding-left: 10px;
+    padding-right: 5px !important;
 }
 
 .mat-sort-header-container {
@@ -60,7 +65,7 @@ td {
 }
 
 mat-paginator {
-    width: 900px;
+    width: 1100px;
     border-style: solid;
     border-width: .5px .5px 1px .5px;
     border-color: #cac3c3;
@@ -71,21 +76,20 @@ th.iconHeader {
 }
 
 td.iconCell {
-    width: 100px;
+    width: 150px;
     padding-left: 0px !important;
 }
 
 button.iconButton {
     background: none;
     border: none;
-    color: #294766;
     width: 40px;
     height: 20px;
     cursor: pointer;
     padding: 0;
 }
 
-button.approveData {
+button.editData {
     color: #0c9449;
 }
 
@@ -93,11 +97,8 @@ button.rejectData {
     color: #c93407;
 }
 
-button.iconButton:hover {
-    color: #5e7c9b
-}
 
-button.approveData:hover {
+button.editData:hover {
     color: #0cb859;
 }
 

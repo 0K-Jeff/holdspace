@@ -8,8 +8,7 @@ let TRANSACTION_DATA: RecyclingTransactionListItem[] = [];
 @Component({
   selector: 'app-recycle-list',
   templateUrl: './recycle-list.component.html',
-  styleUrls: ['./recycle-list.component.css'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./recycle-list.component.css']
 })
 export class RecycleListComponent implements OnInit {
   // TODO update with correct display values as needed

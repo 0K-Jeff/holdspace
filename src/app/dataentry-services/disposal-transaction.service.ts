@@ -42,7 +42,7 @@ export class DisposalTransactionService {
 
 // implements and exports disposal tranasaction interface
 export interface DisposalTransactionListItem {
-  transactionId: string;
+  installationId: number;
   date: Date;
   isActualWeight: string;
   isRevenue: string;
@@ -52,4 +52,31 @@ export interface DisposalTransactionListItem {
   facility: string;
   facilityType: string;
   totalCost: number;
+}
+
+export interface BackEndDataPattern {
+  instId: number;
+  sldWstCDTM: Date;
+  tenantId: number;
+  tenant: string;
+  dcId: number;
+  facId: number;
+  wstTypeCode: string;
+  orgId: number;
+  recTypeCode: string;
+  recCatCode: string;
+  sldWstWeight: number;
+  splitPct: number;
+  trnsWstFeeAm: number;
+  infoSourceCode: string;
+  trnsWstAshCode: number;
+  isRevenue: number;
+  localUse: string;
+  volumeConvRate: number;
+  volumeconvUnit: string;
+  userId: number;
+  invoiceNumber; string;
+  mrfDisposalTypeCode: string;
+  splitActWeight: number;
+  cdFundCode: number;
 }

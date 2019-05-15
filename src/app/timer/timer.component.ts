@@ -11,7 +11,7 @@ export class TimerComponent implements OnInit {
     const ticker = setInterval(function() {
 
       // set variables
-      const timerfinish = new Date('May 8, 2019').getTime();
+      const timerfinish = new Date('June 8, 2019').getTime();
       const currenttime = new Date().getTime();
       const difference = timerfinish - currenttime;
       const daysleft = Math.floor(difference / (1000 * 60 * 60 * 24));

@@ -7,7 +7,6 @@ import { Router } from '@angular/router';
 let tDate: Date;
 let tFacility: string;
 let tIsActualWeight: string;
-let tIsTons: string;
 let tIsRevenue: string;
 let tWeight: number;
 let tCostByWeight: number;
@@ -22,7 +21,7 @@ let editMode = false;
 export class DisposalTransactionComponent implements OnInit {
   form: FormGroup;
   // TODO delete this with proper call for appropriate Facility List
-  dummyFacility = ['Camp Swampy Incinerator', 'Camp Swampy Landfill'];
+  dummyFacility = ['DPW-CIB', 'PINE HOLLOW C&D LANDFILL, PHENIX CITY, AL'];
 
   // enable singleton services and other controllers
   constructor(private disposalTransactionService: DisposalTransactionService,
@@ -37,7 +36,6 @@ export class DisposalTransactionComponent implements OnInit {
       weight: ['', Validators.required],
       transactionType: ['', Validators.required],
       costOrRevenue: ['', Validators.required],
-      poundsOrTons: ['', Validators.required],
       costByWeight: ['', Validators.required],
       finalCost: ({ value: '0.00', readOnly: true })
     });
@@ -56,17 +54,31 @@ export class DisposalTransactionComponent implements OnInit {
 
     // apply current transaction data to form for editing
     if (currentTransactionData) {
+      // TODO replace with real lookup once demo version is done.
+      let facValue;
+      if (currentTransactionData.infoSourceCode === 'WA') {
+        tIsActualWeight = 'actual';
+      } else {
+        tIsActualWeight = 'estimated';
+      }
+      if (currentTransactionData.facId === 9) {
+        facValue = 0;
+      } else {
+        facValue = 1;
+      }
+      if (currentTransactionData.isRevenue === 0) {
+        tIsRevenue = 'cost';
+      } else {
+        tIsRevenue = 'revenue';
+      }
       console.log('edit mode');
       editMode = true;
-      tDate = currentTransactionData.date;
-      tFacility = currentTransactionData.facility;
-      tIsActualWeight = currentTransactionData.isActualWeight;
-      tIsRevenue = currentTransactionData.isRevenue;
-      tIsTons = currentTransactionData.isTons;
-      tWeight = currentTransactionData.weight;
-      tCostByWeight = currentTransactionData.unitCost;
+      tDate = new Date(currentTransactionData.sldWstCDTM);
+      tFacility = this.dummyFacility[facValue];
+      tWeight = currentTransactionData.sldWstWeight;
+      tCostByWeight = currentTransactionData.trnsWstFeeAm;
       this.form.patchValue({actionDate: tDate, facility: tFacility, transactionType: tIsActualWeight, costOrRevenue: tIsRevenue,
-      poundsOrTons: tIsTons, weight: tWeight, costByWeight: tCostByWeight});
+      weight: tWeight, costByWeight: tCostByWeight});
     } else {
       // If there isn't an active transaction, ensure component is aware that it is a new transaction
       editMode = false;
@@ -94,7 +106,7 @@ export class DisposalTransactionComponent implements OnInit {
       }
 
       const formObject: DisposalTransactionListItem = {
-        transactionId: currentTransactionData.transactionId,
+        installationId: currentTransactionData.transactionId,
         date: this.form.value.actionDate,
         isActualWeight: this.form.value.transactionType,
         isRevenue: this.form.value.costOrRevenue,
@@ -108,7 +120,7 @@ export class DisposalTransactionComponent implements OnInit {
       console.log(formObject);
 
       for (let i = 0; i < currentStoreObject.serverPacket.length; i++) {
-        if (currentStoreObject.serverPacket[i].transactionId === formObject.transactionId) {
+        if (currentStoreObject.serverPacket[i].transactionId === formObject.installationId) {
           currentStoreObject.serverPacket[i].date = formObject.date.toLocaleDateString();
           currentStoreObject.serverPacket[i].isActualWeight = formObject.isActualWeight;
           currentStoreObject.serverPacket[i].isRevenue = formObject.isRevenue;
@@ -139,7 +151,7 @@ export class DisposalTransactionComponent implements OnInit {
       // store data for mapping into a new JSON
       const formObject: DisposalTransactionListItem = {
         // TODO Grab AKO ID INSTEAD and then HASH - apply additional logic to import facility TYPE data
-        transactionId: ('DemoUser' + this.form.value.actionDate.toLocaleDateString()),
+        installationId: 3,
         date: this.form.value.actionDate.toLocaleDateString(),
         isActualWeight: this.form.value.transactionType,
         isRevenue: this.form.value.costOrRevenue,
