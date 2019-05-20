@@ -32,6 +32,29 @@ const rootURL = 'http://localhost:8181/swar_test/rest/'; // Spring test server
     httpClient.send();
   };
 
+  const returnDTList = function(instId, dcId, renderFunction) {
+    // populate the disposal transaction list
+    let itemValue;
+    const httpClient = new XMLHttpRequest();
+    httpClient.open('GET', rootURL + 'disposal/getAllDisposalByDcIdAndInstId?instId=' + instId + '&dcId=' + dcId, true);
+    httpClient.setRequestHeader('content-type', 'application/json');
+    httpClient.onreadystatechange = function() {
+      if (this.readyState !== 4) {
+        // console.log(this.readyState);
+      } else {
+        if (this.status === 404) {
+          console.log('404 error, get DTlist');
+        } else if (this.status === 200) {
+          itemValue = httpClient.responseText;
+          renderFunction(itemValue);
+        }
+      }
+    };
+    httpClient.send();
+  };
+
+  // exported methods -------------------//
+
 @Injectable({
   providedIn: 'root'
 })
@@ -194,7 +217,6 @@ export class RESTClient {
     const httpClient = new XMLHttpRequest();
     httpClient.open('GET', rootURL + 'disposal/getAllDisposalByDcIdAndInstId?instId=' + instId + '&dcId=' + dcId, true);
     httpClient.setRequestHeader('content-type', 'application/json');
-    console.log(httpClient);
     httpClient.onreadystatechange = function() {
       if (this.readyState !== 4) {
         // console.log(this.readyState);
@@ -210,16 +232,49 @@ export class RESTClient {
     httpClient.send();
   }
 
-  createDisposalTransaction() {
-    return;
+  // POST METHODS
+  createEditDisposalTransaction(itemValue, navigateFunction) {
+    // populate the disposal transaction list
+    const httpClient = new XMLHttpRequest();
+    httpClient.open('POST', rootURL + 'disposal/', true);
+    httpClient.setRequestHeader('content-type', 'application/json');
+    httpClient.onreadystatechange = function() {
+      if (this.readyState !== 4) {
+        // console.log(this.readyState);
+      } else {
+        if (this.status === 404) {
+          console.log('404 error, createDT');
+        } else if (this.status === 200) {
+          navigateFunction();
+        }
+      }
+    };
+    httpClient.send(JSON.stringify(itemValue));
   }
 
-  editDisposalTransaction() {
-    return;
-  }
+  // editDisposalTransaction() {
+  //   return;
+  // }
 
-  deleteDisposalTransaction() {
-    return;
+
+  // DELETE METHOD
+  deleteDisposalTransaction(itemValue, renderFunction) {
+        // populate the disposal transaction list
+        const httpClient = new XMLHttpRequest();
+        httpClient.open('DELETE', rootURL + 'disposal/', true);
+        httpClient.setRequestHeader('content-type', 'application/json');
+        httpClient.onreadystatechange = function() {
+          if (this.readyState !== 4) {
+            // console.log(this.readyState);
+          } else {
+            if (this.status === 404) {
+              console.log('404 error, deleteDT');
+            } else if (this.status === 200) {
+              returnDTList(itemValue.instId, itemValue.dcId, renderFunction);
+            }
+          }
+        };
+        httpClient.send(JSON.stringify(itemValue));
   }
 
 

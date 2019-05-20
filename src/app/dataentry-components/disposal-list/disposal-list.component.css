@@ -109,3 +109,8 @@ button.approveData:hover {
 button.rejectData:hover {
     color: #f7440e;
 }
+
+button.doubleCheck {
+    background: #dacf73a6;
+    border-radius: 25%;
+}

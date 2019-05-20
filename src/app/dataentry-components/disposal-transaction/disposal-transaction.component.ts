@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
 import { DisposalTransactionService, DisposalTransactionListItem } from '../../dataentry-services/disposal-transaction.service';
 import { Router } from '@angular/router';
+import { RESTClient } from 'src/app/json-client.service';
 
 // create variables to store data if needed for editing transactions
 let tDate: Date;
@@ -26,9 +27,12 @@ export class DisposalTransactionComponent implements OnInit {
   // enable singleton services and other controllers
   constructor(private disposalTransactionService: DisposalTransactionService,
               private formBuilder: FormBuilder,
+              private restClient: RESTClient,
               private router: Router) { }
 
   ngOnInit() {
+    // bind for handoff
+    this.GoBackToList = this.GoBackToList.bind(this);
     // create the initial bindings to form values
     this.form = this.formBuilder.group({
       actionDate: ['', Validators.required],
@@ -88,98 +92,117 @@ export class DisposalTransactionComponent implements OnInit {
 
   // Submit button Method
   SaveSubmit() {
-    console.log(this.form.value);
-
     const currentTransactionData: any = this.disposalTransactionService.FetchChosenTransaction();
     // Check for Edit Mode to apply changes
     if (editMode === true) {
-      // TODO replace with live API instead
-      let currentStore = sessionStorage.mockData;
-      const currentStoreObject = JSON.parse(currentStore);
-
-      // translate fake data into facility TODO Replace
-      let submitFacilityTypeValue = '';
-      if (this.form.value.facility === 'Camp Swampy Incinerator') {
-        submitFacilityTypeValue = 'I';
-      } else if (this.form.value.facility === 'Camp Swampy Landfill') {
-        submitFacilityTypeValue = 'D';
+      let typeShortHand;
+      let facilityNameString;
+      let shortHandRevenue;
+      const submitDate = new Date(this.form.value.actionDate);
+      const timeUpdate = (new Date().getTime() - new Date(new Date().toLocaleDateString()).getTime());
+      if (this.form.value.transactionType === 'actual') {
+        typeShortHand = 'WA';
+      } else {
+        typeShortHand = 'WE';
       }
-
-      const formObject: DisposalTransactionListItem = {
-        installationId: currentTransactionData.transactionId,
-        date: this.form.value.actionDate,
-        isActualWeight: this.form.value.transactionType,
-        isRevenue: this.form.value.costOrRevenue,
-        isTons: this.form.value.poundsOrTons,
-        weight: this.form.value.weight,
-        unitCost: this.form.value.costByWeight,
-        facility: this.form.value.facility,
-        facilityType: submitFacilityTypeValue,
-        totalCost: this.form.value.finalCost
+      if (this.form.value.facility === 'DPW-CIB') {
+        facilityNameString = 9;
+      } else {
+        facilityNameString = 1;
+      }
+      if (this.form.value.isRevenue === 'cost') {
+        shortHandRevenue = 0;
+      } else {
+        shortHandRevenue = 1;
+      }
+      const formDataBundle = {
+        // TODO fix with correct lookups
+        instId: currentTransactionData.instId,
+        sldWstCDTM: currentTransactionData.sldWstCDTM,
+        tenantId: currentTransactionData.tenantId,
+        tenant: currentTransactionData.tenant,
+        dcId: currentTransactionData.instId,
+        facId: facilityNameString,
+        wstTypeCode: currentTransactionData.wstTypeCode,
+        orgId: currentTransactionData.orgId,
+        recTypeCode: currentTransactionData.recTypeCode,
+        recCatCode: currentTransactionData.recCatCode,
+        sldWstWeight: this.form.value.weight,
+        splitPct: currentTransactionData.splitPct,
+        trnsWstFeeAm: this.form.value.costByWeight,
+        infoSourceCode: typeShortHand,
+        trnsWstAshCode: 0,
+        isRevenue: shortHandRevenue,
+        localUse: currentTransactionData.localUse,
+        volumeConvRate: currentTransactionData.volumeConvRate,
+        volumeConvUnit: currentTransactionData.volumeConvUnit,
+        userId: 7191,
+        invoiceNumber: currentTransactionData.invoiceNumber,
+        mrfDisposalTypeCode: currentTransactionData.mrfDisposalTypeCode,
+        splitActWeight: currentTransactionData.splitActWeight,
+        cdFundCode: currentTransactionData.cdFundCode
       };
-      console.log(formObject);
-
-      for (let i = 0; i < currentStoreObject.serverPacket.length; i++) {
-        if (currentStoreObject.serverPacket[i].transactionId === formObject.installationId) {
-          currentStoreObject.serverPacket[i].date = formObject.date.toLocaleDateString();
-          currentStoreObject.serverPacket[i].isActualWeight = formObject.isActualWeight;
-          currentStoreObject.serverPacket[i].isRevenue = formObject.isRevenue;
-          currentStoreObject.serverPacket[i].isTons = formObject.isTons;
-          currentStoreObject.serverPacket[i].weight = formObject.weight;
-          currentStoreObject.serverPacket[i].unitCost = formObject.unitCost;
-          currentStoreObject.serverPacket[i].facility = formObject.facility;
-          currentStoreObject.serverPacket[i].facilityType = formObject.facilityType;
-          currentStoreObject.serverPacket[i].totalCost = formObject.totalCost;
-        }
-      }
-
-      currentStore = JSON.stringify(currentStoreObject);
-      sessionStorage.mockData = currentStore;
-      this.ClearChosenTransaction();
+      this.restClient.createEditDisposalTransaction(formDataBundle, this.GoBackToList);
     } else {
-      // grab current mock data TODO REPLACE WITH API
-      let currentStore = sessionStorage.mockData;
-      const currentStoreObject = JSON.parse(currentStore);
-      // translate fake data into facility TODO Replace
-      let submitFacilityTypeValue = '';
-      if (this.form.value.facility === 'Camp Swampy Incinerator') {
-        submitFacilityTypeValue = 'I';
-      } else if (this.form.value.facility === 'Camp Swampy Landfill') {
-        submitFacilityTypeValue = 'D';
+      let typeShortHand;
+      let facilityNameString;
+      let shortHandRevenue;
+      const submitDate = new Date(this.form.value.actionDate);
+      const timeUpdate = (new Date().getTime() - new Date(new Date().toLocaleDateString()).getTime());
+      if (this.form.value.transactionType === 'actual') {
+        typeShortHand = 'WA';
+      } else {
+        typeShortHand = 'WE';
       }
-
-      // store data for mapping into a new JSON
-      const formObject: DisposalTransactionListItem = {
-        // TODO Grab AKO ID INSTEAD and then HASH - apply additional logic to import facility TYPE data
-        installationId: 3,
-        date: this.form.value.actionDate.toLocaleDateString(),
-        isActualWeight: this.form.value.transactionType,
-        isRevenue: this.form.value.costOrRevenue,
-        isTons: this.form.value.poundsOrTons,
-        weight: this.form.value.weight,
-        unitCost: this.form.value.costByWeight,
-        facility: this.form.value.facility,
-        facilityType: submitFacilityTypeValue,
-        totalCost: this.form.value.finalCost
+      if (this.form.value.facility === 'DPW-CIB') {
+        facilityNameString = 9;
+      } else {
+        facilityNameString = 1;
+      }
+      if (this.form.value.isRevenue === 'cost') {
+        shortHandRevenue = 0;
+      } else {
+        shortHandRevenue = 1;
+      }
+      const formDataBundle = {
+        // TODO fix with correct lookups
+        instId: 115,
+        sldWstCDTM: (submitDate.getTime()) + timeUpdate,
+        tenantId: null,
+        tenant: null,
+        dcId: 105,
+        facId: facilityNameString,
+        wstTypeCode: 'N',
+        orgId: null,
+        recTypeCode: null,
+        recCatCode: null,
+        sldWstWeight: this.form.value.weight,
+        splitPct: null,
+        trnsWstFeeAm: this.form.value.costByWeight,
+        infoSourceCode: typeShortHand,
+        trnsWstAshCode: 0,
+        isRevenue: shortHandRevenue,
+        localUse: null,
+        volumeConvRate: null,
+        volumeConvUnit: null,
+        userId: null,
+        invoiceNumber: null,
+        mrfDisposalTypeCode: null,
+        splitActWeight: null,
+        cdFundCode: null
       };
-
-      currentStoreObject.serverPacket.push(formObject);
-      currentStore = JSON.stringify(currentStoreObject);
-      sessionStorage.mockData = currentStore;
+      this.restClient.createEditDisposalTransaction(formDataBundle, this.GoBackToList);
     }
-
-    this.router.navigateByUrl('/disposal');
-  }
-
-  tonsReset() {
-    this.form.controls.weight.patchValue('');
-    this.form.controls.unitCost.patchValue('');
   }
 
   // clear transaction service to avoid side effects
 
   ClearChosenTransaction() {
     this.disposalTransactionService.ClearChosenTransaction();
+  }
+
+  GoBackToList() {
+    this.router.navigateByUrl('/disposal');
   }
 
 }

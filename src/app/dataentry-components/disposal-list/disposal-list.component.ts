@@ -39,15 +39,16 @@ export class DisposalListComponent implements OnInit {
   }
 
   SetChosenTransaction(dataBundle): void {
-    // transform tons back into pounds where appropriate
-    if (dataBundle.isTons === 'pounds') {
-      dataBundle.weight = dataBundle.weight * 2000;
-    }
     this.disposalTransactionService.SetChosenTransaction(dataBundle);
   }
 
   DeleteTransaction(eventTarget): void {
-    // TODOURGENT replace
+    const targetedElement = document.getElementById('deleteTransaction' + eventTarget.sldWstCDTM);
+    if (targetedElement.classList.contains('doubleCheck') === true) {
+      this.restClient.deleteDisposalTransaction(eventTarget, this.tableRenderPacket);
+    } else {
+      targetedElement.classList.toggle('doubleCheck');
+    }
   }
 
 }

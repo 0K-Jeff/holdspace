@@ -73,9 +73,9 @@ export interface BackEndDataPattern {
   isRevenue: number;
   localUse: string;
   volumeConvRate: number;
-  volumeconvUnit: string;
+  volumeConvUnit: string;
   userId: number;
-  invoiceNumber; string;
+  invoiceNumber: string;
   mrfDisposalTypeCode: string;
   splitActWeight: number;
   cdFundCode: number;
