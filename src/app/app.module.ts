@@ -5,9 +5,9 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { LandingpageComponent } from './landingpage/landingpage.component';
-import { TimerComponent } from './timer/timer.component';
-import { MenuComponent } from './menu/menu.component';
-import { AlertsComponent } from './alerts/alerts.component';
+import { TimerComponent } from './menu-frame/timer/timer.component';
+import { MenuComponent } from './menu-frame/menu/menu.component';
+import { AlertsComponent } from './menu-frame/alerts/alerts.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthcheckComponent } from './authcheck/authcheck.component';
 import { DisposalTransactionComponent } from './dataentry-components/disposal-transaction/disposal-transaction.component';
@@ -17,6 +17,7 @@ import { UserAdminComponent } from './dataentry-components/user-admin/user-admin
 import { RecycleListComponent } from './dataentry-components/recycle-list/recycle-list.component';
 import { RecycleTransactionComponent } from './dataentry-components/recycle-transaction/recycle-transaction.component';
 import { HttpClientModule } from '@angular/common/http';
+import { InstallationPickerComponent } from './menu-frame/installation-picker/installation-picker.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { HttpClientModule } from '@angular/common/http';
     UserTableComponent,
     UserAdminComponent,
     RecycleListComponent,
-    RecycleTransactionComponent
+    RecycleTransactionComponent,
+    InstallationPickerComponent
   ],
   imports: [
     BrowserModule,

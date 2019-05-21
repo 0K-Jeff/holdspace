@@ -249,6 +249,7 @@ export class RESTClient {
         }
       }
     };
+    console.log(JSON.stringify(itemValue));
     httpClient.send(JSON.stringify(itemValue));
   }
 

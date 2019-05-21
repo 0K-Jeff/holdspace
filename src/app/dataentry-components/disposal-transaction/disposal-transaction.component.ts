@@ -136,7 +136,7 @@ export class DisposalTransactionComponent implements OnInit {
         localUse: currentTransactionData.localUse,
         volumeConvRate: currentTransactionData.volumeConvRate,
         volumeConvUnit: currentTransactionData.volumeConvUnit,
-        userId: 7191,
+        userId: 7293,
         invoiceNumber: currentTransactionData.invoiceNumber,
         mrfDisposalTypeCode: currentTransactionData.mrfDisposalTypeCode,
         splitActWeight: currentTransactionData.splitActWeight,
