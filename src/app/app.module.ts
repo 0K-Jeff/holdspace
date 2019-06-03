@@ -18,6 +18,7 @@ import { RecycleListComponent } from './dataentry-components/recycle-list/recycl
 import { RecycleTransactionComponent } from './dataentry-components/recycle-transaction/recycle-transaction.component';
 import { HttpClientModule } from '@angular/common/http';
 import { InstallationPickerComponent } from './menu-frame/installation-picker/installation-picker.component';
+import { InstallationIdboxComponent } from './installation-idbox/installation-idbox.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { InstallationPickerComponent } from './menu-frame/installation-picker/in
     UserAdminComponent,
     RecycleListComponent,
     RecycleTransactionComponent,
-    InstallationPickerComponent
+    InstallationPickerComponent,
+    InstallationIdboxComponent
   ],
   imports: [
     BrowserModule,

@@ -7,6 +7,8 @@ const rootURL = 'http://localhost:8181/swar_test/rest/'; // Spring test server
 // const rootURL = 'http://localhost:3000/api/'; // Node.js Service
 // const rootURL = 'http://localhost:8181/swar/rest/';  // Tomcat
 
+
+// Internal method variables ------------------------------------- //
   // for internal use - render method
   const getUserTableLocal = function(renderFunction: Function) {
     // return user info to populate user list
@@ -53,7 +55,7 @@ const rootURL = 'http://localhost:8181/swar_test/rest/'; // Spring test server
     httpClient.send();
   };
 
-  // exported methods -------------------//
+// exported methods ------------------------------------------------ //
 
 @Injectable({
   providedIn: 'root'
@@ -62,7 +64,15 @@ export class RESTClient {
 
   constructor() { }
 
-  // USER MANAGEMENT METHODS BLOCK //
+// Installation Module Methods ------------------------------------- //
+
+  getUserInstallationList() {
+    return;
+  }
+
+// Installation module methods END ---------------------------------- //
+
+// USER MANAGEMENT METHODS BLOCK ------------------------------------ //
 
   // GET requests
   getUserInfoTable(renderFunction: Function) {
@@ -206,9 +216,9 @@ export class RESTClient {
     httpClient.send(JSON.stringify(infoString));
   }
 
-  // USER MANAGEMENT METHODS END //
+// USER MANAGEMENT METHODS END ----------------------------------------- //
 
-  // DISPOSAL TRANSACTION METHODS //
+// DISPOSAL TRANSACTION METHODS ---------------------------------------- //
 
   // Fetch disposal transaction list based on instId and datacall
   getDisposalTransactionList(instId, dcId, renderFunction) {
@@ -280,10 +290,10 @@ export class RESTClient {
 
 
 
-  // DISPOSAL TRANSACTION METHODS END //
+// DISPOSAL TRANSACTION METHODS END ------------------------------------- //
 
-  // RECYCLING TRANSACTION METHODS //
+// RECYCLING TRANSACTION METHODS ---------------------------------------- //
 
-  // RECYCLING TRANSACTION METHODS END //
+// RECYCLING TRANSACTION METHODS END ------------------------------------ //
 
 }
