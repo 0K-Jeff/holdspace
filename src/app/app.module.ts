@@ -17,8 +17,11 @@ import { UserAdminComponent } from './dataentry-components/user-admin/user-admin
 import { RecycleListComponent } from './dataentry-components/recycle-list/recycle-list.component';
 import { RecycleTransactionComponent } from './dataentry-components/recycle-transaction/recycle-transaction.component';
 import { HttpClientModule } from '@angular/common/http';
-import { InstallationPickerComponent } from './menu-frame/installation-picker/installation-picker.component';
-import { InstallationIdboxComponent } from './installation-idbox/installation-idbox.component';
+import { InstallationPickerComponent } from './dataentry-components/installation-picker/installation-picker.component';
+import { InstallationIdboxComponent } from './menu-frame/installation-idbox/installation-idbox.component';
+import { InstallationEditorComponent } from './dataentry-components/installation-editor/installation-editor.component';
+import { DataCallAdminComponent } from './dataentry-components/datacall-admin/datacall-admin.component';
+import { DataCallTableComponent } from './dataentry-components/datacall-table/datacall-table.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,10 @@ import { InstallationIdboxComponent } from './installation-idbox/installation-id
     RecycleListComponent,
     RecycleTransactionComponent,
     InstallationPickerComponent,
-    InstallationIdboxComponent
+    InstallationIdboxComponent,
+    InstallationEditorComponent,
+    DataCallAdminComponent,
+    DataCallTableComponent
   ],
   imports: [
     BrowserModule,

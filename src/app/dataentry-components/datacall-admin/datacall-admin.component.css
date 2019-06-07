@@ -1,0 +1,193 @@
+/* User Admin Styling */
+
+div.datacallInfoBox {
+    padding: 20px;
+    padding-left: 50px;
+    margin-left: 175px;
+    margin-right: 20px;
+    padding-top: 100px;
+    width: 90%;
+    height: 100%;
+    position: absolute;
+}
+
+div.miniBox {
+    border-radius: 10px;
+    padding: 10px;
+    width: 900px;
+    height: auto;
+    position: relative;
+    background: #cac3c3;
+    margin: 10px;
+}
+
+div.miniBox2 {
+    border-radius: 10px;
+    padding: 10px;
+    width: 900px;
+    height: auto;
+    position: relative;
+    background: #d6d3d3;
+    margin: 10px;
+}
+
+
+input.roleInput {
+    padding: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 173px;
+}
+
+mat-form-field.userData {
+    width: 250px;
+}
+
+input.datacallData {
+    display: inline-block;
+    width: 300px;
+}
+
+h1 {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 0;
+    margin-top: 10px;
+    margin-block-end: 0;
+    margin-block-start: 0;
+    padding-left: 10px;
+}
+
+h1.headline {
+    border-radius: 10px;
+    margin: 10px;
+    font-size: 2em;
+    color: #294766;
+    width: 900px;
+    background: #314c6829;
+    padding: 20px;
+}
+
+label.datacallData {
+    font-weight: bold;
+    display: inline-block;
+    width: 110px;
+    margin: 10px;
+    text-align: right;
+}
+
+button.choiceActions {
+    background: #0c9449;
+    height: 35px;
+    line-height: 35px;
+    margin: 10px;
+    border: none;
+    color: white;
+    margin-bottom: 25px;
+}
+
+button:hover {
+    background: #0cb859;
+}
+
+button.unchosen {
+    background:  #aac2b5;
+    color: black;
+}
+
+/* fontawesome ui alterations */
+
+i.formTooltip {
+    display: inline-block;
+    color: #294766;
+    margin-left: 15px;
+    margin-top: 12px;
+    vertical-align: top;
+}
+
+i.formTooltip:hover {
+    color: #5e7c9b;
+}
+
+/* Material UI alterations */
+
+.rightSide {
+    position: absolute;
+    left: 750px;
+}
+
+.rolesList {
+    margin-left: 20px;
+    width: 250px;
+}
+
+
+mat-form-field.userRoleData {
+    margin: 10px;
+    width: 95%;
+    background: #cac3c3;
+    border-radius: 10px;
+    padding: 10px;
+    display: inline-block;
+}
+
+table {
+    margin-left: 50px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 800px;
+}
+
+td {
+    text-align: center;
+    border-style: solid;
+    border-width: 0px .5px 1px .5px;
+    border-color: #cac3c3;
+}
+
+div.tablePanel {
+    margin: 0px;
+}
+
+button.iconButton {
+    background: none;
+    border: none;
+    color: #294766;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 17px;
+}
+
+
+button.doubleCheck {
+    background: #f5598382;
+    border-radius: 25%;
+}
+
+tr.mat-header-row th.mat-header-cell {
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+    border-style: solid;
+    border-width: 1px .5px 2px .5px;
+    border-color: #9c9a9a;
+    background: #ebeaea
+}
+
+.invisify {
+    display: none;
+}
+
+/* browser overrides */
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}

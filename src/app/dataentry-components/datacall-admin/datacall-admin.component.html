@@ -1,0 +1,89 @@
+<form [formGroup]="form">
+  <div class="datacallInfoBox">
+    <h1 class="headline">Data Call Info<i aria-label="Help Button for Data Call Information Management" class="formTooltip fas fa-question-circle" style="margin: 0px 0px 0px 20px"></i></h1>
+
+    <br>
+
+    <div class="miniBox">
+      <label for="ID" class="datacallData">ID:</label>
+      <mat-form-field class="datacallData">
+        <input matInput placeholder="ID" autocomplete="off" id="ID" type="text" class="datacallData" formControlName="ID">
+      </mat-form-field>
+
+      <label for="Service Id" class="datacallData">Service Id:</label>
+      <mat-form-field class="datacallData">
+        <input matInput placeholder="Service Id" autocomplete="off" id="ServiceId" type="text" class="datacallData" formControlName="serviceId">
+      </mat-form-field>
+
+      <label for="Type Code" class="datacallData">Type Code:</label>
+      <mat-form-field class="datacallData">
+        <input matInput placeholder="Type Code" autocomplete="off" id="TypeCode" type="text" class="datacallData" formControlName="typeCode">
+      </mat-form-field>
+
+      <label for="Title" class="datacallData">Title:</label>
+      <mat-form-field class="datacallData">
+        <input matInput placeholder="Title" autocomplete="off" id="Title" type="text" class="datacallData" formControlName="titie">
+      </mat-form-field>
+
+      <label for="Fiscal Year" class="datacallData">Fiscal Year:</label>
+      <mat-form-field class="datacallData">
+        <input matInput placeholder="Fiscal Year" autocomplete="off" id="FiscalYear" type="text" class="datacallData" formControlName="fydt">
+      </mat-form-field>
+
+      <label for="Half Fiscal Year" class="datacallData">Half Fiscal Year:</label>
+      <mat-form-field class="datacallData">
+        <input matInput placeholder="Half Fiscal Year" autocomplete="off" id="HalfFiscalYear" type="text" class="datacallData" formControlName="halfFy">
+      </mat-form-field>
+
+      <label for="Quarter" class="datacallData">Quarter:</label>
+      <mat-form-field class="datacallData">
+        <input matInput placeholder="Quarter" autocomplete="off" id="Quarter" type="text" class="datacallData" formControlName="quarterFy">
+      </mat-form-field>
+
+    </div>
+
+    <div class="miniBox2">
+
+      <label for="Start Date" class="datacallData">Start Date:</label>
+      <mat-form-field class="datacallData">
+        <input matInput placeholder="Start Date" autocomplete="off" id="StartDate" type="text" class="datacallData" formControlName="startDate">
+      </mat-form-field>
+
+      <label for="End Date" class="datacallData">End Date:</label>
+      <mat-form-field class="datacallData">
+        <input matInput placeholder="End Date" autocomplete="off" id="EndDate" type="text" class="datacallData" formControlName="endDate">
+      </mat-form-field>
+
+      <label for="Collection Start Date" class="datacallData">Collection Start Date:</label>
+      <mat-form-field class="datacallData">
+        <input matInput placeholder="Collection Start Date" autocomplete="off" id="CollectionStartDate" type="text" class="datacallData" formControlName="collectionStartDate">
+      </mat-form-field>
+
+      <label for="Collection End Date" class="datacallData">Collection End Date:</label>
+      <mat-form-field class="datacallData">
+        <input matInput placeholder="Collection End Date" autocomplete="off" id="CollectionEndDate" type="text" class="datacallData" formControlName="collectionEndDate">
+      </mat-form-field>
+
+      <label for="User Id" class="datacallData">User Id:</label>
+      <mat-form-field class="datacallData">
+        <input matInput placeholder="User Id" autocomplete="off" id="UserId" type="text" class="datacallData" formControlName="userId">
+      </mat-form-field>
+
+      <label for="Last Updated" class="datacallData">Last Updated:</label>
+      <mat-form-field class="datacallData">
+        <input matInput placeholder="Last Updated" autocomplete="off" id="LastUpdated" type="text" class="datacallData" formControlName="lastUpdated">
+      </mat-form-field>
+
+      <!-- <label for="DeactivatedDate" class="userData">Deactivated:</label>
+      <input class='datePicker' readonly="true" autocomplete="off" formControlName="deactivatedDate"> -->
+
+      <!-- <mat-checkbox class="dbaBox" id="isDBACode" formControlName="isDBACode"> IsDBA Code: </mat-checkbox> -->
+
+    </div>
+
+    <br>
+      <button class="choiceActions" mat-raised-button (click)='this.ClearChosenDataCall()' routerLink='/datacalladmin'>Cancel</button>
+      <button class="choiceActions" mat-raised-button (click)='this.SaveSubmit()' type="submit" [disabled]="!form.valid">Save</button>
+
+  </div>
+</form>

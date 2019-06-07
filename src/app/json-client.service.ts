@@ -34,6 +34,31 @@ const rootURL = 'http://localhost:8181/swar_test/rest/'; // Spring test server
     httpClient.send();
   };
 
+  const getDataCallTableLocal = function(renderFunction: Function) {
+    // return user info to populate user list
+    let tableValues;
+    const httpClient = new XMLHttpRequest();
+    httpClient.open('GET', rootURL + 'dc/', true);
+    httpClient.setRequestHeader('content-type', 'application/json');
+    httpClient.onreadystatechange = function() {
+      if (this.readyState !== 4) {
+        // insert loading spinner TODO
+      } else {
+        if (this.status === 404) {
+          tableValues = '[{"dcId":"Error","serviceId":"Error","ID":"404","title":"Error"}]';
+          console.log(JSON.parse(tableValues));
+          renderFunction(JSON.parse(tableValues));
+        } else if (this.status === 200) {
+          tableValues = httpClient.responseText;
+          console.log(JSON.parse(tableValues));
+          renderFunction(JSON.parse(tableValues));
+        }
+      }
+    };
+    httpClient.send();
+  };
+
+
   const returnDTList = function(instId, dcId, renderFunction) {
     // populate the disposal transaction list
     let itemValue;
@@ -295,5 +320,71 @@ export class RESTClient {
 // RECYCLING TRANSACTION METHODS ---------------------------------------- //
 
 // RECYCLING TRANSACTION METHODS END ------------------------------------ //
+
+// DATA CALL TRANSACTION METHODS ---------------------------------------- //
+
+  // GET requests
+  getDataCallInfoTable(renderFunction: Function) {
+    // return user info to populate datacall list
+    let tableValues;
+    const httpClient = new XMLHttpRequest();
+    httpClient.open('GET', rootURL + 'dc/', true);
+    httpClient.setRequestHeader('content-type', 'application/json');
+    httpClient.onreadystatechange = function() {
+      if (this.readyState !== 4) {
+        // insert loading spinner TODO
+      } else {
+        if (this.status === 404) {
+          tableValues = '[{"dcId":"Error","serviceId":"Error","ID":"404","title":"Error"}]';
+          console.log(JSON.parse(tableValues));
+          renderFunction(JSON.parse(tableValues));
+        } else if (this.status === 200) {
+          tableValues = httpClient.responseText;
+          console.log(JSON.parse(tableValues));
+          renderFunction(JSON.parse(tableValues));
+        }
+      }
+    };
+    httpClient.send();
+  }
+
+  // ARCHIVE/UNARCHIVE requests
+
+  deactivateDataCall(dataCallID, renderFunction: Function) {
+    const httpClient = new XMLHttpRequest();
+    httpClient.open('GET', rootURL + 'dc/archive/' + dataCallID, true);
+    httpClient.setRequestHeader('content-type', 'application/json');
+    httpClient.onreadystatechange = function() {
+      if (this.readyState !== 4) {
+        // insert loading spinner TODO
+      } else {
+        getDataCallTableLocal(renderFunction);
+      }
+    };
+    httpClient.send();
+  }
+
+  activateDataCall(dataCallID, renderFunction: Function) {
+    const httpClient = new XMLHttpRequest();
+    httpClient.open('GET', rootURL + 'dc/unarchive/' + dataCallID, true);
+    httpClient.setRequestHeader('content-type', 'application/json');
+    httpClient.onreadystatechange = function() {
+      if (this.readyState !== 4) {
+        // insert loading spinner TODO
+      } else {
+        getDataCallTableLocal(renderFunction);
+      }
+    };
+    httpClient.send();
+  }
+
+  updateDataCall(infostring) {
+    const httpClient = new XMLHttpRequest();
+    httpClient.open('POST', rootURL + 'dc/', false);
+    httpClient.setRequestHeader('content-type', 'application/json');
+    httpClient.send(infostring);
+  }
+
+  // DATACALL Methods end ----------------------------------------------------------//
 
 }
