@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from 'selenium-webdriver/http';
 
 // Enumerate target URLS for making REST calls
 
@@ -91,11 +92,75 @@ export class RESTClient {
 
 // Installation Module Methods ------------------------------------- //
 
-  getUserInstallationList() {
+  // get past details
+  getDefaultSession() {
+    const httpClient = new XMLHttpRequest();
+    httpClient.open('GET', rootURL + 'userini/', false);
+    httpClient.setRequestHeader('content-type', 'application/json');
+    httpClient.onreadystatechange = function() {
+      if (this.readyState !== 4) {
+        // insert loading spinner TODO
+      } else {
+        if (this.status === 404) {
+          console.log('Default Installation Load Error');
+        } else if (this.status === 200) {
+          console.log(JSON.parse(this.responseText));
+        }
+      }
+    };
+    httpClient.send();
+    return JSON.parse(httpClient.responseText);
+  }
+
+  getInstallationFullInfo(instID) {
+    const httpClient = new XMLHttpRequest();
+    httpClient.open('GET', rootURL + 'org/' + instID, true);
+    httpClient.setRequestHeader('content-type', 'application/json');
+    httpClient.onreadystatechange = function() {
+      if (this.readyState !== 4) {
+        // insert loading spinner TODO
+      } else {
+        if (this.status === 404) {
+          console.log('specific Installation Load Error');
+        } else if (this.status === 200) {
+          return JSON.parse(this.responseText);
+        }
+      }
+    };
+    httpClient.send();
+  }
+
+  getInstallationInfoTable(renderFunction: Function) {
     return;
   }
 
+  getInstallationRecyclingTypes(instID) {
+
+  }
+
 // Installation module methods END ---------------------------------- //
+
+// Tenant Management Methods ---------------------------------------- //
+
+  getTenantList(dcID, instID) {
+    const httpClient = new XMLHttpRequest();
+    httpClient.open('GET', rootURL + 'tenant/' + dcID + '/' + instID, true);
+    httpClient.setRequestHeader('content-type', 'application/json');
+    httpClient.onreadystatechange = function() {
+      if (this.readyState !== 4) {
+        // insert loading spinner TODO
+      } else {
+        if (this.status === 404) {
+          console.log('Tenant List Load Error');
+        } else if (this.status === 200) {
+          return JSON.parse(this.responseText);
+        }
+      }
+    };
+    httpClient.send();
+  }
+
+// Tenant Management Methdos END ------------------------------------ //
 
 // USER MANAGEMENT METHODS BLOCK ------------------------------------ //
 

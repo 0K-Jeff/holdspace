@@ -18,8 +18,8 @@ const routes: Routes = [
   { path: 'disposal', component: DisposalListComponent},
   { path: 'disposal/transaction', component: DisposalTransactionComponent},
   { path: 'useradmin', component: UserTableComponent},
-  { path: 'datacalladmin', component: DataCallTableComponent},
   { path: 'useradmin/user', component: UserAdminComponent},
+  { path: 'datacalladmin', component: DataCallTableComponent},
   { path: 'datacalladmin/datacall', component: DataCallAdminComponent},
   { path: 'recycling', component: RecycleListComponent},
   { path: 'recycling/transaction', component: RecycleTransactionComponent}
