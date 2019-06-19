@@ -4,15 +4,15 @@
 
     <div class="miniBox">
         <h1>Enter your Transaction Date: </h1><br>
-        <input class='datePicker' autocomplete="off" [matDatepicker]="myDatepicker" formControlName="actionDate">
-        <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
+        <input class='datePicker' id='datePickField' autocomplete="off" [matDatepicker]="myDatepicker" formControlName="actionDate">
+        <mat-datepicker-toggle id='datePickIcon' [for]="myDatepicker"></mat-datepicker-toggle>
         <mat-datepicker #myDatepicker></mat-datepicker>
 
       <label for="transactionFacility" class="transactionValue">Facility: </label> 
       <mat-form-field>
         <mat-select class="facilitySelect" placeholder="Disposal Facility" aria-placeholder="Disposal Facility List" formControlName="facility">
-          <mat-option *ngFor="let facilityName of dummyFacility" [value]="facilityName">
-            {{facilityName}}
+          <mat-option *ngFor="let items of facilityList" [value]="items.facId">
+            {{items.facName}}
           </mat-option>
         </mat-select>
       </mat-form-field>
@@ -25,12 +25,26 @@
         <mat-radio-button value="estimated">Estimated Weight</mat-radio-button>
       </mat-radio-group>
 
+      <div class="selectWrap">
+        <label for="tenantList" class="transactionValue">Tenant: </label> 
+        <mat-form-field>
+          <mat-select class="tenantList facilitySelect" placeholder="Tenant" aria-placeholder="Tenant List" formControlName="tenant">
+            <mat-option *ngFor="let items of tenantList" [value]="items.tntId">
+              {{items.tenantName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
       <br>
 
       <mat-button-toggle-group name="costOrRevenue" aria-label="Cost or Revenue Toggle" formControlName="costOrRevenue">
         <mat-button-toggle value="cost">Cost</mat-button-toggle>
         <mat-button-toggle value="revenue">Revenue</mat-button-toggle>
       </mat-button-toggle-group>
+
+      <label class="transactionValue" for="Invoice">Invoice No: </label>
+      <input id="Invoice" class="transactionValue" type="text" name="Invoice" formControlName="invoiceNo">
 
     </div>
 
@@ -50,19 +64,16 @@
       <mat-form-field>
         <input matInput readonly=true placeholder="Final Cost" autocomplete="off" id="finalCost" type="text" class="transactionValue finalCost" name="finalcost" formControlName="finalCost">
       </mat-form-field>$
-
     </div>
     
-      <!-- <br>  
-    
-      <label class="transactionValue" for="Invoice">Invoice No: </label>
-      <input id="Invoice" type="text" name="Invoice"> -->
-
-      <br>
+    <div class="miniBox2 localUse">
+      <mat-form-field>
+        <textarea matInput class="localUse" placeholder="Local Use:" formControlName="localUseBox"></textarea>
+      </mat-form-field>
+    </div>
 
       <button mat-raised-button (click)='this.ClearChosenTransaction()' routerLink='/disposal'>Cancel</button>
       <button mat-raised-button type="submit" [disabled]="!form.valid">Save Changes</button>
 
   </div>
 </form>
-  

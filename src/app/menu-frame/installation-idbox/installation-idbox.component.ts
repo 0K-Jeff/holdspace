@@ -13,6 +13,10 @@ export class InstallationIdboxComponent implements OnInit {
               private installService: InstallationServiceService) { }
 
   ngOnInit() {
+    // bind method arguments
+    this.recycleSetter = this.recycleSetter.bind(this);
+    this.facilitySetter = this.facilitySetter.bind(this);
+
     const defaultInfoPacket: any = this.restClient.getDefaultSession();
     // map needed values
     const sUserId = defaultInfoPacket[0].userId;
@@ -29,14 +33,17 @@ export class InstallationIdboxComponent implements OnInit {
       }
     }
     // populate session with information.
-    const instInfo = this.restClient.getInstallationFullInfo(sInstId);
     const tenantInfo = this.restClient.getTenantList(sDcId, sInstId);
-    const recyclingInfo = this.restClient.getInstallationRecyclingTypes(sInstId); // TODO Request update to SW_WST_REC_TYPE GET to allow sort by inst.
-
-    // redirect if no default, OR set default TODO
+    this.restClient.getInstallationRecyclingTypes(this.recycleSetter);
+    this.restClient.getFacilityList(sDcId, sInstId, this.facilitySetter);
     this.installService.SetChosenInstallation(sDcId, sInstId, sUserId, sUserRole, tenantInfo);
-    console.log(sDcId, sInstId, sUserId, sUserRole, tenantInfo);
-
   }
 
+  recycleSetter(recyclingInfo) {
+    this.installService.SetRecyclingTypes(recyclingInfo);
+  }
+
+  facilitySetter(facilityInfo) {
+    this.installService.SetFacilities(facilityInfo);
+  }
 }

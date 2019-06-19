@@ -114,7 +114,7 @@ export class RESTClient {
 
   getInstallationFullInfo(instID) {
     const httpClient = new XMLHttpRequest();
-    httpClient.open('GET', rootURL + 'org/' + instID, true);
+    httpClient.open('GET', rootURL + 'org/' + instID, false);
     httpClient.setRequestHeader('content-type', 'application/json');
     httpClient.onreadystatechange = function() {
       if (this.readyState !== 4) {
@@ -123,19 +123,77 @@ export class RESTClient {
         if (this.status === 404) {
           console.log('specific Installation Load Error');
         } else if (this.status === 200) {
-          return JSON.parse(this.responseText);
+          console.log(JSON.parse(this.responseText));
+        }
+      }
+    };
+    httpClient.send();
+    return JSON.parse(httpClient.responseText);
+  }
+
+  getInstallationInfoTable(dcID, roleValue, renderFunction: Function) {
+    const httpClient = new XMLHttpRequest();
+    const splitRoles = roleValue.split(';');
+    console.log(splitRoles);
+    httpClient.open('GET', rootURL + 'userorglist/' + dcID + '/' + splitRoles[0] + '/' + splitRoles[1], true);
+    httpClient.setRequestHeader('content-type', 'application/json');
+    httpClient.onreadystatechange = function() {
+      if (this.readyState !== 4) {
+        // insert loading spinner TODO
+      } else {
+        if (this.status === 404) {
+          console.log('installation list Load Error');
+        } else if (this.status === 200) {
+          const values = JSON.parse(this.responseText);
+          renderFunction(values);
         }
       }
     };
     httpClient.send();
   }
 
-  getInstallationInfoTable(renderFunction: Function) {
-    return;
+  getInstallationRecyclingTypes(setterMethod: Function) {
+    const httpClient = new XMLHttpRequest();
+    httpClient.open('GET', rootURL + 'recycletype/', true);
+    httpClient.setRequestHeader('content-type', 'application/json');
+    httpClient.onreadystatechange = function() {
+      if (this.readyState !== 4) {
+        // insert loading spinner TODO
+      } else {
+        if (this.status === 404) {
+          console.log('recycling types Load Error');
+        } else if (this.status === 200) {
+          const values = JSON.parse(this.responseText);
+          setterMethod(values);
+        }
+      }
+    };
+    httpClient.send();
   }
 
-  getInstallationRecyclingTypes(instID) {
-
+  updateIniInstallation(userID, passID, updateView: Function) {
+    // form data package
+    const newValue = {
+      userId: userID,
+      key: 'INSTALLATION',
+      value: passID,
+      timestamp: null
+    };
+    const httpClient = new XMLHttpRequest();
+    httpClient.open('POST', rootURL + 'userini/', true);
+    httpClient.setRequestHeader('content-type', 'application/json');
+    httpClient.onreadystatechange = function() {
+      if (this.readyState !== 4) {
+        // insert loading spinner TODO
+      } else {
+        if (this.status === 404) {
+          console.log('update INI Error');
+        } else if (this.status === 200) {
+          updateView(passID);
+        }
+      }
+    };
+    httpClient.send(JSON.stringify(newValue));
   }
 
 // Installation module methods END ---------------------------------- //
@@ -144,7 +202,7 @@ export class RESTClient {
 
   getTenantList(dcID, instID) {
     const httpClient = new XMLHttpRequest();
-    httpClient.open('GET', rootURL + 'tenant/' + dcID + '/' + instID, true);
+    httpClient.open('GET', rootURL + 'tenant/' + dcID + '/' + instID, false);
     httpClient.setRequestHeader('content-type', 'application/json');
     httpClient.onreadystatechange = function() {
       if (this.readyState !== 4) {
@@ -153,11 +211,12 @@ export class RESTClient {
         if (this.status === 404) {
           console.log('Tenant List Load Error');
         } else if (this.status === 200) {
-          return JSON.parse(this.responseText);
+          console.log(JSON.parse(this.responseText));
         }
       }
     };
     httpClient.send();
+    return JSON.parse(httpClient.responseText);
   }
 
 // Tenant Management Methdos END ------------------------------------ //
@@ -319,7 +378,7 @@ export class RESTClient {
     httpClient.setRequestHeader('content-type', 'application/json');
     httpClient.onreadystatechange = function() {
       if (this.readyState !== 4) {
-        // console.log(this.readyState);
+        // insert loading spinner TODO
       } else {
         if (this.status === 404) {
           console.log('404 error, get DTlist');
@@ -340,7 +399,7 @@ export class RESTClient {
     httpClient.setRequestHeader('content-type', 'application/json');
     httpClient.onreadystatechange = function() {
       if (this.readyState !== 4) {
-        // console.log(this.readyState);
+        // insert loading spinner TODO
       } else {
         if (this.status === 404) {
           console.log('404 error, createDT');
@@ -353,11 +412,6 @@ export class RESTClient {
     httpClient.send(JSON.stringify(itemValue));
   }
 
-  // editDisposalTransaction() {
-  //   return;
-  // }
-
-
   // DELETE METHOD
   deleteDisposalTransaction(itemValue, renderFunction) {
         // populate the disposal transaction list
@@ -366,7 +420,7 @@ export class RESTClient {
         httpClient.setRequestHeader('content-type', 'application/json');
         httpClient.onreadystatechange = function() {
           if (this.readyState !== 4) {
-            // console.log(this.readyState);
+        // insert loading spinner TODO
           } else {
             if (this.status === 404) {
               console.log('404 error, deleteDT');
@@ -378,7 +432,24 @@ export class RESTClient {
         httpClient.send(JSON.stringify(itemValue));
   }
 
-
+  // FACILITY METHOD
+  getFacilityList(dataCallID, instID, setterMethod: Function) {
+    const httpClient = new XMLHttpRequest();
+    httpClient.open('GET', rootURL + 'facility/' + dataCallID + '/' + instID, true);
+    httpClient.setRequestHeader('content-type', 'application/json');
+    httpClient.onreadystatechange = function() {
+      if (this.readyState !== 4) {
+        // insert loading spinner TODO
+      } else {
+        if (this.status === 404) {
+          console.log('404 error, get Facility List');
+        } else if (this.status === 200) {
+          setterMethod(JSON.parse(this.responseText));
+        }
+      }
+    };
+    httpClient.send();
+  }
 
 // DISPOSAL TRANSACTION METHODS END ------------------------------------- //
 

@@ -10,6 +10,7 @@ import { UserAdminComponent } from './dataentry-components/user-admin/user-admin
 import { DataCallAdminComponent } from './dataentry-components/datacall-admin/datacall-admin.component';
 import { RecycleListComponent } from './dataentry-components/recycle-list/recycle-list.component';
 import { RecycleTransactionComponent } from './dataentry-components/recycle-transaction/recycle-transaction.component';
+import { InstallationPickerComponent } from './dataentry-components/installation-picker/installation-picker.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/useradmin', pathMatch: 'full'},
@@ -22,7 +23,8 @@ const routes: Routes = [
   { path: 'datacalladmin', component: DataCallTableComponent},
   { path: 'datacalladmin/datacall', component: DataCallAdminComponent},
   { path: 'recycling', component: RecycleListComponent},
-  { path: 'recycling/transaction', component: RecycleTransactionComponent}
+  { path: 'recycling/transaction', component: RecycleTransactionComponent},
+  { path: 'installation', component: InstallationPickerComponent}
 ];
 
 @NgModule({

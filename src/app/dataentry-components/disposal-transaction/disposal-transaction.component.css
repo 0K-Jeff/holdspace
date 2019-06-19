@@ -14,7 +14,7 @@ div.disposalTransactionBox {
 div.miniBox {
     border-radius: 10px;
     padding: 10px;
-    width: 700px;
+    width: 900px;
     height: auto;
     position: relative;
     background: #cac3c3;
@@ -24,15 +24,27 @@ div.miniBox {
 div.miniBox2 {
     border-radius: 10px;
     padding: 10px;
-    width: 700px;
+    width: 900px;
     height: auto;
     position: relative;
     background: #d6d3d3;
     margin: 10px;
 }
 
+div.selectWrap {
+    position: absolute;
+    left: 325px;
+    width: 400px;
+    top: 30px;
+}
+
+div.localUse > * {
+    width: 800px;
+    margin-left: 20px;
+}
+
 select.facilityChoice {
-    width: 200px;
+    width: 225px;
     height: 50px;
     margin: 0px 20px 20px 20px;
     background: #294766;
@@ -41,7 +53,7 @@ select.facilityChoice {
 }
 
 select.tenantSelector {
-    width: 200px;
+    width: 225px;
     height: 50px;
     margin: 20px;
     background: #294766;
@@ -55,7 +67,7 @@ option.facilitylistfield:hover {
 
 input.transactionValue {
     display: inline-block;
-    width: 175px;
+    width: 200px;
     text-align: right;
 }
 
@@ -160,6 +172,7 @@ mat-button-toggle.mat-button-toggle-checked {
 
 .mat-button-toggle-group {
     margin: 10px;
+    margin-right: 150px;
 }
 
 .finalCost {
@@ -180,4 +193,8 @@ input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
+}
+
+.invisify {
+    display: none;
 }

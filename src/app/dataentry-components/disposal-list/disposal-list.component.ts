@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
-import { DisposalTransactionService, DisposalTransactionListItem, BackEndDataPattern } from '../../dataentry-services/disposal-transaction.service';
+import { DisposalTransactionService } from '../../dataentry-services/disposal-transaction.service';
 import { Router } from '@angular/router';
 import { RESTClient } from 'src/app/json-client.service';
+import { InstallationServiceService } from 'src/app/dataentry-services/installation-service.service';
 
 @Component({
   selector: 'app-disposal-list',
@@ -20,16 +21,17 @@ export class DisposalListComponent implements OnInit {
 
   constructor(private disposalTransactionService: DisposalTransactionService,
               private restClient: RESTClient,
-              private router: Router) { }
+              private router: Router,
+              private installationService: InstallationServiceService) { }
 
   ngOnInit() {
     this.tableRenderPacket = this.tableRenderPacket.bind(this);
-    this.restClient.getDisposalTransactionList(115, 105, this.tableRenderPacket);
-
+    const instData = this.installationService.FetchChosenInstallation();
+    this.restClient.getDisposalTransactionList(instData.instId, instData.dcId, this.tableRenderPacket);
   }
 
   tableRenderPacket(dataTransactionPacket) {
-    // translate mock data into JSON TODO REPLACE with translating server data
+    // parse data input
     const dataBundle = JSON.parse(dataTransactionPacket);
     console.log(dataBundle);
     // render complete table
