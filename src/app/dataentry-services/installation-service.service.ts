@@ -7,6 +7,21 @@ export class InstallationServiceService {
 
   constructor() { }
 
+  recyclingCats = [{'code': 1, 'name': 'BULKY ITEMS', 'display': 'Y'},
+  {'code': 2, 'name': 'C&D DEBRIS', 'display': 'Y'},
+  {'code': 3, 'name': 'FOOD', 'display': 'Y'},
+  {'code': 4, 'name': 'GLASS', 'display': 'Y'},
+  {'code': 5, 'name': 'METALS', 'display': 'Y'},
+  {'code': 6, 'name': 'OTHER (NON-FOOD)', 'display': 'Y'},
+  {'code': 7, 'name': 'PAPER', 'display': 'Y'},
+  {'code': 8, 'name': 'PLASTIC', 'display': 'Y'},
+  {'code': 9, 'name': 'RANGE METALS', 'display': 'Y'},
+  {'code': 10, 'name': 'OTHER SELECT WASTES', 'display': 'Y'},
+  {'code': 11, 'name': 'TEXTILES', 'display': 'Y'},
+  {'code': 12, 'name': 'WOOD', 'display': 'Y'},
+  {'code': 13, 'name': 'BULBS', 'display': 'Y'},
+  {'code': 14, 'name': 'COMPOSTING', 'display': 'Y'}];
+
   chosenInstallation: InstallationFullItem [];
   chosenTenants: [];
   recyleTypes: [];
@@ -52,6 +67,11 @@ export class InstallationServiceService {
       tenantList: this.chosenTenants
     };
     return collatedValues;
+  }
+
+  FetchRecyclingCat() {
+    // return recycling hardcoded List
+    return this.recyclingCats;
   }
 
   FetchRecyclingTypes() {

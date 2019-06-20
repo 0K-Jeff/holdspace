@@ -68,7 +68,28 @@ const rootURL = 'http://localhost:8181/swar_test/rest/'; // Spring test server
     httpClient.setRequestHeader('content-type', 'application/json');
     httpClient.onreadystatechange = function() {
       if (this.readyState !== 4) {
-        // console.log(this.readyState);
+        // insert loading spinner TODO
+      } else {
+        if (this.status === 404) {
+          console.log('404 error, get DTlist');
+        } else if (this.status === 200) {
+          itemValue = httpClient.responseText;
+          renderFunction(itemValue);
+        }
+      }
+    };
+    httpClient.send();
+  };
+
+  const returnRTList = function(instId, dcId, renderFunction) {
+    // populate the recycling transaction list
+    let itemValue;
+    const httpClient = new XMLHttpRequest();
+    httpClient.open('GET', rootURL + 'recycle/getAllRecycleByDcIdAndInstId?instId=' + instId + '&dcId=' + dcId, true);
+    httpClient.setRequestHeader('content-type', 'application/json');
+    httpClient.onreadystatechange = function() {
+      if (this.readyState !== 4) {
+        // insert loading spinner TODO
       } else {
         if (this.status === 404) {
           console.log('404 error, get DTlist');
@@ -454,6 +475,45 @@ export class RESTClient {
 // DISPOSAL TRANSACTION METHODS END ------------------------------------- //
 
 // RECYCLING TRANSACTION METHODS ---------------------------------------- //
+
+  getRecyclingTransactionList(instID, dcID, renderFunction: Function) {
+      // populate the disposal transaction list
+      let itemValue;
+      const httpClient = new XMLHttpRequest();
+      httpClient.open('GET', rootURL + 'recycle/getAllRecycleByDcIdAndInstId?instId=' + instID + '&dcId=' + dcID, true);
+      httpClient.setRequestHeader('content-type', 'application/json');
+      httpClient.onreadystatechange = function() {
+        if (this.readyState !== 4) {
+          // insert loading spinner TODO
+        } else {
+          if (this.status === 404) {
+            console.log('404 error, get RTlist');
+          } else if (this.status === 200) {
+            itemValue = httpClient.responseText;
+            renderFunction(itemValue);
+          }
+        }
+      };
+      httpClient.send();
+  }
+
+  deleteRecycleTransaction(eventTarget, renderFunction: Function) {
+    const httpClient = new XMLHttpRequest();
+    httpClient.open('DELETE', rootURL + 'recycle/', true);
+    httpClient.setRequestHeader('content-type', 'application/json');
+    httpClient.onreadystatechange = function() {
+      if (this.readyState !== 4) {
+    // insert loading spinner TODO
+      } else {
+        if (this.status === 404) {
+          console.log('404 error, deleteRT');
+        } else if (this.status === 200) {
+          returnRTList(eventTarget.instId, eventTarget.dcId, renderFunction);
+        }
+      }
+    };
+    httpClient.send(JSON.stringify(eventTarget));
+  }
 
 // RECYCLING TRANSACTION METHODS END ------------------------------------ //
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
-import { DisposalTransactionService, DisposalTransactionListItem } from '../../dataentry-services/disposal-transaction.service';
+import { FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { DisposalTransactionService } from '../../dataentry-services/disposal-transaction.service';
 import { Router } from '@angular/router';
 import { RESTClient } from 'src/app/json-client.service';
 import { InstallationServiceService } from 'src/app/dataentry-services/installation-service.service';

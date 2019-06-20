@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { RecyclingTransactionService, RecyclingTransactionListItem } from '../../dataentry-services/recycling-transaction.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { RecyclingTransactionService } from '../../dataentry-services/recycling-transaction.service';
 import { Router } from '@angular/router';
+import { InstallationServiceService } from 'src/app/dataentry-services/installation-service.service';
+import { RESTClient } from 'src/app/json-client.service';
 
 // create variables to store data if needed for editing transactions
 let tDate: Date;
@@ -21,27 +23,39 @@ let editMode = false;
 })
 export class RecycleTransactionComponent implements OnInit {
   form: FormGroup;
-  // TODO insert proper facility list call
-  dummyFacility = ['Camp Swampy Recycling Plant', 'Camp Swampy Plastic Grinder'];
+  recycleCategory;
+  tenantList;
+  recycleType;
 
   // enable singleton services and other controllers
   constructor(private recyclingTransactionService: RecyclingTransactionService,
               private formBuilder: FormBuilder,
+              private installationService: InstallationServiceService,
+              private restClient: RESTClient,
               private router: Router) { }
 
   ngOnInit() {
+    // implement recycle type and cat lists TODO
+    const blob = this.installationService.FetchChosenInstallation();
+    this.recycleCategory = this.installationService.FetchRecyclingCat();
+    this.recycleType = this.installationService.FetchRecyclingTypes();
+    this.tenantList = blob.tenantList;
+
     // initiate bindings for form values
     this.form = this.formBuilder.group({
       actionDate: ['', Validators.required],
-      facility: ['', Validators.required],
+      tenant: ['', Validators.required],
+      recyclingCat: ['', Validators.required],
       recyclingType: ['', Validators.required],
       comments: [''],
       weight: ['', Validators.required],
       transactionType: ['', Validators.required],
+      isQRP: [''],
       costOrRevenue: ['', Validators.required],
-      poundsOrTons: ['', Validators.required],
       costByWeight: ['', Validators.required],
-      finalCost: ({ value: '0.00', readOnly: true})
+      finalCost: ({ value: '0.00', readOnly: true}),
+      invoiceNo: [''],
+      localUseBox: ['']
     });
 
     // subscribe finalCost to other values to calculate reactively
@@ -79,11 +93,6 @@ export class RecycleTransactionComponent implements OnInit {
 
   SaveSubmit() {
     // TODO add logic based on REST call - not using dummy data
-  }
-
-  tonsReset() {
-    this.form.controls.weight.patchValue('');
-    this.form.controls.costByWeight.patchValue('');
   }
 
   ClearChosenTransaction() {

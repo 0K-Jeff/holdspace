@@ -41,6 +41,7 @@ export class InstallationIdboxComponent implements OnInit {
 
   recycleSetter(recyclingInfo) {
     this.installService.SetRecyclingTypes(recyclingInfo);
+    console.log(recyclingInfo);
   }
 
   facilitySetter(facilityInfo) {

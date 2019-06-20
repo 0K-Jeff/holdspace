@@ -22,10 +22,6 @@ export class RecyclingTransactionService {
     this.chosenTransaction = undefined;
   }
 
-  DeleteTransaction(transactionRef) {
-    // TODO apply actual delete Method with REST calls
-  }
-
 }
 
 // implements and exports disposal tranasaction interface

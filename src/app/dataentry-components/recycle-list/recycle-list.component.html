@@ -6,45 +6,45 @@
         <th class="iconHeader" mat-header-cell *matHeaderCellDef> Actions: </th>
         <td class="iconCell" mat-cell *matCellDef="let transaction">
           <button class="iconButton editData" (click)="this.SetChosenTransaction(transaction)" routerLink='/recycling/transaction' ><i class="fas fa-edit fa-lg"></i></button>
-          <button class='iconButton rejectData' (click)='this.DeleteTransaction(transaction.transactionId)' ><i class ='fas fa-trash-alt fa-lg'></i></button>
+          <button class='iconButton rejectData' (click)='this.DeleteTransaction(transaction)' id="deleteTransaction{{transaction.rswCalDtZz}}"><i class ='fas fa-trash-alt fa-lg'></i></button>
         </td>
       </ng-container>
 
       <ng-container matColumnDef="date">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
-          <td mat-cell *matCellDef="let transaction"> {{transaction.date}} </td>
+          <td mat-cell *matCellDef="let transaction"> {{transaction.rswCalDtZz}} </td>
         </ng-container>
     
-        <ng-container matColumnDef="facility">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Facility </th>
-          <td mat-cell *matCellDef="let transaction"> {{transaction.facility}} </td>
+        <ng-container matColumnDef="recyclingCat">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Category </th>
+          <td mat-cell *matCellDef="let transaction"> {{transaction.recCatCode}} </td>
         </ng-container>
     
         <ng-container matColumnDef="recyclingType">
-          <th class="iconHeader" mat-header-cell *matHeaderCellDef mat-sort-header> Material </th>
-          <td mat-cell *matCellDef="let transaction"> {{transaction.recyclingType}} </td>
+          <th class="iconHeader" mat-header-cell *matHeaderCellDef mat-sort-header> Type </th>
+          <td mat-cell *matCellDef="let transaction"> {{transaction.recTypeCode}} </td>
         </ng-container>
     
         <ng-container matColumnDef="weight">
           <th class="iconHeader" mat-header-cell *matHeaderCellDef mat-sort-header> Tons </th>
-          <td mat-cell *matCellDef="let transaction"> {{transaction.weight}} </td>
+          <td mat-cell *matCellDef="let transaction"> {{(transaction.origRswWt + (transaction.splitActWt * (-1)))}} </td>
         </ng-container>
     
         <ng-container matColumnDef="unitCost">
           <th class="iconHeader" mat-header-cell *matHeaderCellDef mat-sort-header> Unit Cost </th>
-          <td mat-cell *matCellDef="let transaction"> ({{transaction.isTons}}) ${{transaction.unitCost}}/per </td>
+          <td mat-cell *matCellDef="let transaction"> ${{(transaction.rswRevAm).toFixed(2)}}/per </td>
         </ng-container>
     
         <ng-container matColumnDef="totalCost">
           <th class="iconHeader" mat-header-cell *matHeaderCellDef mat-sort-header> Total Cost </th>
-          <td mat-cell *matCellDef="let transaction"> ${{transaction.totalCost}} </td>
+          <td mat-cell *matCellDef="let transaction"> ${{((transaction.origRswWt + ((-1) * transaction.splitActWt)) * transaction.rswRevAm).toFixed(2)}} </td>
         </ng-container>
     
         <tr mat-header-row *matHeaderRowDef='displayedColumns'></tr>
         <tr mat-row *matRowDef='let row; columns: displayedColumns'></tr>
     </table>
 
-    <mat-paginator [pageSizeOptions]="[5, 10]" showFirstLastButtons></mat-paginator>
+    <mat-paginator [pageSizeOptions]="[8, 12]" showFirstLastButtons></mat-paginator>
   </div>
 
   <button class='newTransaction' routerLink='/recycling/transaction' mat-raised-button>New Transaction</button>
