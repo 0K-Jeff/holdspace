@@ -116,7 +116,6 @@ export class DisposalTransactionComponent implements OnInit {
         shortHandRevenue = 1;
       }
       const formDataBundle = {
-        // TODO fix with correct lookups
         instId: currentTransactionData.instId,
         sldWstCDTM: currentTransactionData.sldWstCDTM,
         tenantId: this.form.value.tenant,
@@ -131,12 +130,12 @@ export class DisposalTransactionComponent implements OnInit {
         splitPct: currentTransactionData.splitPct,
         trnsWstFeeAm: this.form.value.costByWeight,
         infoSourceCode: typeShortHand,
-        trnsWstAshCode: 0,
+        trnsWstAshCode: 0, // TODO figure out how this shit works
         isRevenue: shortHandRevenue,
         localUse: this.form.value.localUseBox,
         volumeConvRate: currentTransactionData.volumeConvRate,
         volumeConvUnit: currentTransactionData.volumeConvUnit,
-        userId: 7293, // TODO replace with real
+        userId: currentTransactionData.userId,
         invoiceNumber: this.form.value.invoiceNo,
         mrfDisposalTypeCode: currentTransactionData.mrfDisposalTypeCode,
         splitActWeight: currentTransactionData.splitActWeight,

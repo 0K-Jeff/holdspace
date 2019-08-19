@@ -32,7 +32,21 @@ export class RecycleListComponent implements OnInit {
   tableRenderPacket(dataTransactionPacket) {
     // parse data input
     const dataBundle = JSON.parse(dataTransactionPacket);
+    const rCats: any = this.installationService.FetchRecyclingCat();
+    const rTypes: any  = this.installationService.FetchRecyclingTypes();
     console.log(dataBundle);
+    for (let i = 0; i < dataBundle.length; i++) {
+      for (let ix = 0; ix < rCats.length; ix++) {
+        if (dataBundle[i].recCatCode === rCats[ix].code) {
+          dataBundle[i].recCatName = rCats[ix].name;
+          for (let iy = 0; iy < rTypes.length; iy++) {
+            if (dataBundle[i].recCatCode === rTypes[iy].recCatCode && dataBundle[i].recTypeCode === rTypes[iy].recTypeCode) {
+              dataBundle[i].recTypeName = rTypes[iy].recTypeName;
+            }
+          }
+        }
+      }
+    }
     // render complete table
      this.dataSource = new MatTableDataSource(dataBundle);
      this.dataSource.paginator = this.paginator;

@@ -4,8 +4,8 @@
   
       <div class="miniBox">
           <h1>Enter your Transaction Date: </h1><br>
-          <input class='datePicker' autocomplete="off" [matDatepicker]="myDatepicker" formControlName="actionDate">
-          <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
+          <input class='datePicker' id='datePickField' autocomplete="off" [matDatepicker]="myDatepicker" formControlName="actionDate">
+          <mat-datepicker-toggle id='datePickIcon' [for]="myDatepicker"></mat-datepicker-toggle>
           <mat-datepicker #myDatepicker></mat-datepicker>
   
           <div class="selectWrap">
@@ -56,8 +56,8 @@
         </mat-radio-group>
 
         <mat-radio-group class="toggle" formControlName="isQRP">
-          <mat-radio-button value="1">QRP</mat-radio-button><br>
-          <mat-radio-button value="0">Non QRP</mat-radio-button>
+          <mat-radio-button value=1>QRP</mat-radio-button><br>
+          <mat-radio-button value=0>Non QRP</mat-radio-button>
         </mat-radio-group>
   
       </div>

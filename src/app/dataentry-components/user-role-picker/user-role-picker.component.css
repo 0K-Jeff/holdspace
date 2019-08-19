@@ -1,11 +1,11 @@
-/* Recycle Transaction Styling */
+/* User Admin Styling */
 
-div.recyclingTransactionBox {
+div.userInfoBox {
     padding: 20px;
     padding-left: 50px;
     margin-left: 175px;
     margin-right: 20px;
-    padding-top: 100px;
+    padding-top: 115px;
     width: 90%;
     height: 100%;
     position: absolute;
@@ -31,32 +31,29 @@ div.miniBox2 {
     margin: 10px;
 }
 
-select.facilityChoice {
-    width: 200px;
-    height: 50px;
-    margin: 0px 20px 20px 20px;
-    background: #294766;
-    color: white;
-    margin-left: 40px;
+div.roleInputBox {
+    margin-left: 50px;
+    height: 55px;
 }
 
-select.tenantSelector {
-    width: 200px;
-    height: 50px;
-    margin: 20px;
-    background: #294766;
-    color: white;
-    margin-left: 40px;
+input.roleInput {
+    padding: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 173px;
 }
 
 option.facilitylistfield:hover {
     background: #314c68;
 }
 
-input.transactionValue {
+mat-form-field.userData {
+    width: 250px;
+}
+
+input.userData {
     display: inline-block;
-    width: 175px;
-    text-align: right;
+    width: 300px;
 }
 
 h1 {
@@ -74,12 +71,12 @@ h1.headline {
     margin: 10px;
     font-size: 2em;
     color: #294766;
-    width: 700px;
+    width: 900px;
     background: #314c6829;
     padding: 20px;
 }
 
-label.transactionValue {
+label.userData {
     font-weight: bold;
     display: inline-block;
     width: 110px;
@@ -87,13 +84,12 @@ label.transactionValue {
     text-align: right;
 }
 
-button {
+button.choiceActions {
     background: #0c9449;
     height: 35px;
     line-height: 35px;
     margin: 10px;
     border: none;
-    box-shadow: 8px 8px rgba(0, 0, 0, 0.2);
     color: white;
     margin-bottom: 25px;
 }
@@ -121,64 +117,98 @@ i.formTooltip:hover {
     color: #5e7c9b;
 }
 
-div.selectWrap {
-    position: absolute;
-    left: 325px;
-    width: 400px;
-    top: 30px;
-}
-
 /* Material UI alterations */
 
-mat-radio-group.toggle {
-    border: 0.5px solid rgb(145, 145, 145);
-    position: relative;
+.rightSide {
+    position: absolute;
+    left: 750px;
+}
+
+.rolesList {
+    margin-left: 20px;
+    width: 250px;
+}
+
+#rolesList {
+    margin-left: 0;
+}
+
+.dbaBox {
+    margin: 20px;
+    margin-left: 50px;
+}
+
+mat-form-field.userRoleData {
+    margin: 10px;
+    width: 95%;
+    background: #cac3c3;
+    border-radius: 10px;
     padding: 10px;
-    width: 200px;
     display: inline-block;
-    margin: 10px;
-    height: 85px;
-    line-height: 30px;
-    vertical-align: top;
-    margin-left: 10px;
 }
 
-input.datePicker {
-    width: 200px;
-    margin: 0px 20px 20px 40px;
+table {
+    margin-left: 50px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 800px;
 }
 
-mat-datepicker-toggle {
-    margin-right: 20px;
-}
-
-mat-button-toggle.mat-button-toggle {
-    color: #141618;
-    margin: 2px;
-    border-width: 1px;
+td {
+    text-align: center;
     border-style: solid;
-    border-color: #aac2b5;
+    border-width: 0px .5px 1px .5px;
+    border-color: #cac3c3;
 }
 
-mat-button-toggle.mat-button-toggle-checked {
-    background: #0cb859;
-    color: white;
+div.tablePanel {
+    margin: 0px;
 }
 
-.mat-button-toggle-group {
-    margin: 10px;
+button.iconButton {
+    background: none;
+    border: none;
+    color: #294766;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 17px;
 }
 
-.finalCost {
-    font-weight: 600;
+button.selectRole {
+    color: #0c9449;
 }
 
-.facilitySelect {
-    width: 220px;
+button.selectRole:hover {
+    color: #0cb859;
 }
 
-.recyclingSelect {
-    width: 220px;
+button.deleteRole {
+    color: #c93407;
+}
+
+button.deleteRole:hover {
+    color: #f7440e;
+}
+
+button.doubleCheck {
+    background: #f5598382;
+    border-radius: 25%;
+}
+
+tr.mat-header-row th.mat-header-cell {
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+    border-style: solid;
+    border-width: 1px .5px 2px .5px;
+    border-color: #9c9a9a;
+    background: #ebeaea
+}
+
+.invisify {
+    display: none;
 }
 
 /* browser overrides */
@@ -193,6 +223,3 @@ input[type="number"]::-webkit-inner-spin-button {
     margin: 0;
 }
 
-.invisify {
-    display: none;
-}

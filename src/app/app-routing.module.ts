@@ -11,20 +11,22 @@ import { DataCallAdminComponent } from './dataentry-components/datacall-admin/da
 import { RecycleListComponent } from './dataentry-components/recycle-list/recycle-list.component';
 import { RecycleTransactionComponent } from './dataentry-components/recycle-transaction/recycle-transaction.component';
 import { InstallationPickerComponent } from './dataentry-components/installation-picker/installation-picker.component';
+import { UserRolePickerComponent } from './dataentry-components/user-role-picker/user-role-picker.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/useradmin', pathMatch: 'full'},
+  { path: '', redirectTo: '/home', pathMatch: 'full'},
   { path: 'home', component: LandingpageComponent},
-  { path: 'auth', component: AuthcheckComponent},
+  // { path: 'auth', component: AuthcheckComponent},
   { path: 'disposal', component: DisposalListComponent},
   { path: 'disposal/transaction', component: DisposalTransactionComponent},
   { path: 'useradmin', component: UserTableComponent},
   { path: 'useradmin/user', component: UserAdminComponent},
   { path: 'datacalladmin', component: DataCallTableComponent},
-  { path: 'datacalladmin/datacall', component: DataCallAdminComponent},
+  // { path: 'datacalladmin/datacall', component: DataCallAdminComponent},
   { path: 'recycling', component: RecycleListComponent},
   { path: 'recycling/transaction', component: RecycleTransactionComponent},
-  { path: 'installation', component: InstallationPickerComponent}
+  { path: 'installation', component: InstallationPickerComponent},
+  { path: 'session/userrole', component: UserRolePickerComponent}
 ];
 
 @NgModule({

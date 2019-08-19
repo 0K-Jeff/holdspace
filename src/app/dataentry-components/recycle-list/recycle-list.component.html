@@ -17,12 +17,12 @@
     
         <ng-container matColumnDef="recyclingCat">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Category </th>
-          <td mat-cell *matCellDef="let transaction"> {{transaction.recCatCode}} </td>
+          <td mat-cell *matCellDef="let transaction"> {{transaction.recCatName}} </td>
         </ng-container>
     
         <ng-container matColumnDef="recyclingType">
           <th class="iconHeader" mat-header-cell *matHeaderCellDef mat-sort-header> Type </th>
-          <td mat-cell *matCellDef="let transaction"> {{transaction.recTypeCode}} </td>
+          <td mat-cell *matCellDef="let transaction"> {{transaction.recTypeName}} </td>
         </ng-container>
     
         <ng-container matColumnDef="weight">

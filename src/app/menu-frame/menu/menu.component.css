@@ -1,9 +1,20 @@
 div.menu{
     z-index: 3;
     background: #294766;
-    width: 175px;
+    width: 240px;
     height: auto;
     position: fixed;
+}
+
+div.swarlogo {
+    padding-left: 25px
+}
+
+div.menuButtonBox {
+    position: absolute;
+    left: 275px;
+    height: 90px;
+    width: auto;
 }
 
 div.menu div.swarlogo h1 {
@@ -20,22 +31,29 @@ div.menu div.swarlogo h1 {
 }
 
 .menuItem {
-    position: absolute;
     display: inline-block;
-    left: 625px;
     z-index: 20;
-    margin: 10px;
-    background: #1f2c3b;
+    margin: 5px;
+    background: linear-gradient(0deg, rgba(31,44,59,1) 0%, rgba(41,71,102,1) 100%);
+    border-radius: 7px;
     padding: 10px;
     font-weight: 300;
     font-size: 18px;
     margin-top: 25px
 }
-.two {
-    left: 716px;
+
+.menuItem:hover {
+    background: linear-gradient(0deg, rgb(48, 68, 90) 0%, rgb(52, 91, 129) 100%);
 }
-.three {
-    left: 825px;
+
+.primaryItem {
+    background: linear-gradient(0deg, rgba(12,148,73,1) 0%, rgba(12,184,89,1) 100%);
+    font-size: 20px;
+}
+
+.primaryItem:hover {
+    background: linear-gradient(0deg, rgb(13, 165, 82) 0%, rgb(15, 209, 102) 100%);
+    font-size: 20px;
 }
 
 div.menu ul {
@@ -118,9 +136,12 @@ div.facilityinfo {
     position: fixed;
     height: 90px;
     width: 100%;
-    background: #294766;
+    background: rgb(84,128,173);
+    background: linear-gradient(0deg, rgba(84,128,173,0.6222864145658263) 0%, rgba(41,71,102,1) 100%);
     color: white;
 }
+
+
 
 div.facilityinfo h1.menutext {
     line-height: 90px;
@@ -151,4 +172,10 @@ i.facilityInfoBoxToggle {
     z-index: 10;
     right: 75px;
     top: 38px;
+}
+
+.legButton {
+    position: absolute;
+    right: 100px;
+    color: white;
 }

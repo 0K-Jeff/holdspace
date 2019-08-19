@@ -111,3 +111,19 @@ button.doubleCheck {
     background: #dacf73a6;
     border-radius: 25%;
 }
+
+button.newTransaction {
+    background: #0c9449;
+    margin: 10px;
+    border: none;
+    width: 150px;
+    height: 40px;
+    line-height: 40px;
+    margin-left: 50px;
+    box-shadow: 8px 8px rgba(0, 0, 0, 0.2);
+    color: white;
+}
+
+button.newTransaction:hover {
+    background: #0cb859;
+}

@@ -33,7 +33,15 @@ export class DisposalListComponent implements OnInit {
   tableRenderPacket(dataTransactionPacket) {
     // parse data input
     const dataBundle = JSON.parse(dataTransactionPacket);
+    const facList = this.installationService.FetchFacilities();
     console.log(dataBundle);
+    for (let i = 0; i < dataBundle.length; i++) {
+      for (let ix = 0; ix < facList.length; ix++) {
+        if (dataBundle[i].facId === facList[ix].facId) {
+          dataBundle[i].facNameT = facList[ix].facName;
+        }
+      }
+    }
     // render complete table
      this.dataSource = new MatTableDataSource(dataBundle);
      this.dataSource.paginator = this.paginator;

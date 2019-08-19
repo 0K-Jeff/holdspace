@@ -22,6 +22,7 @@ import { InstallationIdboxComponent } from './menu-frame/installation-idbox/inst
 import { InstallationEditorComponent } from './dataentry-components/installation-editor/installation-editor.component';
 import { DataCallAdminComponent } from './dataentry-components/datacall-admin/datacall-admin.component';
 import { DataCallTableComponent } from './dataentry-components/datacall-table/datacall-table.component';
+import { UserRolePickerComponent } from './dataentry-components/user-role-picker/user-role-picker.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { DataCallTableComponent } from './dataentry-components/datacall-table/da
     InstallationIdboxComponent,
     InstallationEditorComponent,
     DataCallAdminComponent,
-    DataCallTableComponent
+    DataCallTableComponent,
+    UserRolePickerComponent
   ],
   imports: [
     BrowserModule,

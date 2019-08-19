@@ -3,6 +3,7 @@ import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
 import { DataCallAdminService, DataCallListItem } from '../../dataentry-services/datacall-admin.service';
 import { RESTClient } from '../../json-client.service';
 import { Router } from '@angular/router';
+import { InstallationServiceService } from 'src/app/dataentry-services/installation-service.service';
 
 let DATACALL_DATA: DataCallListItem[] = [];
 
@@ -22,12 +23,13 @@ export class DataCallTableComponent implements OnInit {
 
   constructor(private datacallAdminService: DataCallAdminService,
               private restClient: RESTClient,
+              private installService: InstallationServiceService,
               private router: Router) { }
 
   ngOnInit() {
       // Bind method to pass on
     this.renderTableData = this.renderTableData.bind(this);
-
+    this.updateView = this.updateView.bind(this);
     this.restClient.getDataCallInfoTable(this.renderTableData);
   }
 
@@ -97,8 +99,21 @@ export class DataCallTableComponent implements OnInit {
         this.dataSource.sort = this.sort;
   }
 
-  SetChosenUser(datacallData) {
-    return this.datacallAdminService.SetChosenDataCall(datacallData);
+  SetCurrentDC(datacallData) {
+    const targetElement = document.getElementById('setDataCall' + datacallData.ID);
+    if (targetElement.classList.contains('doubleCheck') === true ) {
+    const cV = this.installService.FetchChosenInstallation();
+    this.installService.SetChosenInstallation(datacallData.ID, cV.instId, cV.userId, cV.userRole, cV.tenantList);
+    this.restClient.updateIniDataCall(cV.userId, datacallData.ID, this.updateView);
+    } else {
+      targetElement.classList.toggle('doubleCheck');
+    }
+  }
+
+  updateView(elementID) {
+    // handle class changes to indicate completed update.
+    const targetElement = document.getElementById('setDataCall' + elementID);
+    targetElement.classList.toggle('doubleCheck');
   }
 
   DisableDataCall(datacall) {

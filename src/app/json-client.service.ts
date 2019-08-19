@@ -217,6 +217,56 @@ export class RESTClient {
     httpClient.send(JSON.stringify(newValue));
   }
 
+  updateIniDataCall(userID, passID, updateView: Function) {
+  // form data package
+  const newValue = {
+    userId: userID,
+    key: 'USER_DATACALL',
+    value: passID,
+    timestamp: null
+  };
+  const httpClient = new XMLHttpRequest();
+    httpClient.open('POST', rootURL + 'userini/', true);
+    httpClient.setRequestHeader('content-type', 'application/json');
+    httpClient.onreadystatechange = function() {
+    if (this.readyState !== 4) {
+      // insert loading spinner TODO
+    } else {
+      if (this.status === 404) {
+        console.log('update INI Error');
+      } else if (this.status === 200) {
+        updateView(passID);
+      }
+    }
+  };
+    httpClient.send(JSON.stringify(newValue));
+  }
+
+  updateIniRole(userID, passID, updateView: Function) {
+    // form data package
+    const newValue = {
+      userId: userID,
+      key: 'USER_ROLE',
+      value: passID,
+      timestamp: null
+    };
+    const httpClient = new XMLHttpRequest();
+      httpClient.open('POST', rootURL + 'userini/', true);
+      httpClient.setRequestHeader('content-type', 'application/json');
+      httpClient.onreadystatechange = function() {
+      if (this.readyState !== 4) {
+        // insert loading spinner TODO
+      } else {
+        if (this.status === 404) {
+          console.log('update INI Error');
+        } else if (this.status === 200) {
+          updateView(passID);
+        }
+      }
+    };
+      httpClient.send(JSON.stringify(newValue));
+    }
+
 // Installation module methods END ---------------------------------- //
 
 // Tenant Management Methods ---------------------------------------- //
@@ -495,6 +545,26 @@ export class RESTClient {
         }
       };
       httpClient.send();
+  }
+
+  createEditRecyclingTransaction(itemValue, navigateFunction) {
+    // populate the disposal transaction list
+    const httpClient = new XMLHttpRequest();
+    httpClient.open('POST', rootURL + 'recycle/', true);
+    httpClient.setRequestHeader('content-type', 'application/json');
+    httpClient.onreadystatechange = function() {
+      if (this.readyState !== 4) {
+        // insert loading spinner TODO
+      } else {
+        if (this.status === 404) {
+          console.log('404 error, createRT');
+        } else if (this.status === 200) {
+          navigateFunction();
+        }
+      }
+    };
+    console.log(JSON.stringify(itemValue));
+    httpClient.send(JSON.stringify(itemValue));
   }
 
   deleteRecycleTransaction(eventTarget, renderFunction: Function) {
