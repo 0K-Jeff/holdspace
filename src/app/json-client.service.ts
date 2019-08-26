@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from 'selenium-webdriver/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { retry } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 // Enumerate target URLS for making REST calls
 
@@ -7,6 +9,8 @@ import { HttpClient } from 'selenium-webdriver/http';
 const rootURL = 'http://localhost:8181/swar_test/rest/'; // Spring test server
 // const rootURL = 'http://localhost:3000/api/'; // Node.js Service
 // const rootURL = 'http://localhost:8181/swar/rest/';  // Tomcat
+
+
 
 
 // Internal method variables ------------------------------------- //
@@ -109,7 +113,17 @@ const rootURL = 'http://localhost:8181/swar_test/rest/'; // Spring test server
 })
 export class RESTClient {
 
-  constructor() { }
+  constructor(
+    private http: HttpClient
+  ) {}
+
+  getRecyclingTransactionList(installationId: number, dcId: number): Observable<any> {
+    const params = new HttpParams().set('instId', String(installationId)).set('dcId', String(dcId));
+
+    return this.http.get(rootURL + 'recycle/getAllRecycleByDcIdAndInstId', {params}).pipe(
+      retry(2)
+    );
+  }
 
 // Installation Module Methods ------------------------------------- //
 
@@ -526,7 +540,7 @@ export class RESTClient {
 
 // RECYCLING TRANSACTION METHODS ---------------------------------------- //
 
-  getRecyclingTransactionList(instID, dcID, renderFunction: Function) {
+  getRecyclingTransactionList2(instID, dcID, renderFunction: Function) {
       // populate the disposal transaction list
       let itemValue;
       const httpClient = new XMLHttpRequest();

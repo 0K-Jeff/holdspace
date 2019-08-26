@@ -15,6 +15,8 @@ export class RecycleListComponent implements OnInit {
   displayedColumns: string[] = ['actions', 'date', 'recyclingCat', 'recyclingType', 'weight', 'unitCost', 'totalCost'];
   dataSource;
 
+  public isClicked = false;
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -26,12 +28,19 @@ export class RecycleListComponent implements OnInit {
   ngOnInit() {
     this.tableRenderPacket = this.tableRenderPacket.bind(this);
     const instData = this.installationService.FetchChosenInstallation();
-    this.restClient.getRecyclingTransactionList(instData.instId, instData.dcId, this.tableRenderPacket);
+    this.restClient.getRecyclingTransactionList(instData.instId, instData.dcId).subscribe({
+      next: (dataPacket: any) => {
+        this.tableRenderPacket(dataPacket);
+      },
+      error: () => {
+        console.log('show error');
+      }
+    });
   }
 
-  tableRenderPacket(dataTransactionPacket) {
+  tableRenderPacket(dataBundle: any) {
     // parse data input
-    const dataBundle = JSON.parse(dataTransactionPacket);
+    // const dataBundle = JSON.parse(dataTransactionPacket);
     const rCats: any = this.installationService.FetchRecyclingCat();
     const rTypes: any  = this.installationService.FetchRecyclingTypes();
     console.log(dataBundle);
@@ -58,11 +67,11 @@ export class RecycleListComponent implements OnInit {
   }
 
   DeleteTransaction(eventTarget): void { // replace with recycle based options
-    const targetedElement = document.getElementById('deleteTransaction' + eventTarget.rswCalDtZz);
-    if (targetedElement.classList.contains('doubleCheck') === true) {
+    if (this.isClicked) {
+      this.isClicked = false;
       this.restClient.deleteRecycleTransaction(eventTarget, this.tableRenderPacket);
     } else {
-      targetedElement.classList.toggle('doubleCheck');
+      this.isClicked = true;
     }
 
   }
