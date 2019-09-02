@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
-import { RecyclingTransactionService } from '../../dataentry-services/recycling-transaction.service';
+import { RecyclingTransactionService, RecyclingTransactionListItem } from '../../dataentry-services/recycling-transaction.service';
 import { Router } from '@angular/router';
 import { InstallationServiceService } from 'src/app/dataentry-services/installation-service.service';
 import { RESTClient } from 'src/app/json-client.service';
@@ -38,7 +38,7 @@ export class RecycleListComponent implements OnInit {
     });
   }
 
-  tableRenderPacket(dataBundle: any) {
+  tableRenderPacket(dataBundle: RecyclingTransactionListItem[]) {
     // parse data input
     // const dataBundle = JSON.parse(dataTransactionPacket);
     const rCats: any = this.installationService.FetchRecyclingCat();
@@ -66,7 +66,7 @@ export class RecycleListComponent implements OnInit {
     this.recyclingTransactionService.SetChosenTransaction(dataBundle);
   }
 
-  DeleteTransaction(eventTarget): void { // replace with recycle based options
+  DeleteTransaction(eventTarget): void {
     if (this.isClicked) {
       this.isClicked = false;
       this.restClient.deleteRecycleTransaction(eventTarget, this.tableRenderPacket);

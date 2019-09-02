@@ -3,7 +3,7 @@ div.menu{
     background: #294766;
     width: 240px;
     height: auto;
-    position: fixed;
+    position: absolute;
 }
 
 div.swarlogo {
@@ -133,7 +133,7 @@ div.menu ul li div.hovermenu:hover div.hiddenhovermenu div.hiddenhovermenuitem{
 
 div.facilityinfo {
     z-index: 2;
-    position: fixed;
+    position: absolute;
     height: 90px;
     width: 100%;
     background: rgb(84,128,173);
@@ -176,6 +176,6 @@ i.facilityInfoBoxToggle {
 
 .legButton {
     position: absolute;
-    right: 100px;
+    right: 70px;
     color: white;
 }

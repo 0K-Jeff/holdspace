@@ -26,16 +26,29 @@ export class RecyclingTransactionService {
 
 // implements and exports disposal tranasaction interface
 export interface RecyclingTransactionListItem {
-  transactionId: string;
-  date: Date;
-  isActualWeight: string;
-  isRevenue: string;
-  isTons: string;
-  weight: number;
-  comments: string;
-  unitCost: number;
-  facility: string;
-  facilityType: string;
-  recyclingType: string;
-  totalCost: number;
+  instId: number;
+  rswCalDtZz: string;
+  dcId: number;
+  tenantId: number;
+  tenant: string;
+  orgId: number;
+  recTypeCode: number;
+  recTypeName: string;
+  recCatCode: number;
+  recCatName: string;
+  rswWt: number;
+  origRswWt: number;
+  splitPct: number;
+  rswRevAm: number;
+  infoSource: string;
+  rswDrmoCode: number;
+  isCost: number;
+  rswLocUseTx: string;
+  volConvRate: number;
+  volConvUnit: string;
+  userId: number;
+  invoiceNumber: string;
+  splitActWt: number;
+  isQrp: number;
+  cdFundCode: string;
 }

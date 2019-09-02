@@ -31,6 +31,8 @@ export class RecycleTransactionComponent implements OnInit {
   tenantList;
   recycleType;
 
+  public disableDate = false;
+
   // enable singleton services and other controllers
   constructor(private recyclingTransactionService: RecyclingTransactionService,
               private formBuilder: FormBuilder,
@@ -119,6 +121,7 @@ export class RecycleTransactionComponent implements OnInit {
       tWeight = currentTransactionData.origRswWt;
       tInvoNo = currentTransactionData.invoiceNumber;
       tLocalUse = currentTransactionData.rswLocUseTx;
+      // legacy data support - split transactions deprecated in rebuild
       if (currentTransactionData.origRswWt === null) {
         tWeight = currentTransactionData.splitActWt;
       }

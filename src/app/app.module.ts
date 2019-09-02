@@ -7,9 +7,7 @@ import { AppComponent } from './app.component';
 import { LandingpageComponent } from './landingpage/landingpage.component';
 import { TimerComponent } from './menu-frame/timer/timer.component';
 import { MenuComponent } from './menu-frame/menu/menu.component';
-import { AlertsComponent } from './menu-frame/alerts/alerts.component';
 import { AppRoutingModule } from './app-routing.module';
-import { AuthcheckComponent } from './authcheck/authcheck.component';
 import { DisposalTransactionComponent } from './dataentry-components/disposal-transaction/disposal-transaction.component';
 import { DisposalListComponent } from './dataentry-components/disposal-list/disposal-list.component';
 import { UserTableComponent } from './dataentry-components/user-table/user-table.component';
@@ -30,8 +28,6 @@ import { UserRolePickerComponent } from './dataentry-components/user-role-picker
     LandingpageComponent,
     TimerComponent,
     MenuComponent,
-    AlertsComponent,
-    AuthcheckComponent,
     DisposalTransactionComponent,
     DisposalListComponent,
     UserTableComponent,

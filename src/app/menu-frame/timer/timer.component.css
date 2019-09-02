@@ -1,7 +1,7 @@
 div#timerdisplay {
-    position: fixed;
+    position: absolute;
     display: inline-block;
-    width: 225px;
+    width: 215px;
     height: 25px;
     line-height: 25px;
     margin: 0;
@@ -12,13 +12,15 @@ div#timerdisplay {
     left: 0px;
     z-index: 6;
     top: 90px;
-    padding-left: 25px;
+    padding-left: 10px;
     background: #294766;
 }
 
 div#timerdisplay::after {
     content: " ";
     border-top: 25px solid #294766;
-    border-right: 25px solid #e4e4e4;
+    border-right: 25px solid hsla(0, 0%, 0%, 0);
     position: absolute;
+    left: 215px;
+    z-index: -5;
 }
